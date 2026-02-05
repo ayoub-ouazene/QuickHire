@@ -95,7 +95,7 @@ function CandidatePage() {
 
     if (query) params.append('search', query);
 
-    const url = `http://localhost:3000/api/Company/Users?${params.toString()}`;
+    const url = `https://quickhire-4d8p.onrender.com/api/Company/Users?${params.toString()}`;
 
     const response = await fetch(url, {
       method: 'GET',

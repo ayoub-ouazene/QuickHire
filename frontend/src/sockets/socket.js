@@ -7,7 +7,7 @@ let socket = null;
 export function connectSocket(user) {
   if (socket) return socket;
 
-  socket = io("http://localhost:3000", {
+  socket = io("https://quickhire-4d8p.onrender.com", {
     auth: {
       id: user.id,
       type: user.type

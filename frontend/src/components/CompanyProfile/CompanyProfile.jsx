@@ -84,7 +84,7 @@ const CompanyProfile = () => {
       formData.append('Manager_Photo', manager.file);
 
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/Company/Manager', {
+      const response = await fetch('https://quickhire-4d8p.onrender.com/api/Company/Manager', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData

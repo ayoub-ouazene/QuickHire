@@ -96,7 +96,7 @@ function JobPage() {
     if (query) params.append('search', query);
     if (currentUserId) params.append('userId', currentUserId);
 
-    const url = `http://localhost:3000/api/User/Jobs?${params.toString()}`;
+    const url = `https://quickhire-4d8p.onrender.com/api/User/Jobs?${params.toString()}`;
 
     const response = await fetch(url, {
       method: 'GET',

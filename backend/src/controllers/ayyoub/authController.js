@@ -10,37 +10,34 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 // ✅ UPDATED VERSION - Creates managers during company signup
 exports.signIn = async (req, res) => {
   try {
-    console.log('=== SIGNUP REQUEST RECEIVED ===');
-    console.log('Account Type:', req.body.accountType);
-    console.log('Email:', req.body.Email);
-    console.log('Has Image:', !!req.file);
+  
     
     const { accountType, Email, Password, ...otherData } = req.body;
 
     // Validate required fields
     if (!accountType || !Email || !Password) {
-      console.log('❌ Missing required fields');
+    
       return res.status(400).json({
         success: false,
         error: 'Account type, email, and password are required'
       });
     }
 
-    console.log('✓ Required fields present');
+
 
     // Hash password
     const hashedPassword = await bcrypt.hash(Password, 10);
-    console.log('✓ Password hashed');
+
     
     // Get image URL from cloudinary
     const imageUrl = req.file ? req.file.path : null;
-    console.log('✓ Image URL:', imageUrl || 'No image');
+   
 
     let account;
     let token;
 
     if (accountType === 'user') {
-      console.log('📝 Creating user account...');
+  
       
       // Check if user already exists
       const existingUser = await prisma.user.findFirst({
@@ -48,14 +45,13 @@ exports.signIn = async (req, res) => {
       });
 
       if (existingUser) {
-        console.log('❌ User already exists with email:', Email);
+
         return res.status(400).json({
           success: false,
           error: 'User with this email already exists'
         });
       }
 
-      console.log('✓ Email is unique');
 
       // Create user with basic data only
       const userData = {
@@ -70,16 +66,13 @@ exports.signIn = async (req, res) => {
         Photo: imageUrl
       };
 
-      console.log('Creating user with data:', {
-        ...userData,
-        Password: '[HIDDEN]'
-      });
+
 
       account = await prisma.user.create({
         data: userData
       });
 
-      console.log('✓ User created with ID:', account.User_id);
+
 
       // Generate JWT token
       token = jwt.sign(
@@ -93,8 +86,6 @@ exports.signIn = async (req, res) => {
         { expiresIn: JWT_EXPIRES_IN }
       );
 
-      console.log('✅ User signup successful!');
-      console.log('================================');
 
       return res.status(201).json({
         success: true,
@@ -117,7 +108,7 @@ exports.signIn = async (req, res) => {
       });
 
     } else if (accountType === 'company') {
-      console.log('📝 Creating company account...');
+  
       
       // Check if company already exists
       const existingCompany = await prisma.company.findFirst({
@@ -125,14 +116,14 @@ exports.signIn = async (req, res) => {
       });
 
       if (existingCompany) {
-        console.log('❌ Company already exists with email:', Email);
+  
         return res.status(400).json({
           success: false,
           error: 'Company with this email already exists'
         });
       }
 
-      console.log('✓ Email is unique');
+  
 
       // ✅ Validate Foundation_Date (cannot be in the future)
       // Support both camelCase and snake_case from frontend
@@ -144,7 +135,7 @@ exports.signIn = async (req, res) => {
         today.setHours(0, 0, 0, 0);
         
         if (foundationDate > today) {
-          console.log('❌ Foundation date cannot be in the future:', foundationDateValue);
+  
           return res.status(400).json({
             success: false,
             error: 'Foundation date cannot be in the future'
@@ -166,22 +157,18 @@ exports.signIn = async (req, res) => {
         Logo: imageUrl
       };
 
-      console.log('Creating company with data:', {
-        ...companyData,
-        Password: '[HIDDEN]'
-      });
-
+  
       account = await prisma.company.create({
         data: companyData
       });
 
-      console.log('✓ Company created with ID:', account.Company_id);
+  
 
       // ✅ CREATE MANAGERS if provided
       if (otherData.managers) {
         try {
           const managersData = JSON.parse(otherData.managers);
-          console.log('📋 Creating managers:', managersData.length);
+    
           
           for (const manager of managersData) {
             await prisma.manager.create({
@@ -196,7 +183,7 @@ exports.signIn = async (req, res) => {
               }
             });
           }
-          console.log('✓ All managers created successfully');
+       
         } catch (managerError) {
           console.error('⚠️ Error creating managers:', managerError);
           // Don't fail signup if managers fail, just log it
@@ -215,8 +202,6 @@ exports.signIn = async (req, res) => {
         { expiresIn: JWT_EXPIRES_IN }
       );
 
-      console.log('✅ Company signup successful!');
-      console.log('================================');
 
       return res.status(201).json({
         success: true,
@@ -239,7 +224,7 @@ exports.signIn = async (req, res) => {
       });
 
     } else {
-      console.log('❌ Invalid account type:', accountType);
+
       return res.status(400).json({
         success: false,
         error: 'Invalid account type. Must be "user" or "company"'

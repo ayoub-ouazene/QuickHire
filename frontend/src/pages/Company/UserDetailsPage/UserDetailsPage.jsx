@@ -173,7 +173,7 @@ export default function UserDetailsPage() {
     queryKey: ['userDetails', userId],
     queryFn: async () => {
       const token = localStorage.getItem("token");
-      const url = `http://localhost:3000/api/Company/Users/${userId}`;
+      const url = `https://quickhire-4d8p.onrender.com/api/Company/Users/${userId}`;
 
       const response = await fetch(url, {
         method: 'GET',
@@ -241,7 +241,7 @@ export default function UserDetailsPage() {
         throw new Error("Unable to retrieve your company information. Please try logging in again.");
       }
 
-      const response = await fetch('http://localhost:3000/api/Company/Invitations', {
+      const response = await fetch('https://quickhire-4d8p.onrender.com/api/Company/Invitations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

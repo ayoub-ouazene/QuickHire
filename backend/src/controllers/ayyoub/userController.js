@@ -407,7 +407,7 @@ exports.acceptInvitation = async (req, res) => {
     const userId = req.user.userId;
     const { invitationId } = req.params;
 
-    console.log('🔍 Accept Invitation called:', { userId, invitationId });
+
 
     // Get invitation details before deleting
     const invitation = await prisma.invitations.findUnique({
@@ -508,7 +508,7 @@ exports.rejectInvitation = async (req, res) => {
     const userId = req.user.userId;
     const { invitationId } = req.params;
 
-    console.log('🔍 Reject Invitation called:', { userId, invitationId });
+
 
     // Get invitation details
     const invitation = await prisma.invitations.findUnique({
@@ -537,7 +537,7 @@ exports.rejectInvitation = async (req, res) => {
       where: { Invitation_id: parseInt(invitationId) }
     });
 
-    console.log('✅ Invitation completely deleted from database');
+
 
     res.status(200).json({
       success: true,

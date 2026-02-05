@@ -18,7 +18,7 @@ function JobInvitation({ application, onAccept }) {
 
       // ✅ Call backend API to accept invitation
       const response = await fetch(
-        `http://localhost:3000/api/User/Invitation/${application.id}/accept`, 
+        `https://quickhire-4d8p.onrender.com/api/User/Invitation/${application.id}/accept`, 
         {
           method: 'POST',
           headers: {

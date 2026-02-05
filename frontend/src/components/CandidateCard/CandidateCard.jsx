@@ -136,7 +136,7 @@ function CandidatePost({ id, pic, name, title, stats, description, skills, onInv
       });
 
       // Send invitation (backend will create notification)
-      const invitationResponse = await fetch('http://localhost:3000/api/Company/Invitations', {
+      const invitationResponse = await fetch('https://quickhire-4d8p.onrender.com/api/Company/Invitations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -141,7 +141,7 @@ function JobPost({ post, onApplySuccess, showAlert }) {
       });
 
       // Send application to backend (backend will create notifications)
-      const applicationResponse = await fetch('http://localhost:3000/api/User/Applications', {
+      const applicationResponse = await fetch('https://quickhire-4d8p.onrender.com/api/User/Applications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

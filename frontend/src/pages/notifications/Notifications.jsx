@@ -59,7 +59,7 @@ const StarRating = ({ notificationId, userRole, initialIsRated }) => {
     if (!token) return;
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/${resource}/Notification/AddRating`, {
+      const response = await fetch(`https://quickhire-4d8p.onrender.com/api/${resource}/Notification/AddRating`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ notificationId, rating, role: userRole })
@@ -121,7 +121,7 @@ const Notifications = () => {
     const resource = getResourceName();
     const token = localStorage.getItem('token');
     const response = await fetch(
-      `http://localhost:3000/api/${resource}/Notification?id=${UserType.id}&type=${UserType.type}&page=${page}&limit=${notificationsPerPage}`, 
+      `https://quickhire-4d8p.onrender.com/api/${resource}/Notification?id=${UserType.id}&type=${UserType.type}&page=${page}&limit=${notificationsPerPage}`, 
       { headers: { 'Authorization': `Bearer ${token}` } }
     );
     if (!response.ok) throw new Error('Failed to fetch');
@@ -170,7 +170,7 @@ const Notifications = () => {
   const deleteNotification = async (notificationId) => {
     try {
       const resource = getResourceName();
-      await fetch(`http://localhost:3000/api/${resource}/Notification/${notificationId}`, {
+      await fetch(`https://quickhire-4d8p.onrender.com/api/${resource}/Notification/${notificationId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({ id: UserType.id, type: UserType.type })

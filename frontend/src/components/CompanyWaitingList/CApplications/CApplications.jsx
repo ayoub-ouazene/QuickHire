@@ -13,7 +13,7 @@ function CApplication({ applicant, onDelete, onAccept, onStatusChange }) {
           
             // ✅ Call backend API to reject application
             const response = await fetch(
-                `http://localhost:3000/api/Company/Application/${applicant.id}/reject`,
+                `https://quickhire-4d8p.onrender.com/api/Company/Application/${applicant.id}/reject`,
                 {
                     method: 'POST',
                     headers: {
@@ -59,7 +59,7 @@ function CApplication({ applicant, onDelete, onAccept, onStatusChange }) {
 
             // ✅ Call backend API to accept application
             const response = await fetch(
-                `http://localhost:3000/api/Company/Application/${applicant.id}/accept`,
+                `https://quickhire-4d8p.onrender.com/api/Company/Application/${applicant.id}/accept`,
                 {
                     method: 'POST',
                     headers: {

@@ -112,7 +112,7 @@ export default function PersonalInformation() {
   const { data: profileData, isLoading } = useQuery({
     queryKey: ['companyProfile', companyId],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:3000/api/Company/Profile/${companyId}`, {
+      const res = await fetch(`https://quickhire-4d8p.onrender.com/api/Company/Profile/${companyId}`, {
         headers: { 
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}` 
@@ -153,7 +153,7 @@ export default function PersonalInformation() {
   // --- 2. Mutation: Update Profile ---
   const updateProfileMutation = useMutation({
     mutationFn: async (updatedData) => {
-      const res = await fetch(`http://localhost:3000/api/Company/Profile/${companyId}`, {
+      const res = await fetch(`https://quickhire-4d8p.onrender.com/api/Company/Profile/${companyId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -180,7 +180,7 @@ export default function PersonalInformation() {
       formData.append('accountType', 'company');
       formData.append('id', companyId);
 
-      const res = await fetch('http://localhost:3000/api/Company/Profile/Image', {
+      const res = await fetch('https://quickhire-4d8p.onrender.com/api/Company/Profile/Image', {
         method: 'PATCH',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData
@@ -211,7 +211,7 @@ export default function PersonalInformation() {
         formData.append('accountType', 'company');
         formData.append('id', companyId);
 
-        const res = await fetch('http://localhost:3000/api/Company/Profile/Image', {
+        const res = await fetch('https://quickhire-4d8p.onrender.com/api/Company/Profile/Image', {
             method: 'PATCH',
             headers: { 'Authorization': `Bearer ${token}` },
             body: formData

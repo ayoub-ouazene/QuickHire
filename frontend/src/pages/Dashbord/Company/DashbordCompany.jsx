@@ -189,7 +189,7 @@ const CompanyDashboard = () => {
         name: userData?.Name || "Company"   // The name of company from localStorage
       };
 
-      const response = await fetch(`http://localhost:3000/api/Company/Notification`, {
+      const response = await fetch(`https://quickhire-4d8p.onrender.com/api/Company/Notification`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

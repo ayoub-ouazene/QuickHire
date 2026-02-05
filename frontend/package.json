@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "netlify:deploy": "npm run build && netlify deploy --prod",
+    "postbuild": "echo 'Build completed successfully!'"
   },
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^2.1.1",

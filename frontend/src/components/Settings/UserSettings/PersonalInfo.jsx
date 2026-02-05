@@ -57,7 +57,7 @@ function PersonalInfo() {
     queryKey: ['userProfile', userId],
     queryFn: async () => {
       if (!userId) throw new Error("No User ID found");
-      const res = await fetch(`http://localhost:3000/api/User/Profile/${userId}`, {
+      const res = await fetch(`https://quickhire-4d8p.onrender.com/api/User/Profile/${userId}`, {
         headers: { 
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}` 
@@ -90,7 +90,7 @@ function PersonalInfo() {
   // --- 2. Mutation: Update Profile ---
   const updateProfileMutation = useMutation({
     mutationFn: async (updatedData) => {
-      const res = await fetch(`http://localhost:3000/api/User/Profile/${userId}`, {
+      const res = await fetch(`https://quickhire-4d8p.onrender.com/api/User/Profile/${userId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -125,7 +125,7 @@ function PersonalInfo() {
       formData.append('accountType', 'user');
       formData.append('id', userId);
 
-      const res = await fetch('http://localhost:3000/api/User/Profile/Image', {
+      const res = await fetch('https://quickhire-4d8p.onrender.com/api/User/Profile/Image', {
         method: 'PATCH',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData
@@ -159,7 +159,7 @@ function PersonalInfo() {
       formData.append('accountType', 'user');
       formData.append('id', userId);
 
-      const res = await fetch('http://localhost:3000/api/User/Profile/Image', {
+      const res = await fetch('https://quickhire-4d8p.onrender.com/api/User/Profile/Image', {
         method: 'PATCH',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData

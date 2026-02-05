@@ -455,9 +455,7 @@ exports.addManager = async (req, res) => {
 // ✅ Accept Application - UPDATE Status to InContact
 exports.acceptApplication = async (req, res) => {
   try {
-    console.log('=== Accept Application Request ===');
-    console.log('Company ID:', req.company.companyId);
-    console.log('Application ID:', req.params.applicationId);
+
     
     const companyId = req.company.companyId;
     const { applicationId } = req.params;
@@ -482,29 +480,28 @@ exports.acceptApplication = async (req, res) => {
       }
     });
 
-    console.log('Application found:', application ? 'Yes' : 'No');
+
     
     if (!application) {
-      console.log('ERROR: Application not found');
+ 
       return res.status(404).json({
         success: false,
         error: 'Application not found'
       });
     }
 
-    console.log('Job Company ID:', application.job.Company_id);
-    console.log('Requesting Company ID:', companyId);
+
 
     // Verify this application belongs to the company's job
     if (application.job.Company_id !== companyId) {
-      console.log('ERROR: Unauthorized - Company mismatch');
+    
       return res.status(403).json({
         success: false,
         error: 'Unauthorized'
       });
     }
 
-    console.log('✓ Authorization passed');
+
 
     // Check if chat conversation already exists
     const existingChat = await prisma.in_Chat.findFirst({
@@ -520,7 +517,7 @@ exports.acceptApplication = async (req, res) => {
       data: { Status: 'InContact' }
     });
 
-    console.log('✓ Application Status updated to InContact');
+
 
     // Create notification for the user
     await prisma.user_Notifications_History.create({
@@ -532,7 +529,6 @@ exports.acceptApplication = async (req, res) => {
       }
     });
 
-    console.log('✓ Notification created');
 
     // Create In_Chat record if it doesn't exist
     if (!existingChat) {
@@ -543,7 +539,7 @@ exports.acceptApplication = async (req, res) => {
           Status: 'Active'
         }
       });
-      console.log('✓ NEW CHAT CREATED between User', application.User_id, 'and Company', companyId);
+    
     } else {
       console.log('ℹ️ Chat already exists');
     }
@@ -554,7 +550,7 @@ exports.acceptApplication = async (req, res) => {
     await redis.del(`dashboard:company:jobs:${companyId}`);  // Job card applicants count down
     await redis.del(`dashboard:user:stats:${application.User_id}`); // User apps count down, notifications up
 
-    console.log('=== Accept Application Success ===');
+
 
     res.status(200).json({
       success: true,

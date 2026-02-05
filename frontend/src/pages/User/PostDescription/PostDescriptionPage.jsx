@@ -162,7 +162,7 @@ export default function JobDetailsPage() {
     queryKey: ['jobDetails', jobId],
     queryFn: async () => {
       const token = localStorage.getItem("token");
-      const url = `http://localhost:3000/api/User/Jobs/${jobId}`;
+      const url = `https://quickhire-4d8p.onrender.com/api/User/Jobs/${jobId}`;
 
       const response = await fetch(url, {
         method: 'GET',
@@ -233,7 +233,7 @@ export default function JobDetailsPage() {
         throw new Error(`Invalid user ID: ${userId}.`);
       }
 
-      const response = await fetch('http://localhost:3000/api/User/Applications', {
+      const response = await fetch('https://quickhire-4d8p.onrender.com/api/User/Applications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

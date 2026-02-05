@@ -52,7 +52,7 @@ const UserMesssages = () => {
 
                 // Fetch conversations with last message
                 const response = await fetch(
-                    `http://localhost:3000/api/User/ConversationsWithLastMessage?UserId=${UserData.id}&UserType=${UserData.type}`,
+                    `https://quickhire-4d8p.onrender.com/api/User/ConversationsWithLastMessage?UserId=${UserData.id}&UserType=${UserData.type}`,
                     {
                         method: 'GET',
                         headers: {
@@ -133,7 +133,7 @@ const UserMesssages = () => {
 
             // Fetch recent messages (last 15)
             const response = await fetch(
-                `http://localhost:3000/api/User/Conversations/${contact.ConversationId}/Messages/recent?limit=${MESSAGES_PER_PAGE}`,
+                `https://quickhire-4d8p.onrender.com/api/User/Conversations/${contact.ConversationId}/Messages/recent?limit=${MESSAGES_PER_PAGE}`,
                 {
                     method: 'GET',
                     headers: {
@@ -210,7 +210,7 @@ const UserMesssages = () => {
             console.log(`Loading page ${nextPage} for conversation ${currentContact.ConversationId}`);
 
             const response = await fetch(
-                `http://localhost:3000/api/User/Conversations/${currentContact.ConversationId}/Messages/paginated?page=${nextPage}&limit=${MESSAGES_PER_PAGE}`,
+                `https://quickhire-4d8p.onrender.com/api/User/Conversations/${currentContact.ConversationId}/Messages/paginated?page=${nextPage}&limit=${MESSAGES_PER_PAGE}`,
                 {
                     method: 'GET',
                     headers: {

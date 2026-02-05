@@ -190,7 +190,7 @@ const MultiStepSignup = () => {
             const managerFormData = new FormData();
             managerFormData.append('Manager_Photo', manager.Photo);
             
-            const uploadResponse = await fetch('http://localhost:3000/api/upload', {
+            const uploadResponse = await fetch('https://quickhire-4d8p.onrender.com/api/upload', {
               method: 'POST',
               body: managerFormData
             });
@@ -268,7 +268,7 @@ const MultiStepSignup = () => {
       }
 
       // Updated endpoint to match your backend
-      const response = await fetch('http://localhost:3000/api/signup', {
+      const response = await fetch('https://quickhire-4d8p.onrender.com/api/signup', {
         method: 'POST',
         body: formData
       });

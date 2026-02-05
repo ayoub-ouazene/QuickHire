@@ -1,0 +1,287 @@
+// Generator
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Datasource
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------- ENUMS ----------
+enum UserStatus {
+  JobSeeker
+  CurrentlyWorking
+}
+
+enum NotificationStatus {
+  Hired
+  New_Invitation
+  New_Contact
+  Completed
+  New
+}
+
+enum ApplicationStatus {
+  Rejected
+  Applied
+  InContact
+}
+
+enum SenderType {
+  company
+  user
+}
+
+
+// ---------- MODELS ----------
+model User {
+  User_id            Int                  @id @default(autoincrement())
+  FirstName          String?
+  LastName           String?
+  Number             String?
+  Email              String?
+  Password           String?
+  Rating             Float?
+  Status             UserStatus?
+  Location           String?
+  LinkedInLink       String?
+  Website            String?
+  Description        String?
+  Photo              String?
+
+
+  // Relations
+  In_Chat                      In_Chat[]
+  User_Experience              User_Experience[]
+  User_Skills                  User_Skills[]
+  Job_Applications             Job_Applications[]
+  Invitations                  Invitations[]
+  Job_Hiring_History           Job_Hiring_History[]
+  Messages                     Messages[]
+  User_Notifications_History   User_Notifications_History[]
+
+  
+  @@index([Status])
+
+}
+
+
+model Company {
+  Company_id            Int                  @id @default(autoincrement())
+  Name                  String?
+  Password           String?
+  Logo                  String?
+  Website               String?
+  FoundationDate        DateTime?
+  Employees_Number      Int?
+  Industry              String?
+  Description           String?
+  Rating                Float?
+  Email                 String?
+  LinkedInLink          String?
+  MainLocation          String?
+
+  // Relations
+  In_Chat                       In_Chat[]
+  Manager                       Manager[]
+  Job                           Job[]
+  Invitations                   Invitations[]
+  Job_Hiring_History            Job_Hiring_History[]
+  Messages                      Messages[]
+  Company_Notifications_History Company_Notifications_History[]
+
+  
+
+}
+
+
+model In_Chat {
+  ConversationId    Int               @id @default(autoincrement())
+  User_id    Int
+  Company_id Int
+  Status     String?
+
+
+  Messages  Messages[]
+  // Relations
+  user    User    @relation(fields: [User_id], references: [User_id] ,onDelete:Cascade )
+  company Company @relation(fields: [Company_id], references: [Company_id])
+
+  @@index([User_id] , name:"indx_for_inchat_user")
+  @@index([Company_id] , name:"indx_for_inchat_company" )
+}
+
+
+model User_Experience {
+  Experience_id      Int       @id @default(autoincrement())
+  User_id            Int
+  Title              String?
+  Start_date         DateTime?
+  End_date           DateTime?    
+  Company_Name       String?
+  Company_location   String?
+  Job_type           String?
+  Description        String?
+  Company_logo       String?
+
+  user User @relation(fields: [User_id], references: [User_id], onDelete: Cascade)
+}
+
+
+model User_Skills {
+  Skill_id           Int       @id @default(autoincrement())
+  User_id            Int
+  Title              String?
+  Description        String?
+  Skill_Certification   String?
+
+  user User @relation(fields: [User_id], references: [User_id], onDelete: Cascade)
+}
+
+
+model Manager {
+  Manager_id     Int       @id @default(autoincrement())
+  Company_id     Int
+  Manager_Photo  String?
+  FirstName      String?
+  LastName       String?
+  Role           String?
+  Email          String?
+  LinkedInLink   String?
+
+  company Company @relation(fields: [Company_id], references: [Company_id], onDelete: Cascade)
+}
+
+
+// **UPDATED MODEL (Skills field array removed)**
+model Job {
+  Job_id             Int          @id @default(autoincrement())
+  Company_id         Int
+  Job_role           String?
+  Type               String?
+  Category           String?
+  // Skills String[] was removed
+  Description        String?
+  Responsibilities   String?
+  WhoYouAre          String?
+  NiceToHave         String?
+
+  company          Company            @relation(fields: [Company_id], references: [Company_id], onDelete: Cascade)
+  Job_Applications Job_Applications[]
+  // Relation to the new, simplified JobSkill model
+  Job_Skills       JobSkill[]
+
+  @@index([Company_id] , name:"indx_job_by_company")
+}
+
+// **NEW MODEL: JobSkill (One-to-Many relationship)**
+// Stores the skill name along with the foreign key to the Job.
+model JobSkill {
+  Skill_id   Int    @id @default(autoincrement()) // Primary Key for this specific skill entry
+  Job_id     Int    // Foreign Key to the Job
+  Name       String // The actual skill name (e.g., "JavaScript")
+
+  // Relation
+  job        Job    @relation(fields: [Job_id], references: [Job_id], onDelete: Cascade)
+}
+
+
+model Job_Applications {
+  Application_id Int               @id @default(autoincrement())
+  User_id        Int
+  Job_id         Int
+  date           DateTime?
+  Status         ApplicationStatus?
+
+  user User @relation(fields: [User_id], references: [User_id], onDelete: Cascade)
+  job  Job  @relation(fields: [Job_id], references: [Job_id], onDelete: Cascade)
+
+  @@index([User_id, Job_id], name: "idx_job_applications_user_job")
+  @@index([Job_id] ,  name: "idx_job_applications"  ) 
+  @@index([Status]  , name:"indx_status_job_application")
+}
+
+
+model Invitations {
+  Invitation_id Int       @id @default(autoincrement())
+  Company_id    Int
+  User_id       Int
+  Job_Name      String?
+  Type          String?
+  Date          DateTime?
+
+  user    User    @relation(fields: [User_id], references: [User_id], onDelete: Cascade)
+  company Company @relation(fields: [Company_id], references: [Company_id], onDelete: Cascade)
+
+  @@index([Company_id, User_id], name: "idx_invitations_company_user")
+}
+
+
+model Job_Hiring_History {
+  Company_id Int
+  User_id    Int
+  Job_Name   String?
+  Start_Date DateTime?
+  End_Date   DateTime?
+  UserRating     Int?     
+  CompanyRating  Int?
+
+  UserNotificationId    Int? @unique
+  CompanyNotificationId Int? @unique
+
+  id Int @id @default(autoincrement())
+
+  user    User    @relation(fields: [User_id], references: [User_id], onDelete: Cascade)
+  company Company @relation(fields: [Company_id], references: [Company_id], onDelete: Cascade)
+
+  @@index([User_id] , name:"ind_hiriing_history_of_user")
+  @@index([Company_id] , name:"ind_hiriing_history_of_company")
+  @@index([User_id, End_Date]  , name:"indx_getting_hires")
+}
+
+
+model Messages {
+  Message_id Int        @id @default(autoincrement())
+  ConversationId    Int 
+  User_id    Int
+  Company_id Int
+  Content    String?
+  Date       DateTime?
+  Sender     SenderType?
+
+
+  user    User    @relation(fields: [User_id], references: [User_id], onDelete: Cascade)
+  company Company @relation(fields: [Company_id], references: [Company_id], onDelete: Cascade)
+  Conversation In_Chat @relation(fields: [ConversationId] , references: [ConversationId], onDelete: Cascade)
+
+  @@index([User_id]  , name:"indx_user_messages")
+  @@index([ConversationId , Date(sort: Desc)])
+  @@index([Company_id] , name :"indx_company_messages")
+}
+
+
+model User_Notifications_History {
+  Notification_id Int               @id @default(autoincrement())
+  User_id         Int
+  Content         String?
+  Date            DateTime?
+  Type            NotificationStatus?
+
+  @@index([User_id, Date(sort: Desc)]  , name:"indx_user_notifications")
+
+  user User @relation(fields: [User_id], references: [User_id], onDelete: Cascade)
+  
+}
+
+
+model Company_Notifications_History {
+  Notification_id Int       @id @default(autoincrement())
+  Company_id      Int
+  Content         String?
+  Date            DateTime?
+  Type            NotificationStatus?
+   
+   @@index([Company_id, Date(sort: Desc)], name:"indx_company_notifications")
+  company Company @relation(fields: [Company_id], references: [Company_id], onDelete: Cascade)
+}

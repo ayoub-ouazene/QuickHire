@@ -1,0 +1,253 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
+  backdrop-filter: blur(0.25rem);
+  padding: 1rem;
+}
+.popup {
+  background: white;
+  border-radius: 0.9rem; /* Reduced from 1rem */
+  padding: 1.2rem 1.5rem; /* Reduced from 1.4rem 1.8rem */
+  max-width: 30rem; /* Reduced from 32.5rem */
+  width: 65vw; /* Reduced from 70vw */
+  max-height: 85vh;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2); /* Reduced from 1.25rem 3.75rem */
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 0.05rem solid #e8e8e8; /* Reduced from 0.0625rem */
+  position: relative;
+  overflow-y: auto;
+}
+
+.popupContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem; /* Reduced from 0.7rem */
+  width: 100%;
+}
+
+.successIcon {
+  animation: iconBounce 0.6s ease-in-out;
+}
+
+.popupTitle {
+  font-size: 1rem; /* Reduced from 1.1rem */
+  font-weight: 700;
+  color: var(--Main-blue-color);
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+
+.highlightBox {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  padding: 0.6rem; /* Reduced from 0.7rem */
+  border-radius: 0.6rem; /* Reduced from 0.75rem */
+  border: 0.1rem solid var(--Second-blue-color); /* Reduced from 0.125rem */
+  width: 100%; 
+  max-width: 18rem; /* Reduced from 20rem */
+  box-shadow: 0 0.2rem 0.6rem var(--Second-blue-color); /* Reduced from 0.25rem 0.75rem */
+  margin: 0.4rem 0; /* Reduced from 0.5rem */
+}
+
+.highlightText {
+  font-size: 0.9rem; /* Reduced from 1rem */
+  color: #666;
+  line-height: 1.35; /* Reduced from 1.4 */
+  font-weight: 500;
+  margin: 0;
+}
+
+.applicantName {
+  font-weight: 700;
+  color: var(--Main-blue-color);
+  font-size: 0.9rem; /* Reduced from 1rem */
+}
+
+.jobRole {
+  font-size: 1rem; /* Reduced from 1.1rem */
+  font-weight: 700;
+  color: var(--Main-blue-color);
+  background: linear-gradient(135deg, var(--Second-blue-color), var(--Second-blue-color));
+  background-clip: text;
+  padding: 0.2rem 0; /* Reduced from 0.25rem */
+}
+
+.popupMessage {
+  font-size: 0.85rem; /* Reduced from 0.9rem */
+  color: #666;
+  line-height: 1.5; /* Reduced from 1.6 */
+  font-weight: 400;
+  margin: 0;
+  width: 100%;
+}
+
+.popupMessage:last-of-type {
+  color: #555;
+  font-weight: 500;
+}
+
+.continueButton {
+  background: linear-gradient(135deg, var(--Button-color), var(--Button-color));
+  color: white;
+  border: none;
+  padding: 0.6rem 1.8rem; /* Reduced from 0.7rem 2rem */
+  border-radius: 0.45rem; /* Reduced from 0.5rem */
+  font-size: 0.95rem; /* Reduced from 1rem */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.2rem 0.8rem var(--Second-blue-color); /* Reduced from 0.25rem 0.9375rem */
+  letter-spacing: 0.025rem; /* Reduced from 0.03125rem */
+  min-width: 10rem; /* Reduced from 11.25rem */
+  margin-top: 0.4rem; /* Reduced from 0.5rem */
+}
+
+.continueButton:hover {
+  transform: translateY(-0.1rem); /* Reduced from 0.125rem */
+  box-shadow: 0 0.3rem 1rem var(--Second-blue-color); /* Reduced from 0.375rem 1.25rem */
+  background: linear-gradient(135deg, var(--Button-color), var(--Button-color));
+}
+
+.continueButton:active {
+  transform: translateY(0);
+  box-shadow: 0 0.1rem 0.5rem var(--Second-blue-color); /* Reduced from 0.125rem 0.625rem */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes iconBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-0.5rem); /* Reduced from 0.625rem */
+  }
+  60% {
+    transform: translateY(-0.25rem); /* Reduced from 0.3125rem */
+  }
+}
+
+/* Success Checkmark Animation */
+.successIcon svg {
+  animation: checkmark 0.5s ease-in-out 0.2s both;
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design - Scaled down */
+@media (max-width: 48rem) {
+  .popup {
+    padding: 2rem 1.3rem; /* Reduced from 2.5rem 1.5rem */
+    margin: 1rem; /* Reduced from 1.25rem */
+    border-radius: 0.8rem; /* Reduced from 0.875rem */
+    width: 80vw; /* Reduced from 85vw */
+  }
+  
+  .popupTitle {
+    font-size: 1.2rem; /* Reduced from 1.375rem */
+  }
+  
+  .highlightBox {
+    padding: 1rem; /* Reduced from 1.25rem */
+    width: 100%;
+    max-width: none;
+  }
+  
+  .highlightText {
+    font-size: 0.85rem; /* Reduced from 0.9375rem */
+  }
+  
+  .jobRole {
+    font-size: 1rem; /* Reduced from 1.125rem */
+  }
+  
+  .popupMessage {
+    font-size: 0.8rem; /* Reduced from 0.875rem */
+  }
+  
+  .continueButton {
+    padding: 0.65rem 1.5rem; /* Reduced from 0.75rem 1.75rem */
+    font-size: 0.85rem; /* Reduced from 0.9375rem */
+    min-width: 9rem; /* Reduced from 10rem */
+  }
+}
+
+@media (max-width: 30rem) {
+  .overlay {
+    padding: 0.4rem; /* Reduced from 0.5rem */
+  }
+  
+  .popup {
+    padding: 1.8rem 1.1rem; /* Reduced from 2rem 1.25rem */
+    border-radius: 0.7rem; /* Reduced from 0.75rem */
+    width: 85vw; /* Reduced from 90vw */
+    max-height: 90vh; /* Reduced from 95vh */
+  }
+  
+  .popupTitle {
+    font-size: 1.1rem; /* Reduced from 1.25rem */
+  }
+  
+  .highlightBox {
+    padding: 0.9rem; /* Reduced from 1rem */
+  }
+  
+  .jobRole {
+    font-size: 0.9rem; /* Reduced from 1rem */
+  }
+  
+  .successIcon svg {
+    width: 2.8rem; /* Reduced from 3.125rem */
+    height: 2.8rem; /* Reduced from 3.125rem */
+  }
+  
+  .continueButton {
+    padding: 0.65rem 1.3rem; /* Reduced from 0.75rem 1.5rem */
+    font-size: 0.8rem; /* Reduced from 0.875rem */
+    min-width: 8rem; /* Reduced from 8.75rem */
+    width: 100%;
+    max-width: 11rem; /* Reduced from 12.5rem */
+  }
+}
+
+/* Ensure body doesn't scroll when popup is open */
+body.popup-open {
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .popup {
+    transform: scale(0.92) translate(6rem, 3rem); /* Slightly smaller scale */
+    transform-origin: center;
+  }
+}

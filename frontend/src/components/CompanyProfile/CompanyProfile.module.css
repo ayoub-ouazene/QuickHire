@@ -1,0 +1,1207 @@
+.ProfilePage, .ProfilePage2 {
+  width: 87vw;
+  max-height: 88vh;
+  position: fixed;
+  top: 12%;
+  left: 12%;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  padding: 2vh 2vw;
+  padding-top: 10vh;
+  padding-right: 0vw !important;
+  gap: 2vw;
+  overflow-y: scroll;
+  border-top: solid 1px rgb(233, 230, 230);
+}
+
+.ProfilePage2 {
+  filter: blur(2px);
+}
+
+.ProfilePage::-webkit-scrollbar, .ProfilePage2::-webkit-scrollbar {
+  display: none;
+}
+
+.FirstPart {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6vh;
+}
+
+.SecondPart {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  padding-right: 2vw;
+}
+
+.AboutCompanySection {
+  min-height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 3vh 3vw;
+  gap: 3vh;
+  border: solid 1px var(--Button-color);
+  border-radius: 1.2rem;
+}
+
+.AboutCompanySection h5 {
+  align-self: flex-start;
+  font-size: 1.25rem;
+}
+
+.AboutCompanySection p {
+  text-align: left;
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  line-height: 1.6;
+}
+
+/* Empty State Styling */
+.emptyState {
+  width: calc(100% - 4rem);
+  padding: 3rem 2rem;
+  text-align: center;
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 0.8rem;
+  margin: 1rem 2rem;
+}
+
+.emptyState p {
+  color: #6c757d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  word-wrap: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.ExperiencesSection button {
+  background-color: transparent;
+  border: 1px solid var(--Button-color);
+  width: 2vw;
+  height: 2vw;
+  border-radius: 0.2rem;
+  font-size: 1.2rem;
+  color: var(--Main-blue-color);
+}
+
+.ExperiencesSection button:hover {
+  cursor: pointer;
+}
+
+.VoidContent {
+  height: 3vh;
+  width: 100%;
+}
+
+.ThreeExperiences, .MoreExperiences {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10vh;
+  padding-left: 2vw;
+}
+
+.ShowMore, .ShowMore2 {
+  align-self: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--Main-blue-color);
+}
+
+.JobSkills {
+  font-size: 0.68rem;
+  color: #475569;
+  margin-top: 0.35rem;
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ShowMore2 {
+  padding-top: 3vh;
+}
+
+.ShowMore:hover, .ShowMore2:hover {
+  cursor: pointer;
+}
+
+.JobsSection {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4vh;
+  gap: 10vh;
+  border: solid 1px var(--Button-color);
+  padding-bottom: 0vh;
+  margin-bottom: 20vh;
+}
+
+.ImgInfoSmall {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8vw;
+  height: 10vw;
+}
+
+.JobCertImg {
+  width: 100%;
+  height: 100%;
+  padding: 1vh;
+}
+
+.JobDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  flex: 1 1 auto;
+}
+
+.JobDetails h5 {
+  font-size: 1rem;
+  margin: 0;
+  color: #0f172a;
+}
+
+.JobDetails p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #334155;
+}
+
+.JobSkills {
+  font-size: 0.5rem;
+  color: #475569;
+  margin-top: 0.35rem;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  flex-wrap: nowrap;
+}
+
+.JobType {
+  display: inline-block;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(102,126,234,0.08);
+  color: var(--Main-blue-color, #667eea);
+  font-weight: 700;
+  font-size: 0.72rem;
+  margin-right: 0.6rem;
+}
+
+.JobCertImg {
+  width: 4vw;
+  height: 4vw;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(102,126,234,0.08);
+}
+
+.Jobs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.JobContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(226,228,232,0.9);
+  box-shadow: none;
+  width: 10%;
+  max-width: 200vw;
+  box-sizing: border-box;
+}
+
+.JobContainer {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: jobFadeUp 520ms cubic-bezier(.2,.9,.2,1) both;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.Jobs > .JobContainer:nth-child(1) { animation-delay: 0.06s; }
+.Jobs > .JobContainer:nth-child(2) { animation-delay: 0.12s; }
+.Jobs > .JobContainer:nth-child(3) { animation-delay: 0.18s; }
+.Jobs > .JobContainer:nth-child(4) { animation-delay: 0.24s; }
+.Jobs > .JobContainer:nth-child(5) { animation-delay: 0.30s; }
+.Jobs > .JobContainer:nth-child(6) { animation-delay: 0.36s; }
+
+.JobContainer:hover {
+  transform: translateY(-6px) scale(1.005);
+  box-shadow: 0 1.6vh 3.2vh rgba(15,23,42,0.06);
+}
+
+@keyframes jobFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.JobsWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.JobsWrapper .ShowMore2 {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+@media (max-width: 62.5vw) {
+  .JobContainer {
+    max-width: 60vw;
+    padding: 0.85rem 1rem;
+  }
+
+  .JobCertImg {
+    width: 3.2vw;
+    height: 3.2vw;
+  }
+
+  .JobDetails h5 { font-size: 0.98rem; }
+  .JobDetails p { font-size: 0.85rem; }
+}
+
+@media (max-width: 33.33vw) {
+  .JobContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.8rem;
+    width: 95%;
+    max-width: 95vw;
+  }
+
+  .ImgInfoSmall {
+    margin-right: 0;
+    margin-bottom: 0.2rem;
+  }
+
+  .JobCertImg {
+    width: 6.5vw;
+    height: 6.5vw;
+  }
+
+  .JobDetails p, .JobSkills {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 25vw) {
+  .JobContainer { padding: 0.6rem; }
+  .JobDetails h5 { font-size: 0.96rem; }
+}
+
+.SkillsSection button {
+  background-color: transparent;
+  border: 1px solid var(--Button-color);
+  width: 2vw;
+  height: 2vw;
+  border-radius: 0.2rem;
+  font-size: 1.2rem;
+  color: var(--Main-blue-color);
+}
+
+.SkillsSection button:hover {
+  cursor: pointer;
+}
+
+.SkillsHeader {
+  align-self: self-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4vw;
+  gap: 40vw;
+}
+
+.SkillContainer {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 8vw;
+  padding-left: 2vw;
+}
+
+.SkillDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1.5vh;
+  padding-left: 2vw;
+}
+
+.SkillDetails h5 {
+  font-size: 1.3rem;
+}
+
+.SkillDetails p {
+  font-size: 0.7rem;
+  width: 25vw;
+  padding-left: 0.6vw;
+  word-break: break-all;
+}
+
+.SkillCerImg {
+  width: 10vw;
+  height: 13vh;
+  box-shadow: 1px 1px 15px var(--Main-blue-color);
+}
+
+.ImgInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5vh;
+}
+
+.downloadBtn {
+  width: 8vw;
+  height: 5vh;
+  font-size: 0.6rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Clash Display Variable', sans-serif;
+  font-weight: 600;
+  color: var(--Main-blue-color);
+  border-radius: 0.3rem;
+}
+
+.downloadBtn:hover {
+  color: #45a049;
+  cursor: pointer;
+}
+
+.Skills {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8vh;
+}
+
+.ShowPopup {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.3s ease;
+}
+
+.hidePopup {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.ManagersSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2vh 0vw;
+  border: solid 1px var(--Button-color);
+  margin-bottom: 3vh;
+}
+
+.ManagerListContainer {
+  width: 100%;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.ManagerContainer {
+  width: 100%;
+  height: 10vh;
+}
+
+.ManagerSectionHeader {
+  align-self: self-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2vw;
+  gap: 40vw;
+  padding-left: 3vw;
+}
+
+.ManagerSectionHeader button, .SkillsHeader button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px rgb(169, 169, 169);
+  background-color: transparent;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 0.2rem;
+  color: var(--Main-blue-color);
+  outline: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.ManagerSectionHeader img, .SkillsHeader img {
+  width: 1.2vw;
+  height: 1.2vw;
+}
+
+.managerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 0.8rem;
+  text-align: center;
+  color: white;
+  gap: 0.8rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.managerCard img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.managerCard h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.managerCard p {
+  font-size: 0.8rem;
+  margin: 0;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.managerCard:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+.managerCard:hover img {
+  border-color: rgba(255, 255, 255, 0.6);
+  transition: border-color 0.2s ease;
+}
+
+.managerLinks {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+.managerLinks a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.managerLinks a:hover {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.LastVoidDiv {
+  height: 3vh;
+}
+
+.ManagersSection {
+  min-height: 65vh;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6vh 1vw;
+  gap: 2vh;
+  border: solid 1px var(--Button-color);
+  overflow: hidden;
+  position: relative;
+  border-radius: 1.2rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  padding-left: 0;
+}
+
+.ManagersSectionHeader , .PostedJobsHeader {
+  align-self: flex-start;
+  align-self: start;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2vw;
+  gap:25vw !important;
+}
+
+.ManagersSectionHeader {
+  gap: 16vw;
+}
+
+.PostedJobsHeader h2 {
+  padding-left: 2vw;
+}
+
+.ManagersSectionHeader button, .PostedJobs button {
+  background-color: var(--Button-color);
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 0.4rem;
+  width: 2vw;
+  height: 2vw;
+  font-size: 1.2rem;
+}
+
+.ManagersSectionHeader button:hover {
+  cursor: pointer;
+  background-color: var(--Main-blue-color);
+}
+
+.PostedJobs {
+  height: fit-content;
+  width:95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6vh 1vw;
+  padding-bottom:0vh;
+  gap: 5vh;
+  border: solid 1px var(--Button-color);
+  position: relative;
+  background-color:white;
+  box-sizing: border-box;
+}
+
+.PostedJobsHeader {
+  gap: 35vw;
+}
+
+.ExperiencesHeader button, .SkillsHeader button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: var(--Button-color);
+}
+
+.ExperiencesHeader img, .SkillsHeader img {
+  width: 1.2vw;
+  height: 1.2vw;
+}
+
+.ThreeExperiences , .MoreExperiences {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10vh;
+  padding-left: 2vw;
+}
+
+.ShowMore , .ShowMore2 {
+  align-self: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--Main-blue-color);
+}
+
+.ShowMore2 {
+  padding-top: 3vh;
+}
+
+.ShowMore:hover, .ShowMore2:hover {
+  cursor: pointer;
+}
+
+.SkillsSection {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4vh;
+  gap: 10vh;
+  border: solid 1px var(--Button-color);
+  padding-bottom: 0vh;
+  margin-bottom: 20vh;
+}
+
+.SkillsSection button {
+  background-color: transparent;
+  border: 1px solid var(--Button-color);
+  width: 2vw;
+  height: 2vw;
+  border-radius: 0.2rem;
+  font-size: 1.2rem;
+  color: var(--Main-blue-color);
+}
+
+.SkillsSection button:hover {
+  cursor: pointer;
+}
+
+.SkillsHeader {
+  align-self: self-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content:center;
+  padding-left: 4vw;
+  gap: 40vw;
+}
+
+.SkillContainer {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 8vw ;
+  padding-left: 2vw;
+}
+
+.JobDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1.5vh;
+  padding-left: 2vw;
+}
+
+.JobDetails h5 {
+  font-size: 1.3rem;
+}
+
+.JobDetails p {
+  font-size: 0.7rem;
+  width: auto;
+  max-width: 100%;
+  padding-left: 0.6vw;
+  word-break: normal;
+}
+
+.SkillCerImg {
+  width: 10vw;
+  height: 13vh;
+  box-shadow: 1px 1px 15px var(--Main-blue-color);
+}
+
+.ImgInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5vh;
+}
+
+.downloadBtn {
+  width: 8vw;
+  height: 5vh;
+  font-size: 0.6rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Clash Display Variable', sans-serif;
+  font-weight: 600;
+  color: var(--Main-blue-color);
+  border-radius: 0.3rem;
+}
+
+.downloadBtn:hover {
+  color: #45a049;
+  cursor: pointer;
+}
+
+.Jobs {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5vh;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.JobContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5vw;
+  padding:6vh 2vw;
+  border-radius: 0.8vw;
+  width: 95%;
+  height:25vh ;
+  max-width: 88vw;
+  box-sizing: border-box;
+}
+
+.JobsSection {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4vh;
+  gap: 10vh;
+  border: solid 1px var(--Button-color);
+  padding-bottom: 0vh;
+  margin-bottom: 20vh;
+}
+
+.void {
+  width: 100%;
+  height: 50vh;
+}
+
+.illu {
+  width: 13vw;
+  height: 13vw;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 65vh;
+}
+
+.ProfilePage, .ProfilePage2 {
+  padding-left: 4vw;
+  padding-right: 4vw;
+  box-sizing: border-box;
+}
+
+.PostedJobs {
+  border-radius: 1.2rem;
+  padding: 6vh 0vw 2vh 0vw;
+  margin-bottom: 4vh;
+  width: 100%;
+  max-width: 900px;
+}
+
+.JobContainer {
+  min-height: 10vh;
+  padding: 2vh 2vw;
+  border-radius: 1rem;
+  box-shadow: 0 0.6vh 2vh rgba(0,0,0,0.07);
+  background: linear-gradient(90deg, #f8fafc 0%, #fff 100%);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.JobContainer:hover {
+  box-shadow: 0 1.2vh 2.4vh rgba(15,23,42,0.10);
+  transform: scale(1.01);
+}
+
+.JobDetails h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--Main-blue-color);
+  margin-bottom: 0.5vh;
+}
+
+.JobDetails p {
+  font-size: 0.9rem;
+  color: #334155;
+  margin-bottom: 0.3vh;
+}
+
+.JobSkills {
+  font-size: 0.85rem;
+  color: #475569;
+  margin-top: 0.2vh;
+  font-style: italic;
+}
+
+.JobCertImg {
+  width: 7vw;
+  height: 7vw;
+  border-radius: 1.2rem;
+  box-shadow: 0 0.6vh 2vh rgba(102,126,234,0.10);
+}
+
+@media (max-width: 600px) {
+  .ProfilePage, .ProfilePage2 {
+    width: 98vw;
+    padding: 2vh 3vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    position: static;
+    margin-top: 14vh;
+    border-top: none;
+    box-sizing: border-box;
+  }
+  
+  .FirstPart, .SecondPart {
+    width: 100%;
+    gap: 3vh;
+    padding: 0;
+    align-items: stretch;
+  }
+  
+  .AboutCompanySection, .ManagersSection, .PostedJobs, .JobsSection, .SkillsSection {
+    padding: 2vh 2vw;
+    gap: 4vh;
+    margin-bottom: 4vh;
+    min-height: 20vh;
+    width: 80%;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    align-self: center;
+    justify-content: center;
+  }
+  
+  .ExperiencesHeader, .SkillsHeader, .ManagersSectionHeader, .PostedJobsHeader {
+    gap: 8vw;
+    padding-left: 2vw;
+    font-size: 1rem;
+  }
+  
+  .ExperiencesSection button, .SkillsSection button, .ManagersSectionHeader button, .PostedJobs button {
+    width: 8vw;
+    height: 8vw;
+    font-size: 1.1rem;
+  }
+  
+  .SkillContainer, .ManagerListContainer {
+    gap: 3vw;
+    flex-direction: column;
+    align-items: stretch;
+    padding-left: 0;
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+  
+  .SkillDetails p, .JobDetails p {
+    width: 80vw;
+    font-size: 0.9rem;
+    padding-left: 0.2vw;
+  }
+  
+  .SkillCerImg, .JobCertImg {
+    width: 60vw;
+    height: 18vh;
+    margin-bottom: 2vh;
+  }
+  
+  .downloadBtn {
+    width: 60vw;
+    height: 6vh;
+    font-size: 1rem;
+  }
+  
+  .ShowMore, .ShowMore2 {
+    font-size: 1rem;
+    padding-top: 2vh;
+  }
+  
+  .ThreeExperiences, .MoreExperiences {
+    gap: 4vh;
+    padding-left: 0;
+  }
+  
+  .JobContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 1.2rem 2vw;
+    width: 98vw;
+    max-width: 98vw;
+    min-height: 12vh;
+    border-radius: 1.2rem;
+  }
+  
+  .JobCertImg {
+    width: 18vw;
+    height: 18vw;
+    border-radius: 2rem;
+    margin-bottom: 1vh;
+  }
+  
+  .JobDetails h5 {
+    font-size: 1rem;
+    margin-bottom: 0.3vh;
+  }
+  
+  .JobDetails p, .JobSkills {
+    font-size: 0.95rem;
+    margin-bottom: 0.2vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .ProfilePage, .ProfilePage2 {
+    width: 98vw;
+    left: 1vw;
+    top: 2vh;
+    padding: 2vh 1vw;
+    flex-direction: column;
+    max-height: 98vh;
+    gap: 2vh;
+    position: static;
+  }
+  
+  .FirstPart, .SecondPart {
+    width: 100%;
+    gap: 3vh;
+    padding: 0;
+    align-items: stretch;
+  }
+  
+  .SecondPart {
+    align-items: center;
+    margin-bottom: 6vh;
+  }
+
+  .AboutCompanySection, .ManagersSection, .PostedJobs, .JobsSection, .SkillsSection {
+    padding: 4vh 4vw;
+    gap: 2vh;
+    margin-bottom: 4vh;
+    min-height: 20vh;
+    width: 95%;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+  }
+  
+  .PostedJobs {
+    gap: 5vh;
+    padding-bottom: 0vh !important;
+  }
+  
+  .AboutCompanySection p {
+    font-size: 0.85rem;
+    max-width: 95%;
+  }
+  
+  .ExperiencesHeader, .SkillsHeader, .ManagersSectionHeader, .PostedJobsHeader {
+    gap: 8vw;
+    padding-left: 2vw;
+    font-size: 1rem;
+  }
+  
+  .ManagersSection {
+    padding: 4vh 1vw;
+  }
+  
+  .ManagersSectionHeader {
+    gap: 7vw !important;
+    padding-left: 4vw !important;
+  }
+  
+  .ManagersSectionHeader h2 {
+    font-size: 1.1rem;
+  }
+  
+  .ExperiencesSection button, .SkillsSection button, .ManagersSectionHeader button, .PostedJobs button {
+    width: 8vw;
+    height: 8vw;
+    font-size: 1.1rem;
+  }
+  
+  .SkillContainer, .ManagerListContainer {
+    gap: 3vw;
+    flex-direction: column;
+    align-items: stretch;
+    padding-left: 0;
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+  
+  .SkillDetails p, .JobDetails p {
+    width: 80vw;
+    font-size: 0.9rem;
+    padding-left: 0.2vw;
+  }
+  
+  .SkillCerImg {
+    width: 60vw;
+    height: 18vh;
+    margin-bottom: 2vh;
+  }
+  
+  .downloadBtn {
+    width: 60vw;
+    height: 6vh;
+    font-size: 1rem;
+  }
+  
+  .ShowMore, .ShowMore2 {
+    font-size: 1rem;
+    padding-top: 2vh;
+  }
+  
+  .ThreeExperiences, .MoreExperiences {
+    gap: 4vh;
+    padding-left: 0;
+  }
+  
+  .JobContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5vh;
+    padding: 4vh 4vw;
+    width: 100%;
+    max-width: 95vw;
+    min-height: auto;
+    height: auto;
+    box-sizing: border-box;
+  }
+  
+  .ImgInfoSmall {
+    width: 20vw !important;
+    height: 20vw !important;
+    margin-right: 0;
+    margin-bottom: 1vh;
+    display: none;
+  }
+  
+  .JobCertImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1.2rem;
+  }
+  
+  .JobDetails {
+    width: 100%;
+    padding-left: 0;
+  }
+  
+  .JobDetails h5 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5vh;
+  }
+  
+  .JobDetails p {
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+  }
+  
+  .JobSkills {
+    font-size: 0.65rem !important;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .JobType {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+  }
+  
+  .void, .illu {
+    display: none;
+  }
+}
+
+
+/* Skeleton Helpers */
+.line {
+  background-color: #e2e8f0;
+  border-radius: 4px;
+}
+
+.skeletonHeader {
+  width: 100%;
+  height: 250px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.skeletonBox {
+  width: 100%;
+  border-radius: 12px;
+  background-color: #f7fafc;
+}
+
+/* The Shimmer Animation */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #edf2f7;
+}
+
+.shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmerAnim 2s infinite;
+  content: '';
+}
+
+@keyframes shimmerAnim {
+  100% { transform: translateX(100%); }
+}

@@ -1,0 +1,318 @@
+.ProfileHeroSection
+{
+
+    min-height: 38vh;
+    width: 100%;
+    background-color:white;
+    border: solid 1px var(--Button-color);
+    border-radius: 1.2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3vw;   
+    height: 40vh; 
+    padding: 3vh 0vw !important;
+
+}
+
+
+/* ✅ ULTRA SPECIFIC - This WILL override everything */
+.ProfileHeroSection > .CompanyProfilePhoto {
+    width: 10vw !important;
+    height: 10vw !important;
+    min-width: 80px !important;
+    min-height: 80px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-left: 3vw !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 0.25rem solid white !important;
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1) !important;
+}
+
+@media (max-width: 900px) {
+    .ProfileHeroSection > .CompanyProfilePhoto {
+        width: 18vw !important;
+        height: 18vw !important;
+        min-width: 100px !important;
+        min-height: 100px !important;
+        max-width: 160px !important;
+        max-height: 160px !important;
+        margin-left: 2vw !important;
+    }
+}
+
+
+
+
+.FirstPart
+{
+    display: flex;
+    flex-direction:column;
+    gap: 1vw;
+    align-items: start;
+    justify-content: center;
+   
+
+}
+
+
+.FirstPart   h1
+{
+     font-family: 'Epilogue', sans-serif;
+     padding-bottom: 1vh;
+     
+     
+}
+
+.companywebsite
+{
+    font-size: 0.8rem;
+    color : var(--Main-blue-color);
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+
+ 
+
+}
+
+.companywebsite:hover
+{
+    cursor: pointer;
+}
+
+
+
+.SmallInfos
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5vw;
+}
+
+.SmallInfo
+{
+    display: flex;
+    align-items: center;
+    gap: 0.6vw;
+
+}
+
+/* These styles are ONLY for the small info icons */
+.SmallInfo img
+{
+    width: 2vw !important;
+    height: 2vw !important;
+    padding: 0 !important;
+    border: solid 1px rgb(152, 150, 150) !important;
+    border-radius: 50% !important;
+    padding: 0.3vw !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SmallInfo div
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.SmallInfo img {
+    width: 3vw !important;
+    height: 3vw !important;
+    padding: 0 !important;
+    border: solid 1px rgb(152, 150, 150) !important;
+    border-radius: 50% !important;
+    padding: 0.3vw !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.p1 
+{
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.p2
+{
+    font-size: 0.6rem;
+    
+}
+
+
+@media (max-width: 600px) {
+    .ProfileHeroSection
+{
+    width: 94%  !important;
+    align-self: center;
+    justify-content: center;
+    gap: 5vw;
+    padding-bottom: 3vh !important;
+}
+
+    .ProfileHeroSection {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4vw;
+        min-height: 40vh;
+        padding: 4vh 0 2vh 0;
+        width: 98vw;
+        box-sizing: border-box;
+    }
+    
+    .ProfileHeroSection > .CompanyProfilePhoto {
+        width: 30vw !important;
+        height: 30vw !important;
+        min-width: 120px !important;
+        min-height: 120px !important;
+        max-width: 180px !important;
+        max-height: 180px !important;
+        margin-left: 0 !important;
+        margin-bottom: 2vh !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        box-shadow: 0 0.6vh 2vh rgba(0,0,0,0.08) !important;
+    }
+    
+    .FirstPart {
+        align-items: center;
+        justify-content: center;
+        gap: 2vh;
+        width: 100%;
+        text-align: center;
+        padding: 0 2vw;
+    }
+    .SmallInfos {
+       
+        gap: 2vh;
+        align-items: center;
+        width: 90%;
+    }
+  
+    .SmallInfo {
+        gap: 2vw;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .SmallInfo img {
+        max-width: 5rem !important;
+        max-height: 5rem !important;
+        padding: 1vw !important;
+        width: 4.2vw !important;
+        height: 4.2vw !important;
+        min-width: 24px !important;
+        min-height: 24px !important;
+        max-width: 36px !important;
+        max-height: 36px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        align-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0 !important;
+    }
+
+   
+    .SmallInfo div p {
+        font-size: 0.6rem;
+    }
+    .p1
+    {
+        font-weight: bolder;
+        font-size: 0.6rem !important;
+    }
+    .p2
+    {
+        font-size: 0.4rem !important;
+    
+    }
+}
+
+
+/* ... Keep all your existing CSS ... */
+
+.ProfileHeroSection {
+    min-height: 38vh;
+    width: 100%;
+    background-color: white;
+    border: solid 1px var(--Button-color);
+    border-radius: 1.2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3vw;
+    height: 40vh;
+    padding: 3vh 0vw !important;
+}
+
+/* SKELETON HELPERS */
+.line {
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    display: block;
+}
+
+.skeletonIcon {
+    width: 3vw;
+    height: 3vw;
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 50%;
+    background-color: #e2e8f0;
+}
+
+/* SHIMMER EFFECT */
+.shimmer {
+    position: relative;
+    overflow: hidden;
+    background-color: #edf2f7 !important;
+}
+
+.shimmer::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.2) 20%,
+        rgba(255, 255, 255, 0.5) 60%,
+        rgba(255, 255, 255, 0)
+    );
+    animation: shimmerAnim 2s infinite;
+    content: '';
+}
+
+@keyframes shimmerAnim {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Fix for skeleton photo circularity */
+div.CompanyProfilePhoto.shimmer {
+    width: 10vw !important;
+    height: 10vw !important;
+    min-width: 80px !important;
+    min-height: 80px !important;
+    margin-left: 3vw !important;
+    border-radius: 50% !important;
+    border: none !important;
+}
+
+/* ... Rest of your media queries ... */

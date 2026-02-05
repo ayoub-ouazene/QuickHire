@@ -1,0 +1,287 @@
+.ApplicationContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.applicantHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.applicantAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.applicantInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.applicantName {
+  font-weight: 600;
+  color: #212529;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ratingstar {
+  width: 16px;
+  height: 16px;
+}
+
+.scoreValue {
+  font-weight: 400;
+  color: #495057;
+  font-size: 0.875rem;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detailItem::before {
+  content: attr(data-label);
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.75rem;
+}
+
+.detailValue {
+  color: #6c757d;
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+/* Type badge styles */
+.detailValue.Fulltime,
+.detailValue.fulltime {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.detailValue.Parttime,
+.detailValue.parttime {
+  background: #f3e8ff;
+  color: #7e22ce;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.detailValue.Internship,
+.detailValue.internship {
+  background: #fef3c7;
+  color: #d97706;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.detailValue.Contract,
+.detailValue.contract {
+  background: #dcfce7;
+  color: #166534;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Changed from space-between to flex-end */
+  padding-top: 0.7rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.trashIcon {
+  width: 7.5vw;
+  height: 7.5vw;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: auto;
+}
+
+.trashIcon:hover {
+  opacity: 0.7;
+}
+
+/* Accept button styles REMOVED for CInvitation */
+
+.ApplicationContainer:nth-child(2n) {
+  background-color: var(--third-blue-color);
+}
+
+/* Delete confirmation state */
+.ApplicationContainer.deleting {
+  opacity: 0.6;
+  pointer-events: none;
+  background-color: #f3f4f6;
+}
+
+/* Focus states for accessibility */
+.trashIcon:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .ApplicationContainer {
+    grid-template-columns: 1.5fr 0.8fr 1.2fr 1fr 1fr 1fr;
+    gap: 0.8rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .ApplicationContainer:last-child {
+    border-bottom: none;
+  }
+  
+  .detailItem::before {
+    display: none;
+  }
+  
+  .detailItem {
+    justify-content: flex-start;
+  }
+  
+  .detailValue {
+    text-align: left;
+  }
+  
+  /* Remove background from type badges on desktop to maintain grid alignment */
+  .detailValue.Fulltime,
+  .detailValue.fulltime,
+  .detailValue.Parttime,
+  .detailValue.parttime,
+  .detailValue.Internship,
+  .detailValue.internship,
+  .detailValue.Contract,
+  .detailValue.contract {
+    background: none;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+  
+  .action {
+    padding-top: 0;
+    border-top: none;
+    justify-content: flex-end; /* Ensure trash icon is aligned to right */
+    gap: 0.75rem;
+  }
+  
+  .applicantAvatar {
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 35px;
+    min-height: 35px;
+  }
+  
+  .ratingstar {
+    width: 1.2vw;
+    height: 1.2vw;
+    min-width: 14px;
+    min-height: 14px;
+  }
+  
+  .applicantName,
+  .scoreValue,
+  .detailValue {
+    font-size: 0.8rem;
+  }
+  
+  .trashIcon {
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 16px;
+    min-height: 16px;
+    margin-right: auto;
+  }
+  
+  /* Accept button styles REMOVED for CInvitation */
+}
+
+/* Desktop enhancements */
+@media (min-width: 1024px) {
+  .ApplicationContainer {
+    padding: 0.5rem 0.8rem 0.6rem 0.8rem;
+  }
+  
+  .applicantAvatar {
+    width: 2.2vw;
+    height: 2.2vw;
+    min-width: 32px;
+    min-height: 32px;
+  }
+  
+  .ratingstar {
+    width: 1vw;
+    height: 1vw;
+    min-width: 12px;
+    min-height: 12px;
+  }
+  
+  .trashIcon {
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 16px;
+    min-height: 16px;
+    margin-right: auto;
+  }
+  
+  .applicantName,
+  .scoreValue,
+  .detailValue {
+    font-size: 0.85rem;
+  }
+  
+  /* Accept button styles REMOVED for CInvitation */
+}
+
+/* Mobile-specific type badges */
+@media (max-width: 767px) {
+  .detailItem[data-label="Type:"] .detailValue {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-left: auto;
+  }
+}

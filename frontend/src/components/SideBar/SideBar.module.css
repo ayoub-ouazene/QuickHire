@@ -1,0 +1,378 @@
+.SideBar
+{
+    background-image: url("../../assets/sidebar.svg");
+    width: 13vw;
+    height: 88vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: fixed; 
+    top: 12vh;
+    left: 0; 
+    display: flex;
+    flex-direction: column;
+    padding-top: 3vh;
+    align-items: start;
+    border-right: 0.0625rem #e0e1e4 solid; 
+    background-color: white;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Mobile Styles */
+.Hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 1.875rem;
+    height: 1.3125rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: fixed;
+    top: 4vh;
+    left: 5vw;
+    z-index: 1100;
+}
+
+.Hamburger span {
+    width: 100%;
+    height: 0.1875rem;
+    background-color: var(--Main-blue-color);
+    border-radius: 0.125rem;
+    transition: all 0.3s ease;
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Mobile Sidebar */
+.MobileSidebar {
+    width: 70vw;
+    height: 100vh;
+    top: 0;
+    transform: translateX(-100%);
+    background-image: none;
+    background-color: white;
+    box-shadow: 0.125rem 0 0.625rem rgba(0, 0, 0, 0.1);
+}
+
+.MobileSidebarOpen {
+    transform: translateX(0);
+}
+
+.Pages, .Settings
+{
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    align-items: center;
+    margin-bottom: 3vh;
+    border-bottom: 0.0625rem solid var(--Second-blue-color);
+    padding-bottom: 4vh;
+    padding-left: 0.5vw;
+}
+
+.PageSection , .PageSectionClick
+{
+    display: flex;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.2rem;
+    width: 90%;
+    height: 6vh;
+    align-items: center;
+    justify-content: start;
+    color: #7C8493;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Add active/clicked state styling */
+.PageSectionClicked {
+    background-color: #f0f7ff;
+    border-left: 4px solid var(--Second-blue-color);
+    color: var(--Main-blue-color);
+    font-weight: 600;
+}
+
+.PageSectionClicked img {
+    filter: invert(37%) sepia(98%) saturate(1418%) hue-rotate(198deg) brightness(95%) contrast(101%);
+}
+
+/* Keep existing hover effect */
+.PageSection:hover {
+    background-color: #f5f5f5;
+}
+
+/* Ensure hover doesn't override clicked state */
+.PageSectionClicked:hover {
+    background-color: #e6f2ff;
+}
+
+
+.PageSection img 
+{
+    width: 2.5vw;
+    height: 2.5vh;
+    padding-bottom: 0.4vh;
+}
+
+.PageSection:hover
+{
+    color: var(--Main-blue-color);
+    background-color: var(--Second-blue-color);
+}
+
+.Settings
+{
+    padding-top: 0;
+    margin-top: 0;
+    border: none;
+    margin-bottom: 0;
+}
+
+.LogOutButton
+{
+    background-color: white;
+    color: var(--Main-blue-color);
+    border: #d2d5db solid 0.0625rem;
+    border-radius: 0.3rem;
+    font-family: 'Epilogue', sans-serif;
+    display: flex; 
+    align-items: center;
+    justify-content: start;
+    padding-left: 1vw;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    margin-left: 1.5vh;
+    width: 85%;
+    height: 8%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.LogOutButton:hover {
+    background-color: var(--Second-blue-color);
+}
+
+.LogOutButton img
+{
+    width: 1.5vw;
+    height: 3vh;
+}
+
+.AccountInfo
+{
+    display: flex;
+    position: fixed;
+    bottom: 2vh;
+    padding-left: 0.6vw;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.AccountInfo img
+{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+
+.User
+{
+    text-align: start;
+    font-family: 'Epilogue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    gap: 0.1rem;
+}
+
+.User h5
+{
+    font-size: 0.8vw;
+}
+
+.User p
+{
+    font-size: 0.5vw;
+    max-width: 2vw;
+    text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 1200px) {
+    .SideBar {
+        width: 15vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .SideBar {
+        width: 18vw;
+    }
+    
+    .User h5 {
+        font-size: 1vw;
+    }
+    
+    .User p {
+        font-size: 0.7vw;
+    }
+}
+
+/* Tablet view fixes (992px and below but above 768px) */
+@media screen and (max-width: 992px) and (min-width: 769px) {
+    /* FIXED: Tablet AccountInfo */
+    .AccountInfo {
+        position: fixed;
+        bottom: 2vh;
+        left: 0;
+        width: 18vw;
+        padding: 1.5vh 0.8vw;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .User h5 {
+        font-size: 0.9rem; /* Fixed size for tablet */
+    }
+    
+    .User p {
+        font-size: 0.7rem; /* Fixed size for tablet */
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Hamburger {
+        display: flex;
+        top: 4vh;
+    }
+    
+    .SideBar {
+        width: 70vw;
+        height: 100vh;
+        top: 0;
+        transform: translateX(-100%);
+        background-image: none;
+        background-color: white;
+        box-shadow: 0.125rem 0 0.625rem rgba(0, 0, 0, 0.1);
+        padding-top: 8vh;
+        overflow-y: auto;
+        /* FIXED: Add flex display for proper layout */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .MobileSidebarOpen {
+        transform: translateX(0);
+    }
+    
+    .Pages {
+        margin-bottom: 2vh;
+        padding-bottom: 2vh;
+    }
+    
+    .PageSection {
+        height: 6vh;
+        font-size: 1rem;
+        width: 95%;
+    }
+    
+    .PageSection img {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.625rem;
+    }
+    
+    .Settings {
+        margin-bottom: 2vh;
+        padding-bottom: 2vh;
+    }
+    
+    .LogOutButton {
+        width: 90%;
+        height: 6vh;
+        font-size: 1rem;
+        padding-left: 5vw;
+        margin-bottom: 2vh;
+    }
+    
+    .LogOutButton img {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+    
+    /* FIXED: Mobile AccountInfo - proper positioning */
+    .AccountInfo {
+        position: fixed;
+        bottom: 8vh;
+        left: 0;
+        width: 70vw;
+        padding: 2vh 5vw;
+        border-top: 0.0625rem solid #e0e1e4;
+        background-color: white;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .AccountInfo img {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .User h5 {
+        font-size: 1rem;
+    }
+    
+    .User p {
+        font-size: 0.85rem;
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .SideBar {
+        width: 63vw;
+        padding-top: 9vh;
+        padding-left: 2vw;
+    }
+    
+    .PageSection {
+        font-size: 0.9rem;
+        height: 5.5vh;
+    }
+    
+    /* FIXED: Small mobile AccountInfo */
+    .AccountInfo {
+        width: 60vw;
+        padding: 2vh 2vw;
+        bottom: 6vh;
+    }
+    
+    .LogOutButton {
+        font-size: 0.9rem;
+        height: 5.5vh;
+    }
+    
+    .User h5 {
+        font-size: 0.7rem;
+    }
+    
+    .User p {
+        font-size: 0.6rem;
+    }
+}

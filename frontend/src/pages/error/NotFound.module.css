@@ -1,0 +1,157 @@
+.notFoundContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+}
+
+.notFoundContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.notFoundHeader {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 3rem;
+}
+
+.logo {
+  height: 3.5rem; /* Larger logo */
+  width: auto;
+}
+
+.notFoundMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  flex: 1;
+}
+
+.robotSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.robotImage {
+  max-width: 100%;
+  height: auto;
+  max-height: 50vh;
+}
+
+.errorContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.errorTitle {
+  font-family: 'Clash Display', sans-serif;
+  font-weight: 700;
+  color: var(--HeadersColor);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.2;
+}
+
+.errorDescription {
+  font-family: 'Inter', sans-serif;
+  color: var(--p-TextColor);
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  line-height: 1.6;
+  max-width: 90%;
+}
+
+.homeButton {
+  background-color: var(--Main-blue-color);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+
+.homeButton:hover {
+  background-color: var(--Button-color);
+  transform: translateY(-2px);
+}
+
+/* Tablet and larger screens */
+@media (min-width: 768px) {
+  .notFoundMain {
+    flex-direction: row;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .robotSection {
+    order: 1; /* Robot on the left */
+    justify-content: flex-start;
+  }
+  
+  .errorContent {
+    order: 2; /* Text on the right */
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .errorDescription {
+    max-width: 100%;
+  }
+  
+  .robotImage {
+    max-height: 60vh;
+  }
+  
+  .notFoundHeader {
+    padding-bottom: 4rem;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+  .notFoundContent {
+    padding: 3rem 4rem;
+  }
+  
+  .notFoundMain {
+    gap: 6rem;
+  }
+  
+  .logo {
+    height: 4rem; /* Even larger on big screens */
+  }
+  
+  .robotImage {
+    max-height: 70vh;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1440px) {
+  .notFoundContent {
+    padding: 4rem 6rem;
+  }
+  
+  .notFoundMain {
+    gap: 8rem;
+  }
+}

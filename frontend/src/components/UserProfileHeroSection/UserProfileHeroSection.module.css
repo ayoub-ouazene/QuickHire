@@ -1,0 +1,275 @@
+.UserPrifileHeroSection
+ {
+  position: relative;
+  width: 100%;
+  padding-bottom: 2.5rem;
+  height: 60vh;
+  border: var(--Main-blue-color) 1px solid;
+  border-radius: 1.25rem  ;
+
+}
+
+.SmallProfileBg {
+  width: 100%;
+  height: 15vh;
+  background-color: var(--Second-blue-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+    border-radius: 1.2rem 1.2rem 0 0;
+}
+
+.UserDetails {
+  position: relative;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  gap: 1vw;
+  align-items: center;
+  padding-top: 6.25rem;
+}
+
+.UserProfilePhoto {
+  width: 14vw;
+  height: 14vw;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.25rem solid white;
+  flex-shrink: 0;
+}
+
+.FirstPart {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  
+}
+
+.FirstPart > div h5 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #1a1a1a;
+}
+
+.FirstPart > div > p {
+  font-size: 1rem;
+  margin: 0.25rem 0;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+
+.FirstPart > div > p span {
+  font-weight: 600;
+  color: var(--Main-blue-color);
+}
+
+.FirstPart > div > p img {
+  width: 1.6vw;
+  height: 1.6vw;
+}
+
+.FirstPart div p 
+{
+    display: flex;
+
+    align-items: center;
+
+}
+
+.location
+{
+    font-size: 0.7rem !important;
+    display: flex;
+    align-items: center !important;
+}
+.location img
+{
+    width: 1vw !important;
+    height: 1vw !important;
+}
+
+.OpenForOpp,
+.CurrentlyWork {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+.OpenForOpp {
+  background-color: #e3f2fd;
+  color: var(--Main-blue-color);
+}
+
+.OpenForOpp img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.CurrentlyWork {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.CurrentlyWork img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.FirstPart button {
+    align-self: self-start;
+  padding: 0.625rem 1.5rem;
+  background-color: white;
+  color: var(--Main-blue-color);
+  border: 0.125rem solid var(--Main-blue-color);
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.FirstPart button:hover {
+  background-color: var(--Main-blue-color);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 48rem) {
+  .SmallProfileBg {
+    height: 8.75rem;
+  }
+
+  .UserDetails {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 4.375rem;
+  }
+
+  .UserProfilePhoto {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+
+  .FirstPart {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .FirstPart > div h5 {
+    font-size: 1.5rem;
+  }
+
+  .FirstPart > div > p {
+    justify-content: center;
+  }
+}
+
+
+@media (max-width: 600px) {
+    .UserPrifileHeroSection
+  {
+    width: 100%;
+    align-self: center !important;
+  }
+  .FirstPart button
+  {
+    align-self: center;
+  }
+    
+}
+
+
+/* Add these to your UserProfileHeroSection.module.css */
+
+.skeleton {
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.skeletonName {
+  height: 28px;
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+.skeletonText {
+  height: 16px;
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+.skeletonBtn {
+  height: 40px;
+  width: 110px;
+  border-radius: 8px;
+}
+
+
+/* Base style for a skeleton line */
+.line {
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  display: block;
+}
+
+/* The Shimmer Animation */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #edf2f7;
+}
+
+.shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmerAnim 2s infinite;
+  content: '';
+}
+
+@keyframes shimmerAnim {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Ensure the Profile Photo Skeleton is a circle */
+div.UserProfilePhoto.shimmer {
+  border-radius: 50%;
+  background-color: #e2e8f0;
+}

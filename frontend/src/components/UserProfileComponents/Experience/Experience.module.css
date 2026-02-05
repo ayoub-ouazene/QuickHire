@@ -1,0 +1,158 @@
+.ExperienceContainer {
+    width: 100%;
+    min-height: 16vh;
+    padding: 1vh 1vw;
+    padding-bottom: 3vh;
+    display: flex;
+    gap: 1vw;
+    align-items: flex-start;
+    margin-bottom: 1.5vh;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.ExperienceContainer:last-child {
+    border-bottom: none;
+    padding-bottom: 1vh;
+}
+
+.ExperienceContainer img {
+    width: 4vw;
+    height: 4vw;
+    border-radius: 0.6vw;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.ExperienceDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7vh;
+    width: 100%;
+    min-width: 0;
+    flex: 1;
+}
+
+.MoreJobDetails {
+    width: 100%;
+    display: flex;
+    gap: 0.3vw;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.MoreJobDetails p {
+    display: flex;
+    font-size: 0.75rem;
+    gap: 0.3vw;
+}
+
+.MoreJobDetails p p {
+    color: var(--Main-blue-color);
+}
+
+.MoreJobDetails p:first-child {
+    font-weight: 600;
+}
+
+.MoreJobDetails span {
+    color: rgba(143, 141, 141, 0.92);
+}
+
+.LocationP {
+    font-size: 0.75rem;
+    color: rgba(95, 95, 95, 0.92);
+    margin-top: 0.5vh;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.DescriptionP {
+    width: 100%;
+    max-width: 100%;
+    font-size: 0.75rem;
+    color: #444;
+    margin-top: 0.5vh;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+}
+
+.ExperienceTopRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 600px) {
+    .ExperienceTopRow {
+        flex-direction: row;
+        align-items: center;
+        gap: 3vw;
+        width: 100%;
+    }
+    
+    .ExperienceContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 98vw;
+        min-height: 12vh;
+        padding: 2vh 2vw 3vh 2vw;
+        gap: 1.2vh;
+        margin-bottom: 2vh;
+        border-bottom: 1px solid #e8e8e8;
+    }
+    
+    .ExperienceContainer:last-child {
+        border-bottom: none;
+        padding-bottom: 1vh;
+    }
+    
+    .ExperienceContainer img {
+        width: 25vw;
+        height: 25vw;
+        padding-bottom: 1vh;
+    }
+    
+    .ExperienceDetails {
+        gap: 1vh;
+    }
+
+    .ExperienceDetails h6 {
+        font-size: 1.1rem;
+        font-weight: bolder;
+    }
+    
+    .MoreJobDetails {
+        flex-direction: column;
+        gap: 1vw;
+        font-size: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .MoreJobDetails span {
+        display: none;
+    }
+    
+    .MoreJobDetails p {
+        font-size: 0.9rem;
+        gap: 0.5vw;
+        max-width: 100%;
+    }
+    
+    .LocationP {
+        font-size: 0.95rem;
+        margin-top: 0.7vh;
+    }
+    
+    .DescriptionP {
+        font-size: 0.8rem;
+        margin-top: 0.7vh;
+        max-width: 100%;
+        width: 100%;
+    }
+}

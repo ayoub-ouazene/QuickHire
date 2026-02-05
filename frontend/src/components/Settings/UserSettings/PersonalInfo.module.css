@@ -1,0 +1,540 @@
+.container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Loading State */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--Main-blue-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Section Headers */
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.description {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Image Upload */
+.fileInput {
+  display: none;
+}
+
+.imageUploadBox {
+  border: 2px dashed #ddd;
+  border-radius: 6px;
+  padding: 2rem;
+  text-align: center;
+  background: #f8f9fa;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+  max-width: 300px;
+  margin: 1rem 0;
+}
+
+.imageUploadBox:hover {
+  border-color: var(--Main-blue-color);
+  background: #f0f9ff;
+}
+
+.imageUploadBox.uploading {
+  border-color: var(--Main-blue-color);
+}
+
+.placeholder {
+  color: #666;
+  font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.uploadIcon {
+  font-size: 2.5rem;
+  color: var(--Main-blue-color);
+}
+
+.placeholder p {
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0;
+}
+
+.uploadHint {
+  font-size: 0.8rem !important;
+  color: #777 !important;
+}
+
+.imagePreviewContainer {
+  position: relative;
+  display: inline-block;
+  width: 180px;
+  height: 180px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.imagePreviewContainer:hover .imageOverlay {
+  opacity: 1;
+}
+
+.changeImageButton,
+.deleteImageButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 100px;
+  text-align: center;
+}
+
+.changeImageButton {
+  background: white;
+  color: var(--Main-blue-color);
+}
+
+.changeImageButton:hover {
+  background: #f0f9ff;
+}
+
+.deleteImageButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.deleteImageButton:hover {
+  background: rgba(220, 53, 69, 0.8);
+}
+
+.uploadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.uploadingContainer .spinner {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid var(--Main-blue-color);
+}
+
+.uploadingContainer p {
+  color: var(--Main-blue-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.uploadStatus {
+  text-align: center;
+  color: var(--Main-blue-color);
+  font-weight: 500;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+/* Form Layout */
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.formGroup {
+  position: relative;
+}
+
+.label {
+  display: block;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  background: white;
+  color: #333;
+  font-family: inherit;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--Main-blue-color);
+  box-shadow: 0 0 0 2px rgba(0, 119, 181, 0.1);
+}
+
+.input::placeholder {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.inputError {
+  border-color: #dc3545;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.1);
+}
+
+.doubleColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  resize: none;
+  transition: border-color 0.2s;
+  background: white;
+  color: #333;
+  font-family: inherit;
+  line-height: 1.5;
+  min-height: 120px;
+}
+
+.textarea:focus {
+  outline: none;
+
+  border-color: var(--Main-blue-color);
+  box-shadow: 0 0 0 2px rgba(0, 119, 181, 0.1);
+
+
+}
+
+.characterCounter {
+  text-align: right;
+  color: #718096;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* === Save button === */
+.saveButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.saveButton {
+  background: var(--Button-color);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.saveButton:hover {
+  background: #3182ce;
+}
+
+/* === File input (hidden) === */
+.fileInput {
+  display: none;
+}
+
+
+/* ... Your existing styles ... */
+
+/* --- SKELETON / SHIMMER ANIMATION --- */
+
+/* The "shimmer" class is used for the blurring animation */
+.shimmer {
+    background-color: #f0f2f5; /* Light grey base */
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px; /* Smooth corners for inputs/text */
+}
+
+.shimmer::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmerAnim 1.5s infinite;
+    content: '';
+}
+
+@keyframes shimmerAnim {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Specific Skeleton Shapes */
+
+.skeletonLabel {
+    height: 14px;
+    margin-bottom: 8px;
+}
+
+.skeletonInput {
+    /* Height is passed inline, or default to input height */
+    border-radius: 8px;
+    width: 100%;
+}
+
+.skeletonTitle {
+    height: 24px;
+}
+
+.skeletonText {
+    height: 14px;
+}
+
+.skeletonCircle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+/* === Responsive === */
+@media (max-width: 600px) {
+  .doubleColumn {
+    grid-template-columns: 1fr;
+  }
+
+  .imagePreviewContainer {
+    max-width: 100%;
+  }
+
+  .saveButtonContainer {
+    justify-content: center;
+  }
+}
+/* === Error Styles === */
+.inputError {
+  border-color: #e53e3e !important;
+}
+
+.errorText {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  display: block;
+
+  border-color: var(--Main-blue-color);
+  box-shadow: 0 0 0 2px rgba(0, 119, 181, 0.1);
+
+}
+
+.textareaFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+}
+
+.characterCounter {
+  text-align: right;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+/* Save Button */
+.saveButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.saveButton {
+  background: var(--Main-blue-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.saveButton:hover:not(:disabled) {
+  background: #006398;
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error States */
+.errorText {
+  color: #dc3545;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  background: #f8d7da;
+  border-radius: 4px;
+  border: 1px solid #f5c6cb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .sectionSubtitle {
+    font-size: 1.2rem;
+  }
+  
+  .doubleColumn {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .imageUploadBox {
+    max-width: 250px;
+    padding: 1.5rem;
+  }
+  
+  .saveButton {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .sectionSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+  }
+  
+  .imageUploadBox {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+  
+  .imagePreviewContainer {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Add this to your existing CSS */
+.required {
+  color: #dc3545;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+.optionalHint {
+  color: #666;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+/* Rest of your existing CSS remains the same... */

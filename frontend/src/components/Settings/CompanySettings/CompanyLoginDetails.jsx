@@ -1,0 +1,306 @@
+import React, { useRef, useState, useEffect } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import Alert from "../../Alert/Alert"; // ✅ Import Alert component
+import styles from "./CompanyLoginDetails.module.css"; 
+
+// --- Helper: Auth Extraction ---
+const getCompanyInfo = () => {
+  try {
+    const token = localStorage.getItem("token") || "";
+    const userDataStr = localStorage.getItem("user");
+    
+    if (!userDataStr || userDataStr === "null") return { companyId: null, token };
+
+    const parsedUser = JSON.parse(userDataStr);
+    const companyId = parsedUser.Company_id || parsedUser.companyId || parsedUser.id || parsedUser.User_id;
+
+    return { companyId, token };
+  } catch (error) {
+    console.error("Error parsing company info:", error);
+    return { companyId: null, token: "" };
+  }
+};
+
+function CompanyLoginDetails() {
+  const queryClient = useQueryClient();
+  const { companyId, token } = getCompanyInfo();
+
+  const emailRef = useRef(null);
+  const oldPassRef = useRef(null);
+  const newPassRef = useRef(null);
+  const confirmPassRef = useRef(null);
+
+  const [email, setEmail] = useState("");
+  const [passError, setPassError] = useState("");
+
+  // ✅ Alert state
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertConfig, setAlertConfig] = useState({ type: 'success', message: '' });
+
+  // ✅ Helper function to show alerts
+  const showNotification = (message, type = 'success') => {
+    setAlertConfig({ type, message });
+    setShowAlert(true);
+  };
+
+  // --- 1. Fetch Profile (for Email) ---
+  const { data: companyProfile, isLoading } = useQuery({
+    queryKey: ['companyProfile', companyId],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:3000/api/Company/Profile/${companyId}`, {
+        headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` 
+        },
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error("Failed to load profile");
+      return data.company;
+    },
+    enabled: !!companyId,
+  });
+
+  useEffect(() => {
+    if (companyProfile?.email) {
+      setEmail(companyProfile.email);
+    }
+  }, [companyProfile]);
+
+  // --- 2. Mutation: Update Email ---
+  const emailMutation = useMutation({
+    mutationFn: async (newEmail) => {
+      const res = await fetch(`http://localhost:3000/api/Company/Profile/${companyId}/Email`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ email: newEmail }),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error || "Failed to update email");
+      return newEmail;
+    },
+    onSuccess: (newEmail) => {
+      setEmail(newEmail);
+      queryClient.setQueryData(['companyProfile', companyId], (old) => ({ ...old, email: newEmail }));
+      if(emailRef.current) emailRef.current.value = "";
+      showNotification("Email updated successfully!", "success"); // ✅ New alert
+    },
+    onError: (err) => showNotification(err.message, "error") // ✅ New alert
+  });
+
+  // --- 3. Mutation: Update Password ---
+  const passwordMutation = useMutation({
+    mutationFn: async (passwordData) => {
+      const res = await fetch(`http://localhost:3000/api/Company/Profile/${companyId}/Password`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(passwordData),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error || "Failed to update password");
+      return data;
+    },
+    onSuccess: () => {
+      showNotification("Password updated successfully!", "success"); // ✅ New alert
+      if(oldPassRef.current) oldPassRef.current.value = "";
+      if(newPassRef.current) newPassRef.current.value = "";
+      if(confirmPassRef.current) confirmPassRef.current.value = "";
+      setPassError("");
+    },
+    onError: (err) => {
+      setPassError(err.message);
+      showNotification(err.message, "error"); // ✅ New alert
+    }
+  });
+
+  // --- Handlers ---
+  const handleEmailChange = (e) => {
+    e.preventDefault();
+    const newEmail = emailRef.current.value.trim();
+    
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail)) {
+      return showNotification("Invalid email format", "error"); // ✅ New alert
+    }
+    if (newEmail === email) {
+      return showNotification("This is already your current email", "warning"); // ✅ New alert
+    }
+
+    emailMutation.mutate(newEmail);
+  };
+
+  const handlePassChange = (e) => {
+    e.preventDefault();
+    const oldPass = oldPassRef.current.value;
+    const newPass = newPassRef.current.value;
+    const confirmPass = confirmPassRef.current.value;
+
+    setPassError("");
+    if (!oldPass || !newPass || !confirmPass) {
+      setPassError("All fields are required");
+      return showNotification("All fields are required", "error"); // ✅ New alert
+    }
+    if (newPass !== confirmPass) {
+      setPassError("New passwords do not match");
+      return showNotification("New passwords do not match", "error"); // ✅ New alert
+    }
+    if (newPass === oldPass) {
+      setPassError("New password cannot be the same as old");
+      return showNotification("New password cannot be the same as old", "warning"); // ✅ New alert
+    }
+    if (newPass.length < 8) {
+      setPassError("Password must be at least 8 characters");
+      return showNotification("Password must be at least 8 characters", "warning"); // ✅ New alert
+    }
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(newPass)) {
+      setPassError("Password must contain uppercase, lowercase, and number");
+      return showNotification("Password must contain uppercase, lowercase, and number", "warning"); // ✅ New alert
+    }
+
+    passwordMutation.mutate({ oldPassword: oldPass, newPassword: newPass, confirmPassword: confirmPass });
+  };
+
+  // --- Loading Skeleton ---
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+         <div className={`${styles.skeletonTitle} ${styles.shimmer}`} style={{ width: '150px' }}></div>
+         <div className={`${styles.skeletonText} ${styles.shimmer}`} style={{ width: '250px', marginBottom: '30px' }}></div>
+         <div className={styles.LineBreak}></div>
+         
+         {/* Email Skeleton */}
+         <section className={styles.EmailUpdate}>
+            <div className={`${styles.skeletonTitle} ${styles.shimmer}`} style={{ width: '120px', marginBottom: '10px' }}></div>
+            <div className={`${styles.skeletonInput} ${styles.shimmer}`} style={{ height: '45px', marginBottom: '15px' }}></div>
+            <div className={`${styles.skeletonInput} ${styles.shimmer}`} style={{ height: '40px', width: '120px' }}></div>
+         </section>
+
+         <div className={styles.LineBreak}></div>
+
+         {/* Password Skeleton */}
+         <section className={styles.PasswordUpdate}>
+             <div className={`${styles.skeletonTitle} ${styles.shimmer}`} style={{ width: '140px', marginBottom: '20px' }}></div>
+             <div className={`${styles.skeletonInput} ${styles.shimmer}`} style={{ height: '45px', marginBottom: '15px' }}></div>
+             <div className={`${styles.skeletonInput} ${styles.shimmer}`} style={{ height: '45px', marginBottom: '15px' }}></div>
+             <div className={`${styles.skeletonInput} ${styles.shimmer}`} style={{ height: '45px', marginBottom: '20px' }}></div>
+         </section>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.container}>
+      {/* ✅ Alert Component */}
+      {showAlert && (
+        <Alert
+          type={alertConfig.type}
+          message={alertConfig.message}
+          onClose={() => setShowAlert(false)}
+          duration={3000}
+        />
+      )}
+
+      <div className={styles.description}>
+        <p className={styles.pHead}>Login Details</p>
+        <p className={styles.p}>This is company login information that you can update anytime.</p>
+      </div>
+
+      <div className={styles.LineBreak}></div>
+
+      {/* EMAIL UPDATE SECTION */}
+      <section className={styles.EmailUpdate}>
+        <div className={styles.sectionTitle}>
+          <h3>Update Email</h3>
+          <p>Update your company email address to make sure it is safe</p>
+        </div>
+
+        <div className={styles.emailhandle}>
+          <div className={styles.emailDisplay}>
+            <span className={styles.pemail}>{email}</span>
+          </div>
+
+          <div className={styles.verifiedBadge}>
+            Your email address is verified ✅
+          </div>
+
+          <form className={styles.Form} onSubmit={handleEmailChange}>
+            <label htmlFor="emailupdate">Update Email</label>
+            <input
+              type="email"
+              placeholder="Enter Your New Email"
+              id="emailupdate"
+              ref={emailRef}
+              disabled={emailMutation.isPending}
+              required
+            />
+            <button type="submit" disabled={emailMutation.isPending}>
+              {emailMutation.isPending ? "Updating..." : "Update Email"}
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <div className={styles.LineBreak}></div>
+
+      {/* PASSWORD UPDATE SECTION */}
+      <section className={styles.PasswordUpdate}>
+        <div className={styles.sectionTitle}>
+          <h3>New Password</h3>
+          <p>Manage your company password to make sure it is safe</p>
+        </div>
+
+        <form className={styles.passform} onSubmit={handlePassChange}>
+          <div className={styles.passinput}>
+            <label htmlFor="Oldpass">Old Password</label>
+            <input
+              type="password"
+              id="Oldpass"
+              placeholder="Enter your old password"
+              ref={oldPassRef}
+              disabled={passwordMutation.isPending}
+              required
+            />
+            <span className={styles.helpText}>Enter your current password</span>
+          </div>
+
+          <div className={styles.passinput}>
+            <label htmlFor="Newpass">New Password</label>
+            <input
+              type="password"
+              id="Newpass"
+              placeholder="Enter your new password"
+              ref={newPassRef}
+              disabled={passwordMutation.isPending}
+              required
+            />
+            <span className={styles.helpText}>Minimum 8 characters with uppercase, lowercase, and number</span>
+          </div>
+
+          <div className={styles.passinput}>
+            <label htmlFor="Confirmpass">Confirm New Password</label>
+            <input
+              type="password"
+              id="Confirmpass"
+              placeholder="Confirm your new password"
+              ref={confirmPassRef}
+              disabled={passwordMutation.isPending}
+              required
+            />
+            <span className={styles.helpText}>Re-enter your new password</span>
+          </div>
+
+          <button type="submit" disabled={passwordMutation.isPending}>
+            {passwordMutation.isPending ? "Changing..." : "Change Password"}
+          </button>
+          {passError && <p className={styles.errorText}>{passError}</p>}
+        </form>
+      </section>
+    </div>
+  );
+}
+
+export default CompanyLoginDetails;

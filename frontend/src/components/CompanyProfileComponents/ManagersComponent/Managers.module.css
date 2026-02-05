@@ -1,0 +1,351 @@
+.container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0vh;
+  position: relative;
+  border-radius: 1.2rem !important;
+}
+ 
+
+.carouselWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2vh;
+  position: relative;
+
+}
+
+.arrowButton {
+  background: white;
+  border: 0.125rem solid #e0e0e0;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #333;
+  flex-shrink: 0;
+  box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.1);
+}
+
+.arrowButton:hover {
+  background: var(--Main-blue-color, #667eea);
+  color: white;
+  border-color: var(--Main-blue-color, #667eea);
+  transform: scale(1.1);
+}
+
+.cardsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  height: 50vh;
+  overflow: hidden;
+  position: relative;
+  gap: 0.5rem;
+}
+
+/* --- Card styles --- */
+.card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.2rem 0.8rem rgba(0,0,0,0.1);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  transform-origin: center center;
+}
+
+.cardPrev,
+.cardNext {
+  width: 25%;
+  opacity: 0.3;
+  transform: scale(0.85);
+  pointer-events: none;
+}
+
+  .cardActive {
+    width: 45%;
+    box-shadow: 5px 2px 20px var(--Main-blue-color);
+    height: 40vh;
+    min-height: 22vh;
+    max-height: 50vh;
+
+  }
+  /* Decrease space between card and dots/counter */
+  .cardsContainer {
+    margin-bottom: 1vh !important;
+  }
+  .dotsContainer {
+    margin-bottom: 0.5vh !important;
+  }
+
+
+.cardActive:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* --- Animation --- */
+@keyframes slideInNext {
+  0% {
+    transform: scale(0.8) translateX(60%);
+    opacity: 0;
+  }
+    80%{
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInPrev {
+  0% {
+    transform: scale(0.8) translateX(-100%);
+    opacity: 0;
+  }
+  80%{
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateX(0);
+    opacity: 1;
+  }
+}
+
+.slideInNext {
+  animation: slideInNext 0.6s ease forwards;
+}
+
+.slideInPrev {
+  animation: slideInPrev 0.6s ease forwards;
+}
+
+/* --- Image and content --- */
+.imageWrapper {
+  width: 100%;
+  height: 23vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--Main-blue-color, #667eea) 0%, var(--Second-blue-color, #764ba2) 100%);
+}
+
+.image {
+  width: 7vw;
+  height: 7vw;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 0.15rem solid white;
+  box-shadow: 0 0.2rem 0.6rem rgba(0,0,0,0.2);
+}
+
+.content {
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.name,.name2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #1a1a1a;
+}
+.name2
+{
+  font-size: 0.7rem;
+}
+
+.role {
+  font-size: 0.7rem;
+  color: var(--Main-blue-color, #667eea);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 0.6vw;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.socialButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.6rem;
+  background: white;
+  color: #0077b5;
+  border: 0.1rem solid #0077b5;
+  border-radius: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  min-height: 1.8rem;
+  min-width: 3.5rem;
+  white-space: nowrap;
+}
+.socialButton span {
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+
+.socialButton:hover {
+  background: var(--Main-blue-color, #667eea);
+  color: white;
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.2rem 0.6rem rgba(102, 126, 234, 0.3);
+}
+
+.socialButton:hover span {
+  color: white;
+}
+
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-bottom: 1vh;
+}
+
+.dot {
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+  border: none;
+  background: #d0d0d0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background: #999;
+}
+
+.dotActive {
+  background: var(--Main-blue-color, #667eea);
+  width: 1.2rem;
+  border-radius: 0.2rem;
+}
+
+.counter {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+}
+
+.noData {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 48rem) {
+  .cardActive {
+    width: 50%;
+  }
+
+  .cardPrev,
+  .cardNext {
+    width: 20%;
+  }
+
+  .socialButtons {
+    flex-direction: column;
+  }
+
+  .socialButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 30rem) {
+  .cardPrev,
+  .cardNext {
+    display: none;
+  }
+
+  .cardActive {
+    width: 75%;
+  }
+}
+
+@media (max-width:600px)
+{
+ 
+    .image {
+      width: 30vw;
+      height: 30vw;
+    }
+    .cardActive {
+      width: 90%;
+      height: 35vh;
+      box-shadow: none;
+      border: 2px solid var(--Second-blue-color);
+    }
+    /* Social buttons container: row, reduced size */
+    .socialButtons {
+      flex-direction: row !important;
+      gap: 2vw !important;
+      justify-content: center;
+      margin-top: 1vh;
+    }
+    .socialButton {
+      font-size: 0.6rem !important;
+      min-height: 1.2rem !important;
+      min-width: 2.2rem !important;
+      padding: 0.2rem 0.4rem !important;
+      gap: 0.15rem !important;
+      border-radius: 0.2rem !important;
+      box-shadow: none !important;
+    }
+    .socialButton span {
+      font-size: 0.6rem !important;
+    }
+    /* Remove arrow hover effect on mobile */
+    .arrowButton:hover {
+      background: white !important;
+      color: #333 !important;
+      border-color: #e0e0e0 !important;
+      transform: none !important;
+    }
+    .imageWrapper {
+      padding: 3vh;
+    }
+
+    .dot
+    {
+
+  padding: 1vw;
+  padding: 0vw 3vw 0vw 3vw;
+  max-height: 2vw;
+       
+    }
+   
+}

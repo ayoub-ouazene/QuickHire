@@ -1,0 +1,113 @@
+.Profile ,.ProfileSelected
+{
+
+    min-width: 18vw;
+    height:13%;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 0.5rem;
+    padding: 1vh 0;
+    padding-left: 0.8vw;
+    padding-right: 1vw;
+    border-bottom:#dce0e8 solid 1px;
+
+}
+.ProfileSelected
+{
+    background-color: var(--Second-blue-color);
+}
+
+.Profile:hover 
+{
+    background-color: var(--Second-blue-color);
+}
+
+.Profile img, .ProfileSelected img
+{
+    width: 2.6vw ; 
+    height: 2.6vw ;
+    border-radius: 50%;
+
+}
+
+.ProfileDetails 
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+    flex: 1;
+}
+
+.NameWithBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ProfileDetails h6
+{
+    font-size: 1vw;
+    margin: 0;
+}
+
+.UnreadBadge {
+    background-color: #2563eb;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.15rem 0.4rem;
+    border-radius: 10px;
+    min-width: 1rem;
+    text-align: center;
+}
+
+.ProfileDetails p
+{
+    font-size:0.75vw ;
+    color:#515B6F;
+    max-width: 14vw;
+
+    white-space: nowrap; 
+
+    overflow: hidden; 
+
+
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+
+
+@media screen and (max-width: 600px) {
+
+.Profile ,.ProfileSelected
+{
+    height: 15%;
+    padding-left: 3.5vw;
+
+}
+.Profile img, .ProfileSelected img
+{
+    width:12vw !important;
+    height: 12vw !important;
+    border-radius: 50%;
+}
+
+.ProfileDetails h6
+{
+    font-size: 4vw;
+}
+
+.ProfileDetails p
+{
+    font-size: 2.8vw;
+      max-width: 74vw;
+}
+
+.UnreadBadge {
+    font-size: 2.5vw;
+    padding: 0.2rem 0.5rem;
+}
+
+}

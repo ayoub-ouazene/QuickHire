@@ -1,0 +1,27 @@
+.Profiles {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    cursor: pointer;
+    margin-bottom: 4vh;
+    box-sizing: border-box;
+    padding: 0.25rem;
+}
+
+.NoConversations {
+    text-align: center;
+    color: #999;
+    padding: 2rem;
+    font-size: 1rem;
+}
+
+/* compact scroll area on mobile devices */
+@media (max-width: 480px) {
+  .Profiles { margin-bottom: 2vh; max-height: calc(100vh - 130px); padding: 0.25rem; gap: 0.25rem; }
+  .Profiles img { width: 42px; height: 42px; border-radius: 8px; }
+}
+
+.Profiles::-webkit-scrollbar {
+    display: none;
+}

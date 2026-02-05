@@ -1,0 +1,1029 @@
+/* === KEYFRAME ANIMATIONS === */
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* === BASE LAYOUT === */
+.container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* === MOBILE HEADER (Logo Only) === */
+.MobileHeader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e1e4;
+  z-index: 50;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  animation: fadeInDown 0.5s ease-out;
+}
+
+.Logo {
+  height: 7vh;
+  transform: scale(1.3);
+  padding-bottom: 2vh;
+  width: auto;
+  animation: scaleIn 0.6s ease-out;
+  transition: transform 0.3s ease;
+}
+
+.Logo:hover {
+  transform: scale(1.4) rotate(5deg);
+}
+
+/* === NAVBAR (Desktop) === */
+.NavBar {
+  z-index: 111;
+}
+
+/* === SIDEBAR CONTAINER (Desktop) === */
+.SideBarContainer {
+  width: clamp(70px, 13vw, 220px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: #f9fbfc;
+  height: 100vh;
+  overflow-y: auto;
+  display: block;
+  visibility: visible;
+}
+
+
+/* === MAIN CONTENT === */
+.Main {
+  margin-left: clamp(70px, 13vw, 220px);
+  width: calc(100% - clamp(70px, 13vw, 220px));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px; /* CHANGED from 90px to 40px */
+  box-sizing: border-box;
+  background: #fff;
+}
+
+/* === DESKTOP HEADER === */
+/* === DESKTOP HEADER === */
+.Header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  padding: 0.5rem 3rem;
+  border-bottom: none;
+  background-color: #fff;
+  animation: fadeInDown 0.6s ease-out;
+  margin-top: 30px; /* ADD THIS LINE - push it down below navbar */
+}
+
+.SearchBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; /* ADDED to push searchbar right */
+  width: 100%;
+  flex: 1;
+}
+
+.SearchBar h3 {
+  font-size: 1.3rem; /* CHANGED from 1.8rem to 1.3rem */
+  font-weight: 600; /* CHANGED from 700 to 600 */
+  color: #333;
+  position: relative;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  text-transform: capitalize;
+  white-space: nowrap;
+  animation: fadeInLeft 0.7s ease-out;
+  background: linear-gradient(90deg, #333 0%, #555 100%);
+
+  -webkit-background-clip: text;
+    background-clip: text;
+  transition: all 0.3s ease;
+  flex: 0 0 auto; /* ADDED to keep on left */
+}
+
+.SearchBar h3:hover {
+  transform: translateX(5px);
+}
+
+.SearchBar h3::after {
+  display: none;
+}
+
+/* === DESKTOP SEARCH HEADER === */
+.SearchHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 0.5vh; /* CHANGED from 3vh to 0.5vh */
+  padding-bottom: 0.5rem; /* CHANGED from 1rem to 0.5rem */
+  transform: translateX(0);
+  animation: fadeInUp 0.7s ease-out;
+}
+
+.SearchHeader img {
+  animation: float 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.SearchHeader img:hover {
+  animation-play-state: paused;
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* === DESKTOP FILTER + CONTENT === */
+.Pub {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: clamp(1rem, 2vw, 1.5rem); /* CHANGED max from 2rem to 1.5rem */
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 0.5rem clamp(1rem, 2vw, 1.5rem); /* CHANGED first value from 1rem to 0.5rem */
+  box-sizing: border-box;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.Filter {
+  flex: 0 0 clamp(200px, 23%, 260px); /* CHANGED from 220px,25%,280px */
+  background-color: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: clamp(0.8rem, 1.5vw, 1.2rem); /* CHANGED from 1rem,2vw,1.5rem */
+  position: sticky;
+  top: 90px; /* CHANGED from 100px to 90px */
+  align-self: flex-start;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeInRight 0.8s ease-out;
+  transition: all 0.3s ease;
+}
+
+.Filter:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+}
+
+.Filter h3 {
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem); /* CHANGED from 1rem,1.8vw,1.2rem */
+  margin-bottom: 0.8rem; /* CHANGED from 1rem */
+}
+
+.Candidates {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; /* CHANGED from clamp(1rem, 2vw, 1.5rem) */
+  min-width: 0;
+}
+
+.JobPost {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; /* CHANGED from clamp(1rem, 2vw, 1.5rem) */
+}
+
+/* === JOB CARDS WITH STAGGERED ANIMATION === */
+.CandidateCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(0.8rem, 1.5vw, 1.2rem); /* CHANGED from 1rem,2vw,1.5rem */
+  background: white;
+  border: 1px solid #e0e1e4;
+  border-radius: 1rem;
+  padding: clamp(0.8rem, 1.5vw, 1.2rem); /* CHANGED from 1rem,2vw,1.5rem */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out backwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.CandidateCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.CandidateCard:hover::before {
+  left: 100%;
+}
+
+.CandidateCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  border-color: #3b5bdb;
+}
+
+/* Staggered animation delays */
+.JobPost > .CandidateCard:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.JobPost > .CandidateCard:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.JobPost > .CandidateCard:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.JobPost > .CandidateCard:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.CandidateInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.CandidateInfo h2 {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem); /* CHANGED from 1rem,2vw,1.2rem */
+  color: #0077b6;
+  margin: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.CandidateCard:hover .CandidateInfo h2 {
+  color: #3b5bdb;
+  transform: translateX(5px);
+}
+
+.CandidateInfo p {
+  font-size: clamp(0.8rem, 1.3vw, 0.9rem); /* CHANGED from 0.85rem,1.5vw,1rem */
+  color: #444;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.CandidateCard:hover .CandidateInfo p {
+  color: #222;
+}
+
+.CandidateImage img {
+  width: clamp(40px, 5vw, 60px); /* CHANGED from 45px,6vw,70px */
+  height: clamp(40px, 5vw, 60px); /* CHANGED from 45px,6vw,70px */
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.CandidateCard:hover .CandidateImage img {
+  transform: scale(1.15) rotate(5deg);
+  border-color: #3b5bdb;
+  box-shadow: 0 8px 16px rgba(59, 91, 219, 0.3);
+}
+
+.noResults {
+  text-align: center;
+  padding: 1.5rem; /* CHANGED from 2rem */
+  font-size: 1rem; /* CHANGED from 1.1rem */
+  color: #666;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.Pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem; /* CHANGED from 2rem */
+  animation: fadeInUp 0.8s ease-out;
+}
+
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  /* Sidebar narrower on tablets */
+  
+  /* Main content adjusts to sidebar */
+  .Main {
+    margin-left: 150px;
+    width: calc(100% - 200px);
+    padding-top: 80px; /* slightly smaller than desktop */
+  }
+
+  /* Header slightly smaller padding */
+  .Header {
+    padding: 1.5rem 2rem;
+    margin-top: 2rem;
+  }
+
+  /* SearchBar header text slightly smaller */
+  .SearchBar h3 {
+    font-size: 1.6rem; /* CHANGED from 2rem to 1.6rem */
+  }
+
+  /* Filter panel slightly smaller */
+  .Filter {
+    flex: 0 0 220px;
+    padding: 1rem;
+  }
+
+  /* Candidate cards slightly smaller */
+  .CandidateCard {
+    padding: 1rem 1.2rem;
+    gap: 1rem;
+  }
+
+  .CandidateInfo h2 {
+    font-size: 1.1rem;
+  }
+
+  .CandidateInfo p {
+    font-size: 0.95rem;
+  }
+
+  .CandidateImage img {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Pub container padding adjustments */
+  .Pub {
+    gap: 1rem;
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Show mobile header with logo only */
+  .MobileHeader {
+    display: flex;
+    z-index: 50;
+    animation: fadeInDown 0.5s ease-out;
+  }
+
+  /* Sidebar hidden on mobile - controlled by MobileToggles */
+  .SideBarContainer {
+    width: 0;
+    background-color: transparent;
+    overflow: visible;
+    z-index: 200;
+  }
+
+  /* Navbar hidden on mobile */
+  .NavBar {
+    display: none;
+  }
+
+  /* Main content takes full width */
+  .Main {
+    margin-left: 0;
+    width: 100%;
+    padding-top: 70px;
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  /* MOBILE HEADER - ORIGINAL STYLING WITH ANIMATIONS */
+  .Header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid #e0e0e0;
+    background-color: #fff;
+    animation: fadeInDown 0.6s ease-out;
+  }
+
+  .SearchBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    animation: scaleIn 0.7s ease-out;
+  }
+
+  .SearchBar h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.3rem;
+    text-transform: capitalize;
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  .SearchBar h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 60px;
+    height: 2px;
+    background-color: #3b5bdb;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    display: block;
+    animation: shimmer 2s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, #3b5bdb, transparent);
+    background-size: 200% 100%;
+  }
+
+  /* Make job posts bigger on mobile with enhanced animations */
+  .CandidateCard {
+    padding: 1.8rem;
+    gap: 1.5rem;
+    flex-direction: row;
+    animation: fadeInUp 0.6s ease-out backwards;
+  }
+
+  .CandidateCard:hover {
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .CandidateInfo h2 {
+    font-size: 1.2rem;
+  }
+
+  .CandidateInfo p {
+    font-size: 1rem;
+  }
+
+  .CandidateImage img {
+    width: 70px;
+    height: 70px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .CandidateCard:hover .CandidateImage img {
+    animation: none;
+    transform: scale(1.2) rotate(360deg);
+  }
+
+  /* Keep search header elements on same line with animations */
+  .SearchHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    top: 1vh;
+    transform: translateX(0);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    animation: fadeInLeft 0.7s ease-out;
+  }
+
+  .SearchHeader img {
+    width: 75px;
+    height: 75px;
+    flex-shrink: 0;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  .Pub {
+    flex-direction: column;
+    padding-inline: clamp(1rem, 3vw, 2rem);
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .Filter {
+    display: none;
+    width: 100%;
+    position: static;
+  }
+
+  .JobPost {
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .SearchBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+  }
+
+  .SearchBar h3 {
+    padding-top: 1em;
+  }
+
+  .SearchBar input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    height: auto;
+    padding: 1rem 0.6rem;
+  }
+
+  .SearchBar button {
+    width: 100%;
+    box-sizing : border-box;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.8rem;
+    height: auto;
+  }
+
+  .SearchHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .JobPost {
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .CandidateCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out backwards;
+  }
+
+  .CandidateCard:hover {
+    transform: scale(1.05) rotateY(5deg);
+  }
+
+  .CandidateImage img {
+    margin-top: 0.5rem;
+    animation: scaleIn 0.8s ease-out;
+  }
+
+  .CandidateCard:hover .CandidateImage img {
+    transform: scale(1.3) rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .Header {
+    padding: 0.5rem 0.5rem;
+    animation: fadeInDown 0.5s ease-out;
+  }
+
+  .SearchBar h3 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+    padding-bottom: 0.2rem;
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .SearchBar input[type="text"] {
+    font-size: 0.8rem;
+    min-width: 0;
+    height: auto;
+    padding: 0.15rem 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .SearchBar input[type="text"]:focus {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(59, 91, 219, 0.2);
+  }
+
+  .SearchBar button {
+    font-size: 0.8rem;
+    padding: 0.15rem 0.7rem;
+    height: auto;
+    transition: all 0.3s ease;
+  }
+
+  .SearchBar button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(59, 91, 219, 0.3);
+  }
+
+  .SearchHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(0);
+    top: 0.5vh;
+    animation: fadeInLeft 0.7s ease-out;
+  }
+
+  .SearchHeader img {
+    width: 60px;
+    height: 60px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .CandidateCard {
+    padding: 2rem;
+    animation: fadeInUp 0.6s ease-out backwards;
+  }
+
+  .CandidateCard:hover {
+    transform: scale(1.04) translateY(-8px);
+  }
+
+  .CandidateInfo h2 {
+    font-size: 1.15rem;
+    animation: fadeInLeft 0.5s ease-out;
+  }
+
+  .CandidateInfo p {
+    font-size: 0.95rem;
+    animation: fadeInLeft 0.6s ease-out;
+  }
+
+  .JobPost {
+    gap: 2rem;
+  }
+
+  /* Enhanced stagger for mobile */
+  .JobPost > .CandidateCard:nth-child(1) {
+    animation-delay: 0.15s;
+  }
+
+  .JobPost > .CandidateCard:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  .JobPost > .CandidateCard:nth-child(3) {
+    animation-delay: 0.45s;
+  }
+
+  .JobPost > .CandidateCard:nth-child(4) {
+    animation-delay: 0.6s;
+  }
+}
+
+/* === KEYFRAME ANIMATIONS === */
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.MobileFilterToggle {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+
+.FilterToggleButton {
+  background-color: var(--Main-blue-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.FilterToggleButton:hover {
+  background-color: #2a4ebf;
+}
+
+/* MOBILE FILTER CONTAINER */
+.MobileFilterContainer {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: #f8fafc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeInDown 0.4s ease-out;
+  width: 100%;
+}
+
+/* Reduce checkbox size for mobile */
+@media (max-width: 900px) {
+  .MobileFilterContainer .JobType,
+  .MobileFilterContainer .JobField {
+    transform: scale(0.85);
+    row-gap: 0.8rem;
+  }
+  .MobileFilterContainer .singleButton label {
+    font-size: 0.9rem;
+  }
+  .MobileFilterContainer .buttons {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Shrink checkboxes inside mobile filter */
+@media (max-width: 900px) {
+  .MobileFilterContainer .JobType,
+  .MobileFilterContainer .JobField {
+    transform: scale(0.75);
+    row-gap: 0.6rem;
+  }
+  .MobileFilterContainer .singleButton label {
+    font-size: 0.85rem;
+  }
+  .MobileFilterContainer .buttons {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* JobPostPage.module.css */
+
+.loading-blur {
+  opacity: 0.6;
+  filter: blur(2px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  /* Sidebar narrower on tablets */
+  
+  /* Main content adjusts to sidebar */
+  .Main {
+    margin-left: 150px;
+    width: calc(100% - 150px); /* CHANGED from 200px to 150px */
+    padding-top: 80px;
+  }
+
+  /* Candidate cards full width */
+  .CandidateCard {
+    padding: 1rem 1.2rem;
+    gap: 1rem;
+    width: 100%; /* ADD THIS LINE */
+  }
+
+  /* Candidates section full width */
+  .Candidates {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+    width: 100%; /* ADD THIS LINE */
+  }
+
+  /* Pub container full width */
+  .Pub {
+    gap: 1rem;
+    padding-inline: 1rem;
+    width: 100%; /* ADD THIS LINE */
+  }
+}
+
+
+
+/* --- SKELETON LOADING STYLES --- */
+
+/* Match the dimensions and style of your real JobPost card */
+.skeletonCard {
+    background-color: #fff;
+    border: 1px solid #E0E6F0; /* Match your JobCard border color */
+    border-radius: 12px;       /* Match your JobCard radius */
+    padding: 1.5rem;           /* Match your JobCard padding */
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); /* Match your shadow */
+}
+
+.skeletonHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.skeletonLogo {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    background-color: #f0f2f5;
+    flex-shrink: 0;
+}
+
+.skeletonTitleBlock {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.skeletonTags {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.skeletonFooter {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.skeletonLine {
+    background-color: #f0f2f5;
+    border-radius: 4px;
+}
+
+/* The Shimmer Animation (The "Blur" movement) */
+.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.5) 50%, /* Bright white shine */
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmerAnim 1.5s infinite;
+    content: '';
+}
+
+@keyframes shimmerAnim {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Keep existing blur for pagination transition */
+.loading-blur {
+    opacity: 0.6;
+    filter: blur(1px);
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+/* Add these styles to your existing CSS */
+
+.noResults {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  margin: 20px 0;
+  border: 1px dashed #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.noResults p {
+  margin: 10px 0;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.autoNavMessage {
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+  animation: pulse 1.5s infinite;
+}
+
+.autoNavMessage p {
+  color: #0056b3;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0, 123, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #007bff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Remove the old loadMoreButton styles if they exist */
+.loadMoreButton {
+  display: none;
+}

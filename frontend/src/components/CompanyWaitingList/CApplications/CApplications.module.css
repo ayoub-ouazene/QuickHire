@@ -1,0 +1,181 @@
+.ApplicationContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.applicantHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.applicantAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.applicantInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.applicantName {
+  font-weight: 600;
+  color: #212529;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ratingstar {
+  width: 16px;
+  height: 16px;
+}
+
+.scoreValue {
+  font-weight: 400;
+  color: #495057;
+  font-size: 0.875rem;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detailItem::before {
+  content: attr(data-label);
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.75rem;
+}
+
+.detailValue {
+  color: #6c757d;
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.7rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.trashIcon {
+  width: 8vw;
+  height: 8vw;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.trashIcon:hover {
+  opacity: 0.7;
+}
+
+.acceptButton {
+  background-color: var(--Button-color);
+  color: white;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.75rem;
+  transition: background-color 0.2s;
+}
+
+.acceptButton:hover {
+  background-color: var(--Button-color);
+}
+
+.ApplicationContainer:nth-child(2n) {
+  background-color: var(--third-blue-color);
+}
+
+
+@media (min-width: 768px) {
+  .ApplicationContainer {
+    grid-template-columns: 1.5fr 0.8fr 1.2fr 1fr 1fr 1fr;
+    gap: 0.8rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .detailItem::before {
+    display: none;
+  }
+  
+  .detailItem {
+    justify-content: flex-start;
+  }
+  
+  .detailValue {
+    text-align: left;
+  }
+  
+  .action {
+    padding-top: 0;
+    border-top: none;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+  
+  .applicantAvatar {
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 35px;
+    min-height: 35px;
+  }
+  
+  .ratingstar {
+    width: 1.2vw;
+    height: 1.2vw;
+    min-width: 14px;
+    min-height: 14px;
+  }
+  
+  .applicantName,
+  .scoreValue,
+  .detailValue {
+    font-size: 0.8rem;
+  }
+  
+  .trashIcon {
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 16px;
+    min-height: 16px;
+  }
+  
+  .acceptButton {
+    width: auto;
+    margin-top: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    min-width: 80px;
+  }
+}

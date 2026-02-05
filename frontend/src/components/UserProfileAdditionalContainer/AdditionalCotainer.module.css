@@ -1,0 +1,78 @@
+.AdditionalContainer
+{
+    display: flex;
+    flex-direction: column;
+    padding: 4vh 1.5vw;
+
+    gap: 2vh;
+    /* align-items: center; */
+    width: 26vw;
+    height: 35%;
+    border: 1px solid rgb(223, 222, 222);
+     position:fixed;
+     top: 62vh;
+     padding-bottom: 5vh  !important;
+
+}
+
+
+.AdditionalContainer h5
+{
+   font-size: 1.2rem;
+}
+
+.SubDetails
+{
+    display: flex;
+    flex-direction: column;
+    /* align-items: start; */
+    padding-left: 1vw;
+    gap: 1.2vh;
+}
+
+.p1
+{
+    color: rgba(126, 124, 124, 0.772);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2vw;
+}
+.p1 img
+{
+    width: 1rem;
+    height: 1rem;
+    
+
+}
+
+.p2
+{
+    font-size: 0.8rem;
+    padding-left: 1vw;
+}
+
+@media (max-width: 600px) {
+    .AdditionalContainer
+    {
+        position: static;
+        width: 90vw;
+        justify-content: center;
+
+        border-radius: 1.2rem;
+         padding-left: 10vw;
+         align-self: center;
+
+    }
+
+    
+.SubDetails
+{
+    padding-left: 3vw;
+}
+.p1 , .p2
+{
+    font-size: 1rem;
+}
+
+}

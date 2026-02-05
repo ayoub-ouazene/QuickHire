@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  transition: all ease-in-out 0.3s;
+  scroll-behavior: smooth;
+}
+
+
+
+:root{
+  --Main-blue-color:#0077B5;
+  --Second-blue-color:#E8F4FA;
+
+  --third-blue-color:#E4F2F91C;
+
+  --Button-color:#007FAF;
+  --CheckBox-color:#00A0C6;
+    --Selected-Button-color:#E3F4FF;
+
+  --p-TextColor  : #25324B;
+  --HeadersColor : #25324B;
+
+
+}
+
+
+html {
+  font-size: 16px; 
+}
+
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../public/fonts/ClashDisplay-Extralight.woff2') format('woff2');
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../public/fonts/ClashDisplay-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../public/fonts/ClashDisplay-Regular.woff2') format('woff2');
+  font-weight: 400; /* This is the default 'normal' weight */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../public/fonts/ClashDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../public/fonts/ClashDisplay-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../public/fonts/ClashDisplay-Bold.woff2') format('woff2');
+  font-weight: 700; /* This is the 'bold' weight */
+  font-display: swap;
+}
+
+
+h1 {
+  font-family: 'Clash Display Variable', sans-serif;
+  color: var(--HeadersColor);
+
+  font-size: clamp(2.5rem, 1.5vw + 1rem, 3.5rem);
+}
+
+h2 {
+  font-family: 'Clash Display Variable', sans-serif;
+  color: var(--HeadersColor);
+  font-size: clamp(2rem, 1.5vw + 1rem, 3rem);
+}
+
+
+
+h3 {
+  font-family: 'Epilogue', sans-serif;
+  color: var(--HeadersColor);
+
+  font-size: clamp(1.75rem, 1vw + 1rem, 2.5rem);
+}
+
+h4 {
+  font-family: 'Epilogue', sans-serif;
+  color: var(--HeadersColor);
+
+  font-size: clamp(1.5rem, 0.5vw + 1rem, 2rem);
+}
+
+h5 {
+  font-family: 'Epilogue', sans-serif;
+  color: var(--HeadersColor);
+
+  font-size: clamp(1.25rem, 0.25vw + 1rem, 1.5rem);
+}
+
+h6 
+{
+  font-family: 'Epilogue', sans-serif;
+  color: var(--HeadersColor);
+  font-size: clamp(1rem, 0.1vw + 1rem, 1.25rem);
+}
+
+
+
+p , span 
+
+ {
+  font-family: 'Inter', sans-serif;
+  color: var(--p-TextColor);
+
+  font-size: clamp(1rem, 0.05vw + 1rem, 1rem);
+  line-height: 1.6;
+
+}
+
+/* =========================
+   Mobile / Android tweaks
+   ========================= */
+
+/* Mobile-first base adjustments */
+@media (max-width: 1024px) {
+  html { font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 14px; }
+  * { transition-duration: 0.18s; }
+  body, html { overflow-x: hidden; -webkit-overflow-scrolling: touch;  }
+
+  /* Hide heavy layout pieces by default on phones */
+  .FilterBar, .filter, .Pub .filter { display: none !important; }
+
+  /* Compact padding for main wrappers */
+  .jd-wrapper, .container, .Main, .Main * {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Make images responsive */
+  img { max-width: 100%; height: auto; display: block; }
+
+  /* Improve touch targets */
+  button, .btn, input[type="submit"], a { min-height: 40px; padding: 8px 12px; }
+
+  p, span, input, textarea { font-size: 0.95rem; }
+
+  /* Reduce heavy shadows */
+  .section, .card { box-shadow: none !important; border-radius: 10px; }
+
+  /* Compact profiles list */
+  .Profiles { margin-bottom: 2vh; max-height: calc(100vh - 140px); padding: 0.2rem; }
+
+  /* Hide decorative subtitles */
+  .jd-back .subtitle, .back-text .subtitle { display: none !important; }
+
+  /* Mobile toggle controls container (button sizing handled in MobileToggles.module.css) */
+  .mobile-toggles { display: block; }
+
+  /* When toggled, reveal filter panel (targeted by id used in pages) */
+  body.mobile-filter-open #global-filter {
+    display: block !important;
+    position: fixed;
+    top: 64px;
+    right: 12px;
+    left: 12px;
+    bottom: 12px;
+    background: white;
+    z-index: 700;
+    overflow-y: auto;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  }
+
+  /* When toggled, show sidebar as overlay (targeted by id added to SideBar component) */
+  body.mobile-sidebar-open #global-sidebar {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(92vw, 360px);
+    background: white;
+    z-index: 800;
+    overflow-y: auto;
+    transform: translateX(0);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  }
+
+  /* Hidden sidebar default on small screens */
+  #global-sidebar {
+    display: none;
+    transform: translateX(-8%);
+    transition: transform 220ms ease;
+  }
+
+  /* Make apply button area safe */
+  .apply-now { margin-bottom: 64px; }
+}
+
+/* ===========================
+   Global responsive helpers
+   Mobile-first approach
+   =========================== */
+
+/* base adjustments for small phones (Android focus) */
+:root{
+  --gutter-xs: 0.5rem;
+  --gutter-sm: 1rem;
+  --gutter-md: 1.5rem;
+  --touch-min: 44px;
+}
+
+/* Make the app mobile-friendly by default */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Utility classes useful across components */
+.hide-mobile { display: none !important; }
+.show-mobile { display: block !important; }
+
+/* Reduce heavy transitions on low-end devices */
+@media (max-width: 480px) {
+  * { transition-duration: 0.18s !important; }
+
+  html { font-size: 14px; }
+  body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  /* make inputs and touch targets bigger */
+  button, input, textarea, .btn, a { min-height: var(--touch-min); padding: 0.55rem 0.9rem; }
+
+  /* images responsive */
+  img { max-width: 100%; height: auto; display: block; }
+
+  /* hide large decorations/sidebars by default on phones */
+  .SideBar, .FilterBar, .filter, .panel--desktop, .sidebar-desktop { display: none !important; visibility: hidden !important; height: 0 !important; width: 0 !important; }
+
+  /* compact top nav - favors icons and essential controls */
+  .NavBar { height: 56px !important; padding: 0 var(--gutter-sm) !important; }
+  .NavBar .logo { display: none !important; }
+
+  /* content gutters */
+  .container, .Main, .jd-wrapper, .section, .card { padding-left: var(--gutter-sm) !important; padding-right: var(--gutter-sm) !important; margin-left: 0 !important; margin-right: 0 !important; }
+
+  /* reduce large shadows for perf */
+  .section, .card { box-shadow: none !important; border-radius: 10px !important; }
+
+  /* prevent horizontal overflow from fixed elements */
+  html, body { overflow-x: hidden; }
+
+  /* compact lists/rows */
+  .Pages, .secondDiv, .ProfilePage, .MessagePage { gap: 0.5rem !important; }
+
+  /* long scrollable lists limited to viewport height */
+  .Profiles { max-height: calc(100vh - 140px) !important; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+  /* hide non-critical subtitles */
+  .subtitle, .back-text .subtitle, .jd-back .subtitle { display: none !important; }
+
+  /* make primary call-to-actions prominent & full width on mobile */
+  .apply-now, .saveButton, .btn.solid { width: calc(100% - 2 * var(--gutter-sm)); margin: 0 auto; display: block; }
+
+  /* small-screen typography adjustments */
+  h1 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); }
+  h2 { font-size: clamp(1.4rem, 2.2vw, 1.8rem); }
+  p, span, input, textarea { font-size: 0.95rem; line-height: 1.4; }
+
+  /* reduce big images used in cards */
+  .company-badge, .AcountImg, .profile-img { width: 48px; height: 48px; }
+
+  /* improve accessibility for fixed/sticky apply buttons */
+  .apply-now { position: fixed; bottom: 12px; left: 12px; right: 12px; z-index: 800; border-radius: 10px; padding: 12px 14px; box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+
+  /* ensure message input and chat area are usable */
+  .MessageInput textarea { min-height: 56px; max-height: 120px; }
+
+  /* collapse multi-column grids */
+  .jd-main, .Main, .Pub, .SecondPart, .FirstPart { grid-template-columns: 1fr !important; display: block !important; }
+}
+
+/* Tablet / small desktop adjustments */

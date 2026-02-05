@@ -1,0 +1,206 @@
+/* Success Alert Overlay */
+.alertOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 80px;
+  z-index: 9999;
+  pointer-events: none;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Alert Container */
+.alertContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fff9 100%);
+  border: 2px solid #10b981;
+  border-radius: 16px;
+  padding: 20px 24px;
+  min-width: 320px;
+  max-width: 500px;
+  box-shadow: 
+    0 10px 40px rgba(16, 185, 129, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
+  animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+/* Icon Wrapper */
+.iconWrapper {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 50%;
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s backwards;
+}
+
+.icon {
+  color: #ffffff;
+  animation: checkmark 0.6s ease-out 0.4s backwards;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #059669;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.01em;
+}
+
+.message {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+/* Close Button */
+.closeButton {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #6b7280;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+}
+
+.closeButton:hover {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  transform: scale(1.1);
+}
+
+.closeButton:active {
+  transform: scale(0.95);
+}
+
+/* Progress Bar */
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(16, 185, 129, 0.1);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  animation: progressShrink linear forwards;
+  transform-origin: left;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes progressShrink {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .alertOverlay {
+    padding: 20px;
+    padding-top: 80px;
+  }
+
+  .alertContainer {
+    min-width: 280px;
+    max-width: 100%;
+    padding: 16px 20px;
+    gap: 12px;
+  }
+
+  .iconWrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .message {
+    font-size: 13px;
+  }
+}

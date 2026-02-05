@@ -1,0 +1,152 @@
+.JobType, .JobField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: clamp(0.6rem, 1.2vw, 0.8rem);
+  color: var(--p-TextColor);
+  font-family: 'Epilogue', sans-serif;
+  width: 100%;
+  max-width: clamp(200px, 22vw, 220px);
+  padding: clamp(0.2rem, 0.5vw, 0.3rem);
+  box-sizing: border-box;
+}
+
+.JobType legend, .JobField legend {
+  font-family: 'Epilogue', sans-serif;
+  color: var(--HeadersColor);
+  font-weight: 600;
+  margin-bottom: clamp(0.2rem, 0.5vw, 0.3rem);
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+}
+
+.buttons {
+ 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+   appearance: none;
+  width: clamp(14px, 1.5vw, 16px);
+  height: clamp(14px, 1.5vw, 16px);
+  border: 1.5px solid var(--Main-blue-color);
+  border-radius: 3px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.buttons:checked {
+  background-color: var(--Main-blue-color);
+  border-color: var(--Button-color);
+}
+
+.buttons:checked::after {
+  display: flex;
+  content: "✓";
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(0.6rem, 1.2vw, 0.7rem);
+  transform: translateY(-1px);
+}
+
+.singleButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: clamp(0.2rem, 0.5vw, 0.3rem);
+  width: fit-content;
+  overflow-wrap: nowrap;
+}
+
+.singleButton label {
+  transform: translateY(1px);
+  font-family: 'Inter', sans-serif;
+  color: var(--p-TextColor);
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+}
+
+.FilterBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: clamp(0.2rem, 0.5vw, 0.3rem);
+  row-gap: clamp(1rem, 2vw, 1.2rem);
+  width: auto;
+  max-width: clamp(210px, 24vw, 230px);
+  font-size: clamp(13px, 1.5vw, 14px);
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* MOBILE: toggle button & overlay */
+.mobileFilterIcon {
+  display: none;
+  align-items: center;
+  gap: clamp(4px, 1vw, 6px);
+  padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 12px);
+  background: var(--Main-blue-color);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: clamp(0.75rem, 1.5vw, 0.8rem);
+  font-weight: 500;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+.mobileFilterIcon:hover { background: var(--Button-color); }
+
+.filterText { font-weight: 500; }
+
+.mobileOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: clamp(10px, 3vw, 20px);
+}
+
+.mobileFilterContent {
+  background: white;
+  padding: clamp(15px, 4vw, 20px) clamp(12px, 3vw, 15px) clamp(12px, 3vw, 15px) clamp(12px, 3vw, 15px);
+  border-radius: 10px;
+  max-width: clamp(240px, 70vw, 280px);
+  width: 100%;
+  max-height: clamp(60vh, 70vh, 70vh);
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.closeButton {
+  position: absolute;
+  top: clamp(6px, 1.5vw, 8px); right: clamp(8px, 2vw, 12px);
+  background: none; border: none;
+  font-size: clamp(20px, 4vw, 24px);
+  cursor: pointer;
+  color: var(--HeadersColor);
+  width: clamp(20px, 3vw, 25px); height: clamp(20px, 3vw, 25px);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+.closeButton:hover { background: rgba(0,0,0,0.1); }
+
+/* DESKTOP FILTER */
+.desktopFilter { display: block; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .desktopFilter { display: none; }
+  .mobileFilterIcon { display: flex; }
+}
+
+/* MOBILE checkboxes smaller square */
+@media (max-width: 480px) {
+  .mobileOverlay .buttons {
+    width: clamp(12px, 3vw, 14px);
+    height: clamp(12px, 3vw, 14px);
+  }
+  .singleButton label { 
+    font-size: clamp(0.7rem, 3vw, 0.8rem);
+  }
+}

@@ -1,0 +1,98 @@
+.JobType, .JobField {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 1.5rem;
+  color: var(--p-TextColor);
+  font-family: 'Epilogue', sans-serif;
+  width: fit-content;
+  height: min-content;
+}
+
+.JobType legend, .JobField legend {
+  font-family: 'Epilogue', sans-serif;
+  color: var(--HeadersColor);
+  font-weight: 700;
+}
+
+.buttons {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--Main-blue-color);
+  border-radius: 3px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.buttons:checked {
+  background-color: var(--Main-blue-color);
+  border-color: var(--Button-color);
+}
+
+.buttons:checked::after {
+  display: flex;
+  content: "✓";
+  color: white;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-2px);
+}
+
+.singleButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.3rem;
+  width: fit-content;
+  overflow-wrap: nowrap;
+}
+
+.singleButton label {
+  transform: translateY(3px);
+  font-family: 'Inter', sans-serif;
+  color: var(--p-TextColor);
+}
+
+.FilterBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 0;
+  row-gap: 2.5rem;
+  width: auto;
+  max-width: fit-content;
+  height: auto;
+  font-size: 16px;
+  transform: scale(0.9);
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===================== */
+/* === MOBILE (<=480px) === */
+/* ===================== */
+@media (max-width: 480px) {
+
+  /* Hide filter in mobile */
+  .FilterBar { 
+    display: none; 
+  }
+
+  /* Scale down checkboxes and spacing */
+  .JobType, 
+  .JobField { 
+    transform: scale(0.95); 
+    row-gap: 1rem; 
+  }
+
+  .singleButton label { 
+    font-size: 0.95rem; 
+  }
+
+  .buttons { 
+    width: 18px; 
+    height: 18px; 
+  }
+}

@@ -1,0 +1,72 @@
+.MessageContainerSender
+{
+    display: flex;
+    flex-direction: row;
+    justify-content:end;
+     gap: 0.5vw;
+}
+.MessageContainerReceiver
+{
+    display: flex;
+    flex-direction: row;
+    justify-content:start;
+    gap: 0.5vw;
+
+}
+
+
+.MessageContainerSender img , .MessageContainerReceiver img
+{
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    align-self: flex-start;
+    border: solid 1px var(--Main-blue-color);
+  
+}
+
+.senderMessage
+{
+    word-break: break-all;
+    max-width: 30vw;
+    white-space: normal;
+
+
+    border-radius: 0.5rem 0rem 0.5rem 0.5rem;
+    background-color: var(--Second-blue-color);
+    padding: 0.4rem 0.8rem;
+    padding-right: 0.6rem;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: right;
+
+}
+.RecieverMessage
+{
+    word-break: break-all;
+    max-width: 30vw;
+       white-space:normal;
+  word-wrap:break-word;
+  overflow-wrap: break-word ;
+    border-radius: 0rem 0.5rem 0.5rem 0.5rem;
+    background-color: rgba(220, 219, 219, 0.753);
+     padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+@media screen and (max-width: 600px) {
+    .MessageContainerSender img , .MessageContainerReceiver img
+    {
+        width: 5vw;
+        height: 5vw;
+    }
+    .RecieverMessage
+{
+    max-width: 70%;
+}
+.senderMessage
+{
+    max-width: 70%;
+}
+
+}

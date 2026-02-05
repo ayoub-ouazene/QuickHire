@@ -1,0 +1,98 @@
+import React from "react"; 
+import companyLogo from '../../../assets/company-logo.svg'; 
+import Vector from '../../../assets/Vector.svg'; 
+
+import styles from "./JobInvitation.module.css";
+
+function JobInvitation({ application, onAccept }) {
+
+  const handleAccept = async () => {
+    try {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        console.error("User not authenticated");
+        alert("Please login to accept invitations");
+        return;
+      }
+
+      // ✅ Call backend API to accept invitation
+      const response = await fetch(
+        `http://localhost:3000/api/User/Invitation/${application.id}/accept`, 
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        console.log("Invitation accepted successfully");
+        alert("Invitation accepted! The company has been notified.");
+        
+        // ✅ Call parent's onAccept to refresh the list
+        if (onAccept) {
+          await onAccept(application);
+        }
+      } else {
+        console.error("Failed to accept invitation:", data.error);
+        alert("Failed to accept invitation: " + data.error);
+      }
+
+    } catch (error) {
+      console.error("Accept invitation failed:", error);
+      alert("An error occurred while accepting the invitation");
+    }
+  };
+
+  return(  
+       <div className={styles.ApplicationContainer}>
+
+      <div className={styles.applicationHeader}>
+        <img
+          src={application.img || companyLogo}
+          alt={application.companyName}
+          className={styles.companyLogo}
+        />
+        <div className={styles.companyInfo}>
+          <span className={styles.companyName}>
+            {application.companyName}
+          </span>
+        </div>
+      </div>
+
+      <div className={styles.rating}>
+        <img src={Vector} alt="Rating" className={styles.ratingstar} />
+        <span className={styles.score}>{application.score}</span>
+      </div>
+
+
+      <div className={styles.detailItem} data-label="Role:">
+        <span className={styles.detailValue}>{application.roles}</span>
+      </div>
+
+
+      <div className={styles.detailItem} data-label="Date:">
+        <span className={styles.detailValue}>{application.dateApplied}</span>
+      </div>
+
+      <div className={styles.detailItem} data-label="Type:">
+        <span className={`${styles.detailValue} ${styles[application.type.replace('-', '')]}`}>
+          {application.type}
+        </span>
+      </div>
+
+      <div>
+        <button className={styles.AcceptBtn} onClick={handleAccept}>
+          Accept
+        </button>
+      </div>
+    </div>
+  ); 
+} 
+
+export default JobInvitation;

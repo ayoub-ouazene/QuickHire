@@ -1,0 +1,731 @@
+/* ==================== MAIN PROFILE CONTAINERS ==================== */
+.ProfilePage, .ProfilePage2 {
+    width: 87vw;
+    max-height: 88vh;
+    position: fixed;
+    top: 12%;
+    left: 13%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    padding: 2vh 3vw;
+    padding-top: 10vh;
+    gap: 2vw;
+    overflow-y: scroll;
+}
+
+.ProfilePage2 {
+    filter: blur(2px);
+}
+
+.ProfilePage::-webkit-scrollbar, .ProfilePage2::-webkit-scrollbar {
+    display: none;
+}
+
+.FirstPart {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8vh;
+}
+
+.SecondPart {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5vh;
+    margin-top: 0;
+}
+
+/* ==================== ABOUT USER SECTION ==================== */
+.AboutUserSection {
+    min-height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 3vh 3vw;
+    gap: 3vh;
+    border: solid 1px var(--Button-color);
+    border-radius: 1.2rem;
+}
+
+.AboutUserSection h5 {
+    align-self: flex-start;
+}
+
+.AboutUserSection p {
+    width: 100%;
+    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 1.6;
+}
+
+/* ==================== EXPERIENCES SECTION ==================== */
+.ExperiencesSection {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4vh 3vw; /* ✅ FIXED: Equal padding all around */
+    gap: 4vh;
+    border: solid 1px var(--Button-color);
+    border-radius: 1.2rem;
+    box-shadow: 0 0.6vh 2vh rgba(0, 0, 0, 0.04);
+    margin-bottom: 4vh;
+    max-width: 900px;
+}
+
+.ExperiencesHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1vw;
+}
+
+.ExperiencesSection button {
+    background-color: transparent;
+    border: 1px solid var(--Button-color);
+    width: 2vw;
+    height: 2vw;
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    color: var(--Main-blue-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ExperiencesSection button:hover {
+    cursor: pointer;
+}
+
+.ExperiencesHeader button, .SkillsHeader button {
+    border-color: var(--Button-color);
+}
+
+.ExperiencesHeader img, .SkillsHeader img {
+    width: 1.2vw;
+    height: 1.2vw;
+    min-width: 16px;
+    min-height: 16px;
+}
+
+.ThreeExperiences, .MoreExperiences {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4vh;
+    padding: 0 1vw;
+}
+
+/* Empty State Styling */
+.emptyState {
+    width: calc(100% - 4rem);
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 0.8rem;
+    margin: 1rem 2rem;
+}
+
+.emptyState p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Experience Item Styling */
+.ExperienceItem {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 2vw;
+    padding-bottom: 4vh;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.ExperienceItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.ExperienceItem img {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.ExperienceDetails {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+    min-width: 0;
+}
+
+.ExperienceDetails h5 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.ExperienceDetails p {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+/* ==================== EXPERIENCE CONTAINER (FROM YOUR CODE) ==================== */
+.ExperienceContainer {
+    width: 100%;
+    min-height: 16vh;
+    padding: 1vh 1vw;
+    padding-bottom: 3vh;
+    display: flex;
+    gap: 1vw;
+    align-items: flex-start;
+    margin-bottom: 1.5vh;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.ExperienceContainer:last-child {
+    border-bottom: none;
+    padding-bottom: 0; /* ✅ FIXED: Remove extra padding on last item */
+}
+
+.ExperienceContainer img {
+    width: 4vw;
+    height: 4vw;
+    border-radius: 0.6vw;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.ExperienceTopRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+}
+
+.MoreJobDetails {
+    width: 100%;
+    display: flex;
+    gap: 0.3vw;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.MoreJobDetails p {
+    display: flex;
+    font-size: 0.75rem;
+    gap: 0.3vw;
+}
+
+.MoreJobDetails p p {
+    color: var(--Main-blue-color);
+}
+
+.MoreJobDetails p:first-child {
+    font-weight: 600;
+}
+
+.MoreJobDetails span {
+    color: rgba(143, 141, 141, 0.92);
+}
+
+.LocationP {
+    font-size: 0.75rem;
+    color: rgba(95, 95, 95, 0.92);
+    margin-top: 0.5vh;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.DescriptionP {
+    width: 100%;
+    max-width: 100%;
+    font-size: 0.75rem;
+    color: #444;
+    margin-top: 0.5vh;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+}
+
+.VoidContent {
+    height: 3vh;
+    width: 100%;
+}
+
+.ShowMore, .ShowMore2 {
+    align-self: flex-start;
+    padding-left: 1vw;
+    font-size: 0.9rem;
+    color: var(--Main-blue-color);
+}
+
+.ShowMore2 {
+    padding-top: 3vh;
+}
+
+.ShowMore:hover, .ShowMore2:hover {
+    cursor: pointer;
+}
+
+/* ==================== SKILLS SECTION ==================== */
+.SkillsSection {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4vh 3vw; /* ✅ FIXED: Changed from 5vh to 4vh for consistency */
+    gap: 4vh;
+    border: solid 1px var(--Button-color);
+    border-radius: 1.2rem;
+    margin-bottom: 20vh;
+}
+
+.SkillsSection button {
+    background-color: transparent;
+    border: 1px solid var(--Button-color);
+    width: 2vw;
+    height: 2vw;
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    color: var(--Main-blue-color);
+}
+
+.SkillsSection button:hover {
+    cursor: pointer;
+}
+
+.SkillsHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1vw;
+}
+
+.SkillContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    gap: 3vw;
+    padding: 0 1vw;
+    padding-bottom: 5vh;
+    border-bottom: 1px solid #e8e8e8;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: skillFadeUp 480ms cubic-bezier(.2, .9, .2, 1) both;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.SkillContainer:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.Skills > .SkillContainer:nth-child(1) { animation-delay: 0.06s; }
+.Skills > .SkillContainer:nth-child(2) { animation-delay: 0.12s; }
+.Skills > .SkillContainer:nth-child(3) { animation-delay: 0.18s; }
+.Skills > .SkillContainer:nth-child(4) { animation-delay: 0.24s; }
+
+.SkillContainer:hover {
+    transform: translateY(-6px) scale(1.005);
+}
+
+.SkillCerImg {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.SkillCerImg:hover {
+    transform: scale(1.03);
+    box-shadow: 0 1vh 2vh rgba(16, 24, 40, 0.06);
+}
+
+@keyframes skillFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.SkillDetails {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.5vh;
+    min-width: 0;
+}
+
+.SkillDetails h5 {
+    font-size: 1.3rem;
+}
+
+.SkillDetails p {
+    font-size: 0.7rem;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.SkillCerImg {
+    width: 10vw;
+    min-width: 120px;
+    height: 13vh;
+    flex-shrink: 0;
+    box-shadow: 1px 1px 15px var(--Main-blue-color);
+}
+
+.ImgInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.downloadBtn {
+    width: 8vw;
+    min-width: 100px;
+    height: 5vh;
+    font-size: 0.6rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Clash Display Variable', sans-serif;
+    font-weight: 600;
+    color: var(--Main-blue-color);
+    border-radius: 0.3rem;
+}
+
+.downloadBtn:hover {
+    color: #45a049;
+    cursor: pointer;
+}
+
+.Skills {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4vh;
+}
+
+/* ==================== POPUP STATES ==================== */
+.ShowPopup {
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity 0.3s ease;
+}
+
+.hidePopup {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 600px) {
+    .ProfilePage, .ProfilePage2 {
+        width: 98vw;
+        left: 0vw;
+        top: 2vh;
+        padding: 12vh 3vw;
+        padding-bottom: 0vh;
+        flex-direction: column;
+        align-items: center;
+        max-height: 98vh;
+        gap: 2vh;
+    }
+
+    .FirstPart, .SecondPart {
+        width: 100%;
+        gap: 8vh;
+        padding: 0;
+        align-items: stretch;
+    }
+
+    .AboutUserSection, .ExperiencesSection, .SkillsSection {
+        padding: 4vh 5vw;
+        gap: 4vh;
+        margin-bottom: 4vh;
+        min-height: 20vh;
+        width: 100%;
+        font-size: 0.95rem;
+    }
+
+    .ExperiencesSection {
+        margin-bottom: -2vh;
+    }
+
+    .AboutUserSection h5 {
+        padding-left: 0;
+    }
+
+    .AboutUserSection p {
+        max-width: 95%;
+    }
+
+    .ExperiencesHeader, .SkillsHeader {
+        padding: 0 2vw;
+        font-size: 1rem;
+    }
+
+    .ExperiencesSection button, .SkillsSection button {
+        width: 8vw;
+        height: 8vw;
+        min-width: 36px;
+        min-height: 36px;
+        font-size: 1.1rem;
+    }
+
+    .SkillsSection {
+        gap: 4vh;
+        margin-bottom: 2vh;
+        padding-bottom: 5vh;
+    }
+
+    .SkillsHeader h5 {
+        font-size: 1.5rem;
+    }
+
+    .SkillContainer {
+        gap: 4vh;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 3vw;
+        padding-bottom: 5vh;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    .SkillContainer:last-child {
+        border-bottom: none;
+    }
+
+    .SkillContainer h5 {
+        font-size: 1.05rem;
+    }
+
+    .SkillDetails p {
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.78rem;
+    }
+
+    .SkillCerImg {
+        width: 50vw;
+        height: 15vh;
+        margin-bottom: 2vh;
+    }
+
+    .downloadBtn {
+        width: 60vw;
+        height: 6vh;
+        font-size: 0.8rem;
+    }
+
+    .ShowMore, .ShowMore2 {
+        font-size: 1rem;
+        padding-top: 2vh;
+    }
+
+    .ThreeExperiences, .MoreExperiences {
+        gap: 4vh;
+        padding: 0 2vw;
+    }
+
+    .ExperienceItem {
+        padding-bottom: 4vh;
+    }
+
+    .ExperienceItem:last-child {
+        padding-bottom: 0;
+    }
+
+    /* Experience Container Mobile */
+    .ExperienceTopRow {
+        flex-direction: row;
+        align-items: center;
+        gap: 3vw;
+        width: 100%;
+    }
+    
+    .ExperienceContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 98vw;
+        min-height: 12vh;
+        padding: 2vh 2vw 3vh 2vw;
+        gap: 1.2vh;
+        margin-bottom: 2vh;
+        border-bottom: 1px solid #e8e8e8;
+    }
+    
+    .ExperienceContainer:last-child {
+        border-bottom: none;
+        padding-bottom: 1vh;
+    }
+    
+    .ExperienceContainer img {
+        width: 25vw;
+        height: 25vw;
+        padding-bottom: 1vh;
+    }
+    
+    .ExperienceDetails {
+        gap: 1vh;
+    }
+
+    .ExperienceDetails h6 {
+        font-size: 1.1rem;
+        font-weight: bolder;
+    }
+    
+    .MoreJobDetails {
+        flex-direction: column;
+        gap: 1vw;
+        font-size: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .MoreJobDetails span {
+        display: none;
+    }
+    
+    .MoreJobDetails p {
+        font-size: 0.9rem;
+        gap: 0.5vw;
+        max-width: 100%;
+    }
+    
+    .LocationP {
+        font-size: 0.95rem;
+        margin-top: 0.7vh;
+    }
+    
+    .DescriptionP {
+        font-size: 0.8rem;
+        margin-top: 0.7vh;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .ImgInfo {
+        gap: 0vh;
+    }
+}
+
+
+
+/* Add these to UserProfile.module.css */
+
+/* Skeleton Animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: #f0f0f0;
+  background-image: linear-gradient(
+    90deg, 
+    #f0f0f0 25%, 
+    #e0e0e0 50%, 
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+  color: transparent !important;
+  cursor: default;
+
+}
+
+/* Specific Skeleton Shapes */
+.skeletonText {
+  height: 1rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.skeletonTitle {
+  height: 2rem;
+  width: 60%;
+  margin-bottom: 1rem;
+}
+
+.skeletonImg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+.skeletonBlock {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+/* Structure for Skeleton Page to match real layout */
+.SkeletonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 2rem;
+  gap: 2rem;
+}
+
+.SkeletonLeft {
+  flex: 2.5;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.SkeletonRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .SkeletonContainer {
+    flex-direction: column;
+  }
+}

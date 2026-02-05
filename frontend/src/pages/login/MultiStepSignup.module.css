@@ -1,0 +1,828 @@
+/* ✅ PROPERLY STYLED - Matching JSX class names */
+
+/* Container - Fixed height, no overflow */
+.container {
+  height: 100vh;
+  background: var(--Main-blue-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+.content {
+  background: white;
+  border-radius: 2rem;
+  padding: 2rem;
+  max-width: 50rem;
+  width: 100%;
+  max-height: 95vh;
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Progress Bar */
+.progressBar {
+  width: 100%;
+  height: 0.5rem;
+  background: #e0e0e0;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.5s ease;
+}
+
+.stepIndicator {
+  text-align: center;
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+/* Error Alert */
+.errorAlert {
+  background: #ffebee;
+  border-left: 0.25rem solid #f44336;
+  color: #c62828;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.errorText {
+  color: #f44336;
+  font-size: 0.75rem;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+/* Step Content - Scrollable */
+.stepContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 1.5rem;
+  padding-right: 0.5rem;
+}
+
+.stepContent::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+.stepContent::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 1rem;
+}
+
+.stepContent::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 1rem;
+}
+
+.stepContent::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.step {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stepTitle {
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  margin-top: -1rem;
+}
+
+.countInfo {
+  font-size: 0.9rem;
+  color: #667eea;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Form Elements */
+.formGroup {
+  margin-bottom: 1.2rem;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 0.12rem solid #ddd;
+  border-radius: 0.8rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.formGroup select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.1);
+}
+
+.formGroup input.error,
+.formGroup textarea.error,
+.formGroup select.error {
+  border-color: #f44336;
+  background: #fff5f5;
+}
+
+.formGroup textarea {
+  min-height: 6rem;
+  max-height: 6rem;
+  resize: none;
+  overflow-y: auto;
+}
+
+/* Profile Photo Upload */
+.profilePhotoSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  padding: 0.8rem 1.2rem;
+  border: 2px dashed #ddd;
+  border-radius: 1rem;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.profilePhotoSection:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.photoInstructions {
+  text-align: center;
+  color: #666;
+  font-size: 0.75rem;
+}
+
+.photoInstructions p {
+  margin: 0.1rem 0;
+}
+
+.profilePhotoPreview {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 0.3rem solid #e0e0e0;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.08);
+}
+
+.profilePhotoPreview:hover {
+  border-color: #667eea;
+  transform: scale(1.05);
+}
+
+.profilePhotoPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profilePhotoPreview i {
+  font-size: 2.5rem;
+  color: #ccc;
+}
+
+.uploadBtn {
+  padding: 0.6rem 1.8rem;
+  background: var(--Button-color);
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.4rem 1rem rgba(102, 126, 234, 0.3);
+}
+
+.uploadBtn:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.6rem 1.5rem rgba(102, 126, 234, 0.4);
+}
+
+.uploadBtn:active {
+  transform: translateY(0);
+}
+
+.uploadBtn input[type="file"] {
+  display: none;
+}
+
+/* Image Upload Section */
+.uploadSection {
+  margin-bottom: 1.5rem;
+}
+
+.uploadBox {
+  width: 100%;
+  border: 2px dashed #ddd;
+  border-radius: 1rem;
+  padding: 2rem;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadBox:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.uploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.uploadLabel p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.uploadHint {
+  color: #999 !important;
+  font-size: 0.8rem !important;
+}
+
+/* Image Preview - Constrained Sizes */
+.previewImageCircular {
+  width: 8rem !important;
+  height: 8rem !important;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.3rem solid #e0e0e0;
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1);
+}
+
+.previewImageSquare {
+  max-width: 10rem !important;
+  max-height: 10rem !important;
+  object-fit: contain;
+  border: 0.3rem solid #e0e0e0;
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+/* Skills Section */
+.skillsSection {
+  margin-bottom: 1.5rem;
+}
+
+.skillsHeader {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.skillsHeader input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 0.12rem solid #ddd;
+  border-radius: 0.8rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.skillsHeader input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.1);
+}
+
+.addBtn {
+  padding: 0.75rem 1.5rem;
+  background: var(--Button-color);
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.addBtn:hover {
+  transform: translateY(-0.15rem);
+  box-shadow: 0 0.4rem 1rem rgba(102, 126, 234, 0.3);
+}
+
+.addBtn:active {
+  transform: translateY(0);
+}
+
+.addBtn i {
+  margin-right: 0.4rem;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  max-height: 10rem;
+  overflow-y: auto;
+  padding: 0.5rem 0;
+}
+
+.skillTag {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+
+.skillTag i {
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.skillTag i:hover {
+  transform: scale(1.2);
+}
+
+/* Character counter */
+.characterCounter {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.3rem;
+  text-align: right;
+}
+
+/* ✅ PROPERLY STYLED BUTTONS - Matching JSX class names */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 0.15rem solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.rightActions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Back Button */
+.backBtn {
+  padding: 1rem 2rem;
+  background: white;
+  color: #667eea;
+  border: 0.15rem solid #667eea;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.backBtn:hover:not(:disabled) {
+  background: #f5f5ff;
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.4rem 1rem rgba(102, 126, 234, 0.2);
+}
+
+.backBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Skip Button */
+.skipBtn {
+  padding: 1rem 2rem;
+  background: #f5f5f5;
+  color: #666;
+  border: 0.15rem solid #ddd;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.skipBtn:hover:not(:disabled) {
+  background: #e8e8e8;
+  transform: translateY(-0.2rem);
+}
+
+.skipBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Next Button */
+.nextBtn {
+  padding: 1rem 2rem;
+  background: var(--Button-color);
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 0.4rem 1rem rgba(102, 126, 234, 0.3);
+}
+
+.nextBtn:hover:not(:disabled) {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.6rem 1.5rem rgba(102, 126, 234, 0.4);
+}
+
+.nextBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.nextBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Submit Button */
+.submitBtn {
+  padding: 1rem 2.5rem;
+  background: var(--Button-color);
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 0.4rem 1rem rgba(76, 175, 80, 0.3);
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.6rem 1.5rem rgba(76, 175, 80, 0.4);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Cancel and Save buttons for forms */
+.formActions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: #f44336;
+  border: 0.12rem solid #f44336;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.cancelBtn:hover {
+  background: #fff5f5;
+  transform: translateY(-0.1rem);
+}
+
+.saveBtn {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: var(--Button-color);
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.saveBtn:hover {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.3rem 0.8rem rgba(102, 126, 234, 0.3);
+}
+
+/* Experience/Manager Cards */
+.experiencesList,
+.managersList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 20rem;
+  overflow-y: auto;
+  padding: 0.5rem 0;
+}
+
+.experienceCard,
+.managerCard {
+  background: #f8f9fa;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  border: 0.12rem solid #e0e0e0;
+  position: relative;
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease;
+}
+
+.experienceCard:hover,
+.managerCard:hover {
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.2rem);
+}
+
+.removeBtn,
+.deleteExperience,
+.deleteManager {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f44336;
+  color: white;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.removeBtn:hover,
+.deleteExperience:hover,
+.deleteManager:hover {
+  background: #d32f2f;
+  transform: scale(1.1);
+}
+
+/* Manager Photo */
+.managerPhoto {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.2rem solid #e0e0e0;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.experienceInfo h4,
+.managerInfo h4 {
+  color: #333;
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+}
+
+.experienceInfo p,
+.managerInfo p {
+  color: #666;
+  font-size: 0.85rem;
+  margin: 0.2rem 0;
+}
+
+.role {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.email {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* Inline Forms */
+.inlineForm {
+  background: #f8f9fa;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  border: 0.12rem solid #e0e0e0;
+  margin-top: 1rem;
+}
+
+.inlineForm input,
+.inlineForm textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 0.12rem solid #ddd;
+  border-radius: 0.8rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.inlineForm input:focus,
+.inlineForm textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.1);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.formRow input {
+  margin-bottom: 0.8rem;
+}
+
+/* Success Message */
+.successMessage {
+  text-align: center;
+  padding: 3rem;
+}
+
+.successMessage i {
+  font-size: 5rem;
+  color: #4caf50;
+  margin-bottom: 1.5rem;
+}
+
+.successMessage h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.successMessage p {
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-height: 800px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .content {
+    padding: 1.5rem;
+    max-height: 98vh;
+  }
+  
+  .stepTitle {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .profilePhotoPreview {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .content {
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .rightActions {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .backBtn,
+  .skipBtn,
+  .nextBtn,
+  .submitBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}

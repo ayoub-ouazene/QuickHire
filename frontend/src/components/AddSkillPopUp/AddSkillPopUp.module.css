@@ -1,0 +1,315 @@
+.AddSkillPopUp {
+  position: fixed;
+  top: 22vh;
+  right: 38vw;
+  width: 23vw;
+  height: auto;
+  max-height: 65vh;
+  background-color: #fff;
+  border: 0.15vh solid var(--Main-blue-color);
+  box-shadow: 0 0 1.5vh var(--Main-blue-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.8vh;
+  padding: 3vh 1.5vw;
+  z-index: 100;
+  font-size: 0.85rem;
+}
+
+/* Header */
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--Main-blue-color);
+  width: 100%;
+}
+
+.Header h5 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.Header button {
+  width: 1.8vw;
+  height: 1.8vw;
+  border: none;
+  background-color: var(--Second-blue-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.Header button:hover {
+
+}
+
+.Header button img {
+  width: 0.9vw;
+  height: 0.9vw;
+}
+
+/* Input sections */
+.SkillInput,
+.UploadCertificate,
+.SkillDescription {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 0.6vh;
+}
+
+.SkillInput p,
+.UploadCertificate p,
+.SkillDescription p {
+  color: rgb(120, 120, 120);
+  font-size: 0.8rem;
+}
+
+.SkillInput input,
+.SkillDescription input {
+  width: 100%;
+  height: 5vh;
+  border: 0.15vh solid var(--Main-blue-color);
+  border-radius: 0.4vh;
+  padding-left: 0.8vw;
+  font-size: 0.8rem;
+  color: black;
+  outline: none;
+}
+
+.SkillInput input::placeholder,
+.SkillDescription input::placeholder {
+  color: var(--Main-blue-color);
+  opacity: 0.7;
+}
+
+/* Upload Box */
+.UploadBox {
+  border: 1.5px dashed #c9c9c9;
+  border-radius: 0.7vh;
+  height: 11vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2vh;
+}
+
+.UploadBox:hover {
+  border-color: var(--Main-blue-color);
+  background-color: #f5faff;
+  box-shadow: 0 0 1vh rgba(0, 102, 204, 0.2);
+}
+
+.UploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0vh;
+  color: #6d6d6d;
+  cursor: pointer;
+  height: fit-content;
+}
+
+.UploadIcon {
+  font-size: 1rem;
+  opacity: 0.7;
+  color: var(--Main-blue-color);
+}
+
+.UploadLabel strong {
+  color: var(--Main-blue-color);
+  font-size: 0.75rem;
+}
+
+.UploadLabel small {
+  font-size: 0.4rem;
+  color: gray;
+}
+
+/* Buttons */
+.TwoButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18%;
+  width: 100%;
+
+}
+
+.TwoButtons button {
+  width: 6vw;
+  height: 4.2vh;
+  border: none;
+  border-radius: 0.5vh;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Cancel button */
+.btn1 {
+  color: var(--Main-blue-color);
+  background-color: var(--Second-blue-color);
+}
+
+.btn1:hover {
+  background-color: #e0ebff;
+}
+
+/* Add button */
+.btn2 {
+  color: white;
+  background-color: var(--Main-blue-color);
+}
+
+.btn2:hover {
+  background-color: #0070c9;
+}
+
+/* Error styles */
+.inputError {
+  border-color: #ef4444 !important;
+  background-color: #fef2f2 !important;
+}
+
+.uploadError {
+  border-color: #ef4444 !important;
+  background-color: #fef2f2 !important;
+}
+
+.errorText {
+  color: #ef4444;
+  font-size: 0.65rem;
+  margin-top: 0.3vh;
+  display: block;
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 1024px) {
+  .AddSkillPopUp {
+    width: 42vw;
+   
+    height: 48vh;
+  }
+
+  .Header button {
+    width: 3.5vw;
+    height: 3.5vw;
+  }
+
+  .Header button img {
+    width: 1.8vw;
+    height: 1.8vw;
+  }
+
+  .TwoButtons button {
+    width: 11vw;
+    height: 4.5vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .AddSkillPopUp {
+    width: 80vw;
+    right: 6vw;
+    top: 20vh;
+    height: auto; /* Changed from fixed height */
+    max-height: 80vh; /* Added max-height */
+    padding: 2vh 4vw;
+    overflow-y: auto;
+    gap: 1vh; /* Added scroll if needed */
+    padding-top: 2vh;
+  }
+
+  .Header h5 {
+    font-size: 1.2rem;
+  }
+
+  .Header button {
+    width: 7vw;
+    height: 7vw;
+    min-width: 28px;
+    min-height: 28px;
+  }
+
+  .Header button img {
+    width: 3.5vw;
+    height: 3.5vw;
+    min-width: 14px;
+    min-height: 14px;
+  }
+
+  .SkillInput p,
+  .UploadCertificate p,
+  .SkillDescription p {
+    font-size: 0.75rem;
+  }
+
+  .SkillInput input,
+  .SkillDescription input {
+    height: 4.5vh;
+    padding-left: 3vw;
+    font-size: 0.75rem;
+  }
+
+  .SkillInput input::placeholder,
+  .SkillDescription input::placeholder {
+    font-size: 0.7rem;
+  }
+
+  .UploadBox {
+    height: 12vh;
+    margin-bottom: 1vh;
+  }
+
+  .UploadIcon {
+    font-size: 1.2rem;
+  }
+
+  .UploadLabel strong {
+    font-size: 0.7rem;
+  }
+
+  .UploadLabel small {
+    font-size: 0.5rem;
+  }
+
+  .UploadLabel p {
+    font-size: 0.75rem;
+  }
+
+  .TwoButtons {
+    gap: 4vw;
+    margin-top: 2vh;
+    padding-bottom: 1vh;
+  }
+
+  .TwoButtons button {
+    width: 35vw;
+    height: 4.5vh;
+    font-size: 0.8rem;
+  }
+
+  .errorText {
+    font-size: 0.7rem;
+    margin-top: 0.5vh;
+  }
+
+  /* Ensure input containers have enough space for errors */
+  .SkillInput,
+  .SkillDescription,
+  .UploadCertificate {
+    margin-bottom: 0.5vh;
+  }
+}

@@ -1,0 +1,280 @@
+.container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.description {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.pHead {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.LineBreak {
+  height: 1px;
+  background: #eaeaea;
+  margin: 2rem 0;
+}
+
+.EmailUpdate, .PasswordUpdate {
+  margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.emailhandle {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.emailDisplay {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  max-width: 400px;
+}
+
+.pemail {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.verifiedBadge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #e8f5e8;
+  color: #2e7d32;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #c8e6c9;
+  max-width: fit-content;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 400px;
+}
+
+.Form label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.Form input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  width: 100%;
+  transition: border-color 0.2s;
+  background: white;
+  color: #333;
+}
+
+.Form input:focus {
+  outline: none;
+  border-color: var(--Main-blue-color);
+  box-shadow: 0 0 0 2px rgba(0, 119, 181, 0.1);
+}
+
+.Form input::placeholder {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.Form button {
+  padding: 0.75rem 1.5rem;
+  background: var(--Main-blue-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: fit-content;
+}
+
+.Form button:hover:not(:disabled) {
+  background: #006398;
+}
+
+.Form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* FIXED: Password form alignment */
+.passform {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 400px;
+}
+
+.passinput {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.passinput label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.passinput input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  width: 100%; /* Added this */
+  transition: border-color 0.2s;
+  background: white;
+  color: #333;
+}
+
+.passinput input:focus {
+  outline: none;
+  border-color: var(--Main-blue-color);
+  box-shadow: 0 0 0 2px rgba(0, 119, 181, 0.1);
+}
+
+.helpText {
+  font-size: 0.8rem;
+  color: #777;
+  font-style: italic;
+}
+
+.passform button {
+  padding: 0.75rem 1.5rem;
+  background: var(--Main-blue-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: fit-content;
+  margin-top: 0.5rem;
+  align-self: flex-start; /* Aligns button with inputs */
+}
+
+.passform button:hover:not(:disabled) {
+  background: #006398;
+}
+
+.passform button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorText {
+  padding: 0.75rem 1rem;
+  background: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  border: 1px solid #f5c6cb;
+  margin-top: 0.5rem;
+  max-width: 400px; /* Aligns error message with inputs */
+}
+
+/* Loading state */
+.container:has(p:only-child) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.container:has(p:only-child) p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .pHead {
+    font-size: 1.3rem;
+  }
+  
+  .Form, .passform {
+    max-width: 100%;
+  }
+  
+  .Form button, .passform button {
+    width: 100%;
+    align-self: stretch; /* Makes button full width on mobile */
+  }
+  
+  .errorText {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .sectionTitle h3 {
+    font-size: 1.1rem;
+  }
+  
+  .emailDisplay {
+    padding: 0.75rem;
+  }
+  
+  .pemail {
+    font-size: 0.9rem;
+    word-break: break-all;
+  }
+}

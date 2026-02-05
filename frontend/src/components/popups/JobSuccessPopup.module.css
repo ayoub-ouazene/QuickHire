@@ -1,0 +1,256 @@
+
+
+/* Import global fonts and variables */
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+/* CSS Variables */
+:root {
+  --Main-blue-color: #0077B5;
+  --Second-blue-color: #E8F4FA;
+  --third-blue-color: #E4F2F91C;
+  --Button-color: #007FAF;
+  --CheckBox-color: #00A0C6;
+  --Selected-Button-color: #E3F4FF;
+  --p-TextColor: #25324B;
+  --HeadersColor: #25324B;
+  --border-color: #e2e8f0;
+  --background-color: #f8f9fa;
+  --inactive-color: #6c757d;
+  --inactive-bg: #f8f9fa;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all ease-in-out 0.3s;
+}
+/* JobSuccessPopup.css */
+
+/* JobSuccessPopup.module.css */
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(0.25rem);
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1.25rem;
+}
+
+.successPopup {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 
+    0 1.25rem 2.5rem rgba(0, 0, 0, 0.15),
+    0 0.5rem 1.5rem rgba(0, 0, 0, 0.1),
+    0 0 0 0.0625rem rgba(0, 0, 0, 0.05);
+  padding: 2.5rem;
+  text-align: center;
+  position: relative;
+  max-width: 35rem;
+  width: 90%;
+  animation: popIn 0.3s ease-out;
+  border: 0.0625rem solid #E8F4FA;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.popupHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkmarkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmarkImg {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.1875rem solid #E8F4FA;
+}
+
+.successPopup h3 {
+  color: #0077B5;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.5rem;
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.popupContent p {
+  color: #25324B;
+  text-align: center;
+  margin: 0;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+
+.popupDivider {
+  height: 0.0625rem;
+  background: #E8F4FA;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.popupActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  border: none;
+  font-size: 1rem;
+  min-width: 12rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btnPrimary {
+  background-color: #007FAF;
+  color: white;
+}
+
+.btnPrimary:hover,
+.btnPrimary:focus {
+  background-color: #0077B5;
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 127, 175, 0.3);
+}
+
+.btnSecondary {
+  background-color: #E8F4FA;
+  color: #25324B;
+  border: 0.0625rem solid #E8F4FA;
+}
+
+.btnSecondary:hover,
+.btnSecondary:focus {
+  background-color: #E3F4FF;
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border-color: #0077B5;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #E8F4FA;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all ease-in-out 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+  background-color: #0077B5;
+  transform: rotate(90deg);
+}
+
+.closeBtn:hover .closeIcon,
+.closeBtn:focus .closeIcon {
+  color: white;
+}
+
+.closeIcon {
+  color: #25324B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive design */
+@media (max-width: 48rem) {
+  .popupOverlay {
+    padding: 1rem;
+  }
+  
+  .successPopup {
+    padding: 2rem 1.5rem;
+    width: 95%;
+  }
+  
+  .popupActions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .btn {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .checkmarkImg {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .successPopup {
+    padding: 1.5rem 1rem;
+  }
+  
+  .popupHeader {
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .checkmarkImg {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  
+  .successPopup h3 {
+    font-size: 1.375rem;
+  }
+}

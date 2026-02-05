@@ -1,0 +1,316 @@
+/* dashbordUser.module.css */
+.userDashboard {
+  padding: 1.25rem;
+  max-width: calc(100% - 15rem); /* Reduced from 17.5rem */
+  margin-left: 15rem; /* Reduced from 17.5rem */
+  margin-top: 4.375rem; /* Navbar height */
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  min-height: calc(100vh - 4.375rem);
+  transition: all 0.3s ease;
+}
+
+.dashboardHeader {
+  margin-bottom: 1.875rem;
+}
+
+.dashboardHeader h1 {
+  color: var(--HeadersColor);
+  margin: 0 0 1.25rem 0;
+  font-size: clamp(1.8rem, 1.5vw + 1rem, 2.5rem);
+  font-family: 'Clash Display Variable', sans-serif;
+  font-weight: 600;
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.statCard {
+  background: white;
+  padding: 1.563rem 0.938rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.063rem 0.188rem rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all ease-in-out 0.3s;
+  min-height: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.statNumber {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--Main-blue-color);
+  margin-bottom: 0.5rem;
+  font-family: 'Clash Display Variable', sans-serif;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: var(--p-TextColor);
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+}
+
+.section {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 0.063rem 0.188rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.563rem;
+}
+
+.sectionHeader {
+  margin-bottom: 1.25rem;
+}
+
+.sectionHeader h2 {
+  color: var(--HeadersColor);
+  margin: 0;
+  font-size: clamp(1.5rem, 1.2vw + 1rem, 2rem);
+  font-family: 'Clash Display Variable', sans-serif;
+  font-weight: 600;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.companyCard {
+  border: 0.063rem solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  transition: all ease-in-out 0.3s;
+  background: white;
+  min-height: 11.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.companyCard:hover {
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.125rem);
+}
+
+.companyContent {
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+.companyName {
+  color: var(--HeadersColor);
+  margin: 0 0 0.75rem 0;
+  font-size: clamp(1.3rem, 0.8vw + 1rem, 1.6rem);
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 600;
+}
+
+.position {
+  color: var(--p-TextColor);
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+}
+
+.duration {
+  color: var(--p-TextColor);
+  margin: 0 0 0.75rem 0;
+  font-size: 0.813rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.statusBadge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+}
+
+.statusBadge.active {
+  background: var(--Second-blue-color);
+  color: var(--Main-blue-color);
+}
+
+.statusBadge.completed {
+  background: color-mix(in srgb, var(--p-TextColor) 15%, white);
+  color: var(--p-TextColor);
+}
+
+
+/* ... Your existing CSS ... */
+
+/* SKELETON LOADING STYLES */
+
+.line {
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Optional: Subtle border for skeleton cards to match layout */
+.shimmerBox {
+  background-color: #fff; /* Keep white background so grey lines pop */
+  border: 1px solid #f0f0f0;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #edf2f7; /* Base grey color */
+}
+
+.shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.4) 20%, /* Slightly stronger shine */
+    rgba(255, 255, 255, 0.7) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmerAnim 1.5s infinite; /* Faster animation for dashboard */
+  content: '';
+}
+
+@keyframes shimmerAnim {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+
+/* Responsive Design with Sidebar */
+@media (max-width: 75rem ) { /* 1200px */
+  .userDashboard {
+    margin-left: 13.75rem; /* Reduced from 15.625rem */
+    max-width: calc(100% - 13.75rem); /* Reduced from 15.625rem */
+  }
+}
+
+@media (max-width: 64rem) { /* 1024px */
+  .userDashboard {
+    margin-left: 0;
+    max-width: 100%;
+    margin-top: 4.375rem;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 48rem) { /* 768px */
+  .userDashboard {
+    margin-top: 3.75rem;
+    padding: 0.938rem;
+  }
+  
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 0.938rem;
+  }
+  
+  .statsContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .section {
+    padding: 1.125rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .statCard {
+    padding: 1.25rem 0.75rem;
+    min-height: 6.25rem;
+  }
+  
+  .companyCard {
+    padding: 1.125rem;
+    min-height: 10rem;
+  }
+  
+  .dashboardHeader h1 {
+    font-size: clamp(1.5rem, 2vw, 1.8rem);
+  }
+  
+  .sectionHeader h2 {
+    font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+  }
+}
+
+@media (max-width: 30rem) { /* 480px */
+  .userDashboard {
+    margin-top: 3.75rem;
+    padding: 0.75rem;
+  }
+  
+  .statsContainer {
+    grid-template-columns: 1fr;
+    gap: 0.625rem;
+  }
+  
+  .section {
+    padding: 0.938rem;
+    margin-bottom: 0.938rem;
+    border-radius: 0.625rem;
+  }
+  
+  .statCard {
+    padding: 0.938rem 0.625rem;
+    min-height: 5.625rem;
+    border-radius: 0.625rem;
+  }
+  
+  .companyCard {
+    padding: 0.938rem;
+    min-height: 8.75rem;
+    margin-bottom: 0;
+  }
+  
+  .statNumber {
+    font-size: 1.5rem;
+  }
+  
+  .statLabel {
+    font-size: 0.813rem;
+  }
+  
+  .dashboardHeader h1 {
+    font-size: 1.4rem;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 1.2rem;
+  }
+  
+  .companyName {
+    font-size: 1.1rem;
+  }
+}
+
+/* Sidebar collapsed state - moved further left */
+.sidebar-collapsed .userDashboard {
+  margin-left: 3.75rem; /* Reduced from 5rem */
+  max-width: calc(100% - 3.75rem); /* Reduced from 5rem */
+}
+
+@media (max-width: 64rem) { /* 1024px */
+  .sidebar-collapsed .userDashboard {
+    margin-left: 0;
+    max-width: 100%;
+  }
+}

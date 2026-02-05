@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import styles from './DashbordCompany.module.css';
-import NavBarCompany from '../../../components/navbarcompany/navbarcompany.jsx';
+import navbarcompany from '../../../components/navbarcompany/navbarcompany.jsx';
 import SideBarCompany from '../../../components/SideBar/SideBarCompany.jsx';
 import { companyAPI } from '../../../services/api';
 import Alert from '../../../components/Alert/Alert.jsx';
@@ -297,7 +297,7 @@ const CompanyDashboard = () => {
         />
       )}
 
-      <NavBarCompany />
+      <navbarcompany />
       <SideBarCompany />
       <div className={styles.companydashboard}>
 

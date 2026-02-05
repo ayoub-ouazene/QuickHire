@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './JobPosting.module.css';
 import ChatBot from '../../components/chatbot/ChatBot.jsx';
-import NavBarCompany from '../../components/NavbarCompany/NavbarCompany.jsx';
 import SideBarCompany from '../../components/SideBar/SideBarCompany.jsx';
 import { companyAPI } from '../../services/api';
 
@@ -260,7 +259,7 @@ const JobPosting = () => {
   return (
     <>
 
-      <NavBarCompany />
+      <navbarcompany />
       <SideBarCompany />
       <ChatBot />
       <div className={styles.container}>

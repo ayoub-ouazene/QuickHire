@@ -1,7 +1,7 @@
 import React from 'react'
 import SideBar from '../../../components/SideBar/SideBar'
 
-import NavBarCompany from "../../../components/navbarcompany/navbarcompany.jsx"
+import navbarcompany from "../../../components/navbarcompany/navbarcompany.jsx"
 
 
 import CompanyProfile from '../../../components/CompanyProfile/CompanyProfile'
@@ -9,7 +9,7 @@ import ChatBot from "../../../components/chatbot/ChatBot"
 const CompanyProfilePage = () => {
   return (
     <>
-    <NavBarCompany/>
+    <navbarcompany/>
     <SideBar/>
     <CompanyProfile/>
     <ChatBot/>

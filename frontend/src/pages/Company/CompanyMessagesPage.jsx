@@ -2,12 +2,12 @@
 import CompanyMessages from "../../components/CompanyMessages/CompanyMessages"
 import SideBarCompany from "../../components/SideBar/SideBarCompany"
 
-import NavBarCompany from "../../components/navbarcompany/navbarcompany.jsx"
+import navbarcompany from "../../components/navbarcompany/navbarcompany.jsx"
 
  const CompanyMessagesPage = () => {
   return (
     <>
-    <NavBarCompany/>
+    <navbarcompany/>
     <SideBarCompany/>
     <CompanyMessages/>
 

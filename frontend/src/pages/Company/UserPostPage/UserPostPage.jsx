@@ -6,7 +6,7 @@ import ChatBot from "../../../components/chatbot/ChatBot";
 import Pagination from "../../../components/pagintion/Pagination";
 import SideBarCompany from "../../../components/SideBar/SideBarCompany";
 import Search from "../../../components/searchbar/SearchBar";
-import NavBarCompany from "../../../components/navbarcompany/navbarcompany.jsx";
+import navbarcompany from "../../../components/navbarcompany/navbarcompany.jsx";
 import Alert from "../../../components/Alert/Alert"; 
 import Logo from "../../../assets/LOGO.svg";
 import styles from "./UserPostPage.module.css";
@@ -394,7 +394,7 @@ function CandidatePage() {
       )}
 
       <div className={`${styles.SideBarContainer} ${isMobile ? styles.SideBarMobile : ""} ${sidebarOpen && isMobile ? styles.SideBarMobileOpen : ""}`}>
-        <NavBarCompany />
+        <navbarcompany />
         <SideBarCompany />
       </div>
 

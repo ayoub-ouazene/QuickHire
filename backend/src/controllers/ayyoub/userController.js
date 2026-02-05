@@ -8,20 +8,36 @@ exports.getProfile = async (req, res) => {
   try {
     const userId = req.user.userId;
     const currentDate = new Date();
-
-    // ✅ 1. CACHE: Check Redis
     const cacheKey = `user:profile:${userId}`;
-    const cachedData = await redis.get(cacheKey);
 
-    if(cachedData) {
-        return res.status(200).json({
+    // ==========================================
+    // ✅ 1. SAFER CACHE RETRIEVAL
+    // ==========================================
+    try {
+      const cachedData = await redis.get(cacheKey);
+      
+      // Only return if data exists and is valid JSON
+      if (cachedData) {
+        const parsedData = JSON.parse(cachedData);
+        
+        // Extra check to ensure we didn't cache an empty object or null
+        if (parsedData && typeof parsedData === 'object') {
+          return res.status(200).json({
             success: true,
-            data: JSON.parse(cachedData),
+            data: parsedData,
             source: 'cache'
-        });
+          });
+        }
+      }
+    } catch (redisError) {
+      // If Redis fails, Log it but CONTINUE to Database. 
+      // Do not let a cache error stop the user from logging in.
+      console.warn("⚠️ Redis Cache Error (Skipping cache):", redisError.message);
     }
 
-    // Get user and active job in parallel for better performance
+    // ==========================================
+    // 2. DATABASE FETCH (Parallel)
+    // ==========================================
     const [user, currentJob] = await Promise.all([
       prisma.user.findUnique({
         where: { User_id: userId },
@@ -30,7 +46,6 @@ exports.getProfile = async (req, res) => {
           User_Skills: true
         }
       }),
-
       
       prisma.job_Hiring_History.findFirst({
         where: {
@@ -53,23 +68,35 @@ exports.getProfile = async (req, res) => {
       });
     }
 
+    // ==========================================
+    // 3. DATA FORMATTING
+    // ==========================================
     const { Password, ...userWithoutPassword } = user;
 
     const responseData = {
       ...userWithoutPassword,
       CompanyName: currentJob ? currentJob.company.Name : null  
+    };
+
+    // ==========================================
+    // ✅ 4. SAFER CACHE SAVING
+    // ==========================================
+    try {
+      // Save for 10 minutes (600 seconds)
+      await redis.set(cacheKey, JSON.stringify(responseData), 'EX', 600);
+    } catch (redisWriteError) {
+      console.error("⚠️ Failed to save to Redis (Non-fatal):", redisWriteError.message);
     }
 
-    // ✅ 2. CACHE: Save to Redis (10 mins)
-    await redis.set(cacheKey, JSON.stringify(responseData), 'EX', 600);
-
+    // Send Final Response
     res.status(200).json({
       success: true,
-      data: responseData
+      data: responseData,
+      source: 'database'
     });
 
   } catch (error) {
-    console.error('Get Profile Error:', error);
+    console.error('❌ Get Profile Critical Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to fetch profile',

@@ -6,19 +6,34 @@ const redis = require("../../config/redis.js"); // ✅ Redis Import
 exports.getProfile = async (req, res) => {
   try {
     const companyId = req.company.companyId;
-
-    // ✅ 1. CACHE: Check Redis
     const cacheKey = `company:profile:${companyId}`;
-    const cachedData = await redis.get(cacheKey);
-    
-    if(cachedData) {
-        return res.status(200).json({
+
+    // ==========================================
+    // ✅ 1. SAFER CACHE RETRIEVAL
+    // ==========================================
+    try {
+      const cachedData = await redis.get(cacheKey);
+      
+      if (cachedData) {
+        const parsedData = JSON.parse(cachedData);
+        
+        // Ensure we have a valid object before returning to frontend
+        if (parsedData && typeof parsedData === 'object') {
+          return res.status(200).json({
             success: true,
-            data: JSON.parse(cachedData),
+            data: parsedData,
             source: 'cache'
-        });
+          });
+        }
+      }
+    } catch (redisError) {
+      // If Redis fails, log it and move to Database fetch automatically
+      console.warn("⚠️ Redis Cache Error (Company Profile):", redisError.message);
     }
 
+    // ==========================================
+    // 2. DATABASE FETCH (All your includes preserved)
+    // ==========================================
     const company = await prisma.company.findUnique({
       where: { Company_id: companyId },
       include: {
@@ -51,16 +66,25 @@ exports.getProfile = async (req, res) => {
       });
     }
 
-    // ✅ 2. CACHE: Save to Redis (10 mins)
-    await redis.set(cacheKey, JSON.stringify(company), 'EX', 600);
+    // ==========================================
+    // ✅ 3. SAFER CACHE SAVING
+    // ==========================================
+    try {
+      // Save to Redis (10 mins / 600 seconds)
+      await redis.set(cacheKey, JSON.stringify(company), 'EX', 600);
+    } catch (redisWriteError) {
+      console.error("⚠️ Failed to save Company to Redis:", redisWriteError.message);
+    }
 
+    // Final Response
     res.status(200).json({
       success: true,
-      data: company
+      data: company,
+      source: 'database'
     });
 
   } catch (error) {
-    console.error('Get Company Profile Error:', error);
+    console.error('❌ Get Company Profile Critical Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to fetch company profile',

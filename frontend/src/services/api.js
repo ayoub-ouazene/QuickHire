@@ -57,7 +57,8 @@ export const authAPI = {
 
 // ==================== USER API ====================
 export const userAPI = {
-  getProfile: async () => {
+  
+  getProfile: async () => {      
     const response = await api.get('/User/Profile');
     return response.data;
   },

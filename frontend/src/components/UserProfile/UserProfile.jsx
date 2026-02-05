@@ -40,6 +40,7 @@ const UserProfile = () => {
     setShowAlert(true);
   };
 
+  
   // --- 1. DATA FETCHING WITH USEQUERY ---
   const { data: userInfo, isLoading, isError } = useQuery({
     queryKey: ["userProfile"],

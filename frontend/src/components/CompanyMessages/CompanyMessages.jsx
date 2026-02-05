@@ -63,8 +63,7 @@ const CompanyMesssages = () => {
                 }
 
                 const conversations = await response.json();
-                console.log("Conversations loaded:", conversations);
-
+         
                 const initialContactsProfiles = conversations.map(conversation => {
                     const { profile, LastMessage } = conversation;
                     
@@ -113,20 +112,19 @@ const CompanyMesssages = () => {
     // Function to load messages for a specific contact
     const loadMessagesForSpecificContact = async (contact, contactsList) => {
         if (!contact || !contact.ConversationId) {
-            console.log("No contact or conversation ID");
+      
             return;
         }
 
         // Skip if already loaded
         if (contact.MessagesLoaded) {
-            console.log("Messages already loaded for this contact");
+          
             return;
         }
 
         try {
             setIsLoadingMessages(true);
-            console.log(`Loading messages for conversation ${contact.ConversationId}`);
-
+       
             // Fetch recent messages (last 15)
             const response = await fetch(
                 `https://quickhire-4d8p.onrender.com/api/Company/Conversations/${contact.ConversationId}/Messages/recent?limit=${MESSAGES_PER_PAGE}`,
@@ -144,8 +142,7 @@ const CompanyMesssages = () => {
             }
 
             const data = await response.json();
-            console.log("Recent messages loaded:", data);
-
+           
             // Transform messages to match your format
             const formattedMessages = data.messages.map(msg => ({
                 Role: msg.Sender === "company" ? "sender" : "receiver",
@@ -203,8 +200,7 @@ const CompanyMesssages = () => {
         try {
             setIsLoadingMoreMessages(true);
             const nextPage = currentPage + 1;
-            console.log(`Loading page ${nextPage} for conversation ${currentContact.ConversationId}`);
-
+       
             const response = await fetch(
                 `https://quickhire-4d8p.onrender.com/api/Company/Conversations/${currentContact.ConversationId}/Messages/paginated?page=${nextPage}&limit=${MESSAGES_PER_PAGE}`,
                 {
@@ -221,8 +217,7 @@ const CompanyMesssages = () => {
             }
 
             const data = await response.json();
-            console.log("More messages loaded:", data);
-
+        
             // Transform new messages
             const newMessages = data.messages.map(msg => ({
                 Role: msg.Sender === "company" ? "sender" : "receiver",
@@ -290,8 +285,7 @@ const CompanyMesssages = () => {
     }, []);
 
     const handleContactSelected = (contact) => {
-        console.log("Contact selected:", contact.Name);
-        
+   
         // If selecting the same contact, don't reload
         if (currentContact && currentContact.id === contact.id) {
             if (isPhone) setMobileView('chat');

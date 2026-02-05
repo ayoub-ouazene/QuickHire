@@ -12,7 +12,7 @@ const ChatSocket = async (socket, io) => {
     conversations.forEach(conversation => {
         const roomName = `conversation_${conversation.ConversationId}`;
         socket.join(roomName);
-        console.log(`User joined room: ${roomName}`);
+      
     });
 
     socket.on("send_message", async ({ conversationId, content }) => {

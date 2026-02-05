@@ -33,21 +33,17 @@ const AddManagerPopUp = ({ handlingAdding, className, onClose }) => {
 
   const handleFileChange = (e) => {
     const uploadedFile = e.target.files[0];
-    console.log("File input change event:", e.target.files);
+  
 
     if (uploadedFile && uploadedFile.type.startsWith("image/")) {
-      console.log("Valid image file selected:", {
-        name: uploadedFile.name,
-        type: uploadedFile.type,
-        size: uploadedFile.size
-      });
+
       
       setFile(uploadedFile);
       setFileName(uploadedFile.name);
       setErrors(prev => ({ ...prev, file: "" }));
 
       setTimeout(() => {
-        console.log("Stored file state:", file);
+     
       }, 0);
     } else {
       console.warn("Invalid file selected:", uploadedFile);
@@ -169,8 +165,6 @@ const AddManagerPopUp = ({ handlingAdding, className, onClose }) => {
       return;
     }
 
-    console.log("Selected file:", file);
-
     const payload = {
       name: name.trim(),
       role: role.trim(),
@@ -180,7 +174,7 @@ const AddManagerPopUp = ({ handlingAdding, className, onClose }) => {
       adding: false
     };
 
-    console.log("Sending payload:", payload);
+
 
     if (typeof handlingAdding === "function") {
       handlingAdding(payload);
@@ -201,8 +195,6 @@ const AddManagerPopUp = ({ handlingAdding, className, onClose }) => {
       });
       
       showNotification("Manager added successfully!", 'success'); // ✅ Alert
-    } else {
-      console.log("Add manager payload:", payload);
     }
   };
 

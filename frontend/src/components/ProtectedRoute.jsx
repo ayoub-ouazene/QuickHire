@@ -4,7 +4,6 @@ import { useAuth } from "../context/AuthContext";
 export default function ProtectedRoute({ children, allowedAccountType }) {
   const { isAuthenticated, loading, accountType } = useAuth();
 
-  console.log('ProtectedRoute:', { isAuthenticated, loading, accountType, allowedAccountType });
 
   if (loading) {
     return (
@@ -20,7 +19,7 @@ export default function ProtectedRoute({ children, allowedAccountType }) {
   }
 
   if (!isAuthenticated) {
-    console.log('Not authenticated, redirecting to /SignIn');
+
     return <Navigate to="/SignIn" replace />;
   }
 

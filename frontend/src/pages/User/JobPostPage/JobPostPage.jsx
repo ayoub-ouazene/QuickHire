@@ -185,11 +185,10 @@ function JobPage() {
   // FIXED: Better auto-navigation that works for both directions
   useEffect(() => {
     if (!isLoading && rawJobs.length === 0 && availableTotal > 0) {
-      console.log('🔄 Current page empty, auto-navigating...');
-      
+  
       // If we have next page, go to it
       if (currentPage < totalPages) {
-        console.log(`📥 Auto-fetching next page: ${currentPage + 1}`);
+       
         setCurrentPage(currentPage + 1);
       }
       // If we're on last page and it's empty, check previous pages
@@ -305,8 +304,7 @@ function JobPage() {
 
   // ✅ Handle job application from JobPost component
   const handleApplySuccess = useCallback((jobId, jobTitle) => {
-    console.log('🔄 Handling apply success for job:', jobId);
-    
+
     // Add to applied jobs in localStorage
     const appliedJobs = JSON.parse(localStorage.getItem('appliedJobs') || '[]');
     if (!appliedJobs.includes(jobId)) {

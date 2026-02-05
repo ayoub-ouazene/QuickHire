@@ -12,7 +12,7 @@ function JobInvitation({ application, onAccept }) {
 
       if (!token) {
         console.error("User not authenticated");
-        alert("Please login to accept invitations");
+      
         return;
       }
 
@@ -31,21 +31,18 @@ function JobInvitation({ application, onAccept }) {
       const data = await response.json();
 
       if (data.success) {
-        console.log("Invitation accepted successfully");
-        alert("Invitation accepted! The company has been notified.");
-        
         // ✅ Call parent's onAccept to refresh the list
         if (onAccept) {
           await onAccept(application);
         }
       } else {
         console.error("Failed to accept invitation:", data.error);
-        alert("Failed to accept invitation: " + data.error);
+  
       }
 
     } catch (error) {
       console.error("Accept invitation failed:", error);
-      alert("An error occurred while accepting the invitation");
+    
     }
   };
 

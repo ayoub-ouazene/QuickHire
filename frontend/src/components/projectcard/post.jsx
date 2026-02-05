@@ -71,8 +71,7 @@ function JobPost({ post, onApplySuccess, showAlert }) {
       }
       
       if (jobId === post.id) {
-        console.log('📢 Received external apply event for job:', post.id, 'from:', source, 'eventId:', eventId);
-        
+  
         // Add to processed events
         setProcessedEvents(prev => new Set([...prev, eventId]));
         

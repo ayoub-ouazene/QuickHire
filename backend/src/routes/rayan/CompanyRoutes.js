@@ -80,9 +80,7 @@ router.post('/Notification', async (req, res) => {
   try {
     const { id, type, Notification_Type, Content } = req.body;
 
-    console.log('📬 COMPANY NOTIFICATION ENDPOINT HIT!');
-    console.log('Company ID:', id);
-    console.log('Content:', Content);
+    
 
     // ✅ ACTUALLY CREATE NOTIFICATION IN DATABASE
     const notification = await prisma.company_Notifications_History.create({
@@ -94,7 +92,6 @@ router.post('/Notification', async (req, res) => {
       }
     });
 
-    console.log('✅ Company notification created in database! ID:', notification.Notification_id);
 
     res.status(200).json({
       success: true,

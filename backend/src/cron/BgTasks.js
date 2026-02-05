@@ -32,9 +32,6 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const CronJobs = () => {
 
-  cron.schedule('*/10 * * * * '  , async ()=>{
-    console.log("Run for render !🕒");
-  });
 
   cron.schedule('30 8 * * *', async () => {
     console.log("🕒 Checking for jobs ending today...");
@@ -60,11 +57,9 @@ const CronJobs = () => {
       });
 
       if (jobsEndingToday.length === 0) {
-        console.log("✅ No jobs ending today");
+       
         return;
       }
-
-      console.log(`📋 Found ${jobsEndingToday.length} job(s) ending today`);
 
   
       const transporter = nodemailer.createTransport({
@@ -128,7 +123,7 @@ const CronJobs = () => {
             });
 
             pdfBuffer = null;
-            console.log(`📧 Certificate sent to ${userEmail}`);
+     
           }
         } catch (pdfError) {
           console.error(`❌ Error generating/sending PDF for job ${job.id}:`, pdfError);
@@ -182,12 +177,11 @@ const CronJobs = () => {
        
      
 
-        console.log(`✅ Notifications created for Job ${job.id}`);
-
+   
         await sleep(2000);
       }
 
-      console.log("🎉 Cron job cycle completed successfully");
+     
 
     } catch (error) {
       console.error("❌ Cron Job Fatal Error:", error);

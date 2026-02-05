@@ -173,9 +173,6 @@ function CApplicationsLayout() {
   };
 
   const handleAccept = async (applicant) => {
-    console.log('handleAccept called with:', applicant);
-    console.log('Applicant name:', applicant?.name);
-    console.log('Applicant jobRole:', applicant?.jobRole);
 
     try {
       // ✅ Call backend API to add user to In_Chat table

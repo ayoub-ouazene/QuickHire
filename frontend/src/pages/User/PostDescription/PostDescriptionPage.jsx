@@ -198,7 +198,7 @@ export default function JobDetailsPage() {
   useEffect(() => {
     const appliedJobs = JSON.parse(localStorage.getItem('appliedJobs') || '[]');
     if (appliedJobs.includes(parseInt(jobId))) {
-      console.log('✅ Job already applied (from localStorage)');
+    
       setApplied(true);
     }
   }, [jobId]);
@@ -322,7 +322,7 @@ export default function JobDetailsPage() {
 
   const handleApply = () => {
     if (applied || applying || hasDispatchedEvent) {
-      console.log('⏸️ Apply blocked:', { applied, applying, hasDispatchedEvent });
+      
       return;
     }
 

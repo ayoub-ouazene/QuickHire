@@ -59,7 +59,7 @@ function JobApplicationLayout() {
           skills: app.job?.Job_Skills?.map(s => s.Name) || []
         }));
         
-        console.log('✅ All applications loaded:', transformedData.length);
+     
         setAllApplicationsData(transformedData);
       }
     } catch (error) {
@@ -90,8 +90,7 @@ function JobApplicationLayout() {
           status: 'Pending',
           companyLocation: inv.company?.MainLocation
         }));
-        
-        console.log('✅ All invitations loaded:', transformedData.length);
+       
         setAllInvitationsData(transformedData);
       }
     } catch (error) {
@@ -124,15 +123,13 @@ function JobApplicationLayout() {
 
   // ✅ Client-side filtering and pagination for Applications
   const { filteredApplications, paginatedApplications, totalApplicationsPages } = useMemo(() => {
-    console.log('🔄 Filtering applications with filter:', activeFilter);
-    
+
     // Apply filter
     const filtered = activeFilter === 'All' 
       ? allApplicationsData 
       : allApplicationsData.filter(app => app.Type?.toLowerCase() === activeFilter.toLowerCase());
     
-    console.log('📊 Filtered applications:', filtered.length, 'items');
-    
+
     // Apply pagination
     const startIndex = (currentPage - 1) * applicationsPerPage;
     const endIndex = startIndex + applicationsPerPage;

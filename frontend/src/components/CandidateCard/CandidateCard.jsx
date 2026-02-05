@@ -16,8 +16,7 @@ const renderStars = (rating) =>
   ));
 
 function CandidatePost({ id, pic, name, title, stats, description, skills, onInvite, showAlert }) {
-  console.log('🔍 CandidatePost rendered with name:', name, 'id:', id);
-  
+
   const [averageRating, setRating] = useState(2.5);
   const [invited, setInvited] = useState(false);
   const [inviting, setInviting] = useState(false);
@@ -38,7 +37,7 @@ function CandidatePost({ id, pic, name, title, stats, description, skills, onInv
     // Check if already invited from localStorage
     const recentlyInvited = JSON.parse(localStorage.getItem('recentlyInvitedCandidates') || '[]');
     if (recentlyInvited.includes(id)) {
-      console.log('✅ Candidate already invited (from localStorage)');
+      
       setInvited(true);
       setHasRemoved(true);
     }
@@ -55,8 +54,7 @@ function CandidatePost({ id, pic, name, title, stats, description, skills, onInv
       }
       
       if (userId === id) {
-        console.log('📢 Received external invite event for user:', id, 'from:', source, 'eventId:', eventId);
-        
+   
         // Add to processed events
         setProcessedEvents(prev => new Set([...prev, eventId]));
         
@@ -78,19 +76,16 @@ function CandidatePost({ id, pic, name, title, stats, description, skills, onInv
 
   const handleInvite = async () => {
     if (invited || inviting || hasRemoved) {
-      console.log('⏸️ Invite blocked:', { invited, inviting, hasRemoved });
+    
       return;
     }
 
     try {
       setInviting(true);
-      
-      console.log('🔄 Starting invite process for candidate:', { id, name });
 
       // Get company info
       const companyData = JSON.parse(localStorage.getItem("user") || "{}");
-      console.log('🏢 Company data from localStorage:', companyData);
-      
+ 
       const companyId = companyData.Company_id || companyData.id || companyData.company_id;
       const companyName = companyData.Name || companyData.name || companyData.companyName || "Your Company";
       
@@ -128,13 +123,7 @@ function CandidatePost({ id, pic, name, title, stats, description, skills, onInv
         return;
       }
 
-      console.log('📤 Sending invitation...', { 
-        companyId, 
-        userId: id,
-        candidateName: name,
-        candidateNameType: typeof name
-      });
-
+   
       // Send invitation (backend will create notification)
       const invitationResponse = await fetch('https://quickhire-4d8p.onrender.com/api/Company/Invitations', {
         method: 'POST',
@@ -151,14 +140,12 @@ function CandidatePost({ id, pic, name, title, stats, description, skills, onInv
       });
 
       const invitationData = await invitationResponse.json();
-      console.log('📩 Backend response:', invitationData);
 
       if (!invitationData.success) {
         throw new Error(invitationData.error || 'Failed to send invitation');
       }
 
-      console.log('✅ Invitation sent successfully!');
-
+ 
       // Update local state
       setInvited(true);
       setHasRemoved(true);
@@ -172,12 +159,9 @@ function CandidatePost({ id, pic, name, title, stats, description, skills, onInv
       
       // ✅ FIXED: Call onInvite ONCE with proper parameters
       if (onInvite && typeof onInvite === 'function') {
-        console.log('📞 Calling onInvite callback for id:', id);
+       
         onInvite(id, displayName);
-      } else {
-        console.log('⚠️ onInvite callback not available or not a function');
-      }
-      
+      } 
       // Show notification
       if (showAlert) {
         if (name && name.trim() !== "") {

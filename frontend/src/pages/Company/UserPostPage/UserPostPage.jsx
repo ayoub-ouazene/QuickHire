@@ -278,8 +278,8 @@ function CandidatePage() {
   };
 
   const handleCandidateInvite = useCallback((candidateId, candidateName) => {
-    console.log('🔄 Inviting candidate:', candidateId);
-    
+
+  
     const invitedCandidates = JSON.parse(localStorage.getItem('invitedCandidates') || '[]');
     if (!invitedCandidates.includes(candidateId)) {
       invitedCandidates.push(candidateId);

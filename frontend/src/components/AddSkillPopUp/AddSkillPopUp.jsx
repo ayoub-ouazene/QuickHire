@@ -29,15 +29,9 @@ const AddSkillPopUp = ({ handlingAdding, className, onClose }) => {
 
   const handleFileChange = (e) => {
     const uploadedFile = e.target.files[0];
-    console.log("File input change event:", e.target.files);
-
+ 
     if (uploadedFile && uploadedFile.type.startsWith("image/")) {
-      console.log("Valid image file selected:", {
-        name: uploadedFile.name,
-        type: uploadedFile.type,
-        size: uploadedFile.size
-      });
-      
+    
       setFile(uploadedFile);
       setFileName(uploadedFile.name);
       setErrors(prev => ({ ...prev, file: "" }));
@@ -146,9 +140,6 @@ const AddSkillPopUp = ({ handlingAdding, className, onClose }) => {
       });
       
       showNotification("Skill added successfully!", 'success'); // ✅ Alert
-    } else {
-      // Fallback: log to console for now
-      console.log("Add skill payload:", payload);
     }
   };
 

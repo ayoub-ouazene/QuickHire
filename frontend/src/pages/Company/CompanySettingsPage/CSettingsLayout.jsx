@@ -4,7 +4,7 @@ import PersonalInformation from "../../../components/Settings/CompanySettings/Pe
 import SocialLinksPage from "../../../components/Settings/CompanySettings/SocialLinksPage";
 import CompanyLoginDetails from "../../../components/Settings/CompanySettings/CompanyLoginDetails"; // ← ADD THIS IMPORT
 import SideBarCompany from "../../../components/SideBar/SideBarCompany";
-import navbarcompany from "../../../components/navbarcompany/navbarcompany.jsx";
+import Navbarcompany from "../../../components/navbarcompany/navbarcompany.jsx";
 
 export default function CSettingsLayout() {
   const [activeTab, setActiveTab] = useState("personal");
@@ -26,7 +26,7 @@ export default function CSettingsLayout() {
   return (
     <div className={styles.layout}>
       {/* NavBar with toggle */}
-      <navbarcompany toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+      <Navbarcompany toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
       {/* Mobile overlay */}
       <div

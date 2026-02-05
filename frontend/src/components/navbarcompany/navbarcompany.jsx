@@ -3,7 +3,7 @@ import logo from "../../assets/LOGO.svg";
 import Notification from "../../assets/notification.svg"
 import { useNavigate } from 'react-router-dom'
 
-const navbarcompany = () => {
+const Navbarcompany = () => {
    
    
  
@@ -35,4 +35,4 @@ const navbarcompany = () => {
 }
 
 
-export default navbarcompany
+export default Navbarcompany

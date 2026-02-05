@@ -1,0 +1,135 @@
+.NavBar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 12vh;
+    position: fixed;
+    background-color: white;
+    top: 0;
+    border-bottom: 1px #e0e1e4 solid;
+    z-index: 1000;
+}
+
+.logo {
+    margin-top: 0;
+    padding: 0;
+    width: 20vw;
+    height: 12vh;
+    align-self: flex-start;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    top: -2vh;
+    margin-left: -3.5vw;
+}
+
+.secondDiv {
+    display: flex;
+    gap: 1.2rem;
+    padding-right: 3vw;
+    align-items: center;
+}
+
+.BackToHomeButton {
+    border: 1px solid #bdddef;
+    color: white;
+    background-color: var(--Main-blue-color);
+    width: 12vw;
+    height: 6vh;
+    border-radius: 0.2rem;
+    padding: 0.6rem 0.2rem;
+    font-size: 75%;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.BackToHomeButton:hover {
+    background-color: var(--Main-blue-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+.Notification {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .BackToHomeButton {
+        width: 15vw;
+        height: 5vh;
+        font-size: 70%;
+    }
+
+    .secondDiv {
+        gap: 1rem;
+        padding-right: 2vw;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+    .BackToHomeButton {
+        width: 10vw;
+        max-width: 150px;
+        min-width: 120px;
+    }
+}
+
+/* Mobile Styles - Show logo and notification */
+@media (max-width: 767px) {
+    .NavBar {
+        display: flex;
+        height: 10vh;
+        /* Smaller height for mobile */
+        justify-content: center;
+        /* Center the logo */
+        align-items: center;
+        padding: 0 4vw;
+        position: relative;
+        /* For absolute positioning of notification */
+    }
+
+    .logo {
+        width: 45vw;
+        /* Adjust logo size for mobile */
+        height: 8vh;
+        top: 0;
+        /* Reset positioning */
+        margin-left: 0;
+        /* Reset margin */
+        align-self: center;
+        /* Center vertically */
+        justify-content: center;
+        /* Center horizontally */
+        align-items: center;
+        /* Center logo content */
+    }
+
+    .secondDiv {
+        display: flex;
+        gap: 0.8rem;
+        padding-right: 0;
+        align-items: center;
+        position: absolute;
+        right: 4vw;
+        /* Position on the right */
+    }
+
+    .BackToHomeButton {
+        display: none;
+        /* Hide Post Job button on mobile */
+    }
+
+    .Notification {
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+    }
+}

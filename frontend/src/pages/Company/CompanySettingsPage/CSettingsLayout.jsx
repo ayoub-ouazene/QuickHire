@@ -4,7 +4,7 @@ import PersonalInformation from "../../../components/Settings/CompanySettings/Pe
 import SocialLinksPage from "../../../components/Settings/CompanySettings/SocialLinksPage";
 import CompanyLoginDetails from "../../../components/Settings/CompanySettings/CompanyLoginDetails"; // ← ADD THIS IMPORT
 import SideBarCompany from "../../../components/SideBar/SideBarCompany";
-import NavBarCompany from "../../../components/NavBarCompany/NavBarCompany.jsx";
+import NavBarCompany from "../../../components/navbarcompany/navbarcompany.jsx";
 
 export default function CSettingsLayout() {
   const [activeTab, setActiveTab] = useState("personal");

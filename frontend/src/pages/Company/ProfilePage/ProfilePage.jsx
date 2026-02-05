@@ -1,7 +1,7 @@
 import React from 'react'
 import SideBar from '../../../components/SideBar/SideBar'
 
-import NavBarCompany from "../../../components/NavBarCompany/NavBarCompany.jsx"
+import NavBarCompany from "../../../components/navbarcompany/navbarcompany.jsx"
 
 
 import CompanyProfile from '../../../components/CompanyProfile/CompanyProfile'

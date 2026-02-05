@@ -1,5 +1,5 @@
 import styles from "./UserProfileHeroSection.module.css";
-import ProfileImg from "../../assets/me.jpg";
+import ProfileImg from "../../assets/UserProfileImg.webp";
 import locationLogo from "../../assets/location.svg";
 import FlagLog from "../../assets/Flagsvg.svg";
 import Flag2Log from "../../assets/Flag2svg.svg";

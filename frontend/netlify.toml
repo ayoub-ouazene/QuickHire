@@ -1,27 +1,12 @@
 [build]
   command = "npm run build"
-  publish = "dist"  # Vite builds to "dist" folder
-  functions = "netlify/functions"  # Optional: for serverless functions
+  publish = "dist"
 
 [dev]
   command = "npm run dev"
-  port = 5173  # Vite's default dev port
-  target = "modern"  # For modern browsers
+  port = 5173
 
-# For Single Page Applications (React Router)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Optional: Cache control for assets
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-
-# Optional: Environment variables during build
-[build.environment]
-  NODE_VERSION = "20"  # Netlify defaults to 18, but 20 is better

@@ -2,9 +2,10 @@
   "name": "express-prisma-backend",
   "version": "1.0.0",
   "description": "Express.js backend with Prisma",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "build": "prisma generate && prisma migrate deploy",
     "dev": "nodemon server.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",

@@ -1,5 +1,4 @@
-.AdditionalContainer
-{
+.AdditionalContainer {
     display: flex;
     flex-direction: column;
     padding: 3vh 1.5vw;
@@ -8,54 +7,62 @@
     /* align-items: center; */
     width: 26vw;
     height: 40%;
-   
+
     border: 1px solid rgb(223, 222, 222);
-    position:fixed;
+    position: fixed;
     padding-bottom: 3vh !important;
-
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 
-.AdditionalContainer h5
-{
-   font-size: 1.4rem;
+.AdditionalContainer h5 {
+    font-size: 1.4rem;
 }
 
-.SubDetails
-{
+.SubDetails {
     display: flex;
     flex-direction: column;
     /* align-items: start; */
     padding-left: 1vw;
     gap: 1vh;
+    max-width: 100%;
+    overflow: hidden;
 }
 
-.p1
-{
+.p1 {
     color: rgba(126, 124, 124, 0.772);
     font-size: 0.85rem;
     display: flex;
     align-items: center;
     gap: 0.2vw;
 }
-.p1 img
-{
+
+.p1 img {
     width: 1rem;
     height: 1rem;
-    
+
 
 }
 
-.p2
-{
+.p2 {
     font-size: 0.8rem;
     padding-left: 1vw;
+    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
-.p2 a
-{
+
+.p2 a {
     cursor: pointer;
     color: var(--Main-blue-color);
     font-size: 0.8rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    display: inline-block;
+    max-width: 100%;
 }
 
 
@@ -65,8 +72,7 @@
 @media (max-width: 600px) {
 
 
-     .AdditionalContainer
-    {
+    .AdditionalContainer {
         position: static;
         width: 90vw;
         justify-content: center;
@@ -76,15 +82,15 @@
 
     }
 
-    
-.SubDetails
-{
-    padding-left: 3vw;
-}
-.p1 , .p2
-{
-    font-size: 1rem;
-}
+
+    .SubDetails {
+        padding-left: 3vw;
+    }
+
+    .p1,
+    .p2 {
+        font-size: 1rem;
+    }
 
 
 

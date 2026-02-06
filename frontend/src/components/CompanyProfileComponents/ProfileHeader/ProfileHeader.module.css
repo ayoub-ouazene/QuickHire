@@ -1,23 +1,22 @@
-.ProfileHeroSection
-{
+.ProfileHeroSection {
 
     min-height: 38vh;
     width: 100%;
-    background-color:white;
+    background-color: white;
     border: solid 1px var(--Button-color);
     border-radius: 1.2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 3vw;   
-    height: 40vh; 
+    gap: 3vw;
+    height: 40vh;
     padding: 3vh 0vw !important;
 
 }
 
 
 /* ✅ ULTRA SPECIFIC - This WILL override everything */
-.ProfileHeroSection > .CompanyProfilePhoto {
+.ProfileHeroSection>.CompanyProfilePhoto {
     width: 10vw !important;
     height: 10vw !important;
     min-width: 80px !important;
@@ -28,11 +27,11 @@
     border-radius: 50% !important;
     object-fit: cover !important;
     border: 0.25rem solid white !important;
-    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1) !important;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1) !important;
 }
 
 @media (max-width: 900px) {
-    .ProfileHeroSection > .CompanyProfilePhoto {
+    .ProfileHeroSection>.CompanyProfilePhoto {
         width: 18vw !important;
         height: 18vw !important;
         min-width: 100px !important;
@@ -46,55 +45,50 @@
 
 
 
-.FirstPart
-{
+.FirstPart {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     gap: 1vw;
     align-items: start;
     justify-content: center;
-   
+
 
 }
 
 
-.FirstPart   h1
-{
-     font-family: 'Epilogue', sans-serif;
-     padding-bottom: 1vh;
-     
-     
+.FirstPart h1 {
+    font-family: 'Epilogue', sans-serif;
+    padding-bottom: 1vh;
+
+
 }
 
-.companywebsite
-{
+.companywebsite {
     font-size: 0.8rem;
-    color : var(--Main-blue-color);
-    display: flex;
+    color: var(--Main-blue-color);
+    display: block;
     align-items: center;
     font-weight: 600;
-
- 
-
+    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
-.companywebsite:hover
-{
+.companywebsite:hover {
     cursor: pointer;
 }
 
 
 
-.SmallInfos
-{
+.SmallInfos {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 2.5vw;
 }
 
-.SmallInfo
-{
+.SmallInfo {
     display: flex;
     align-items: center;
     gap: 0.6vw;
@@ -102,8 +96,7 @@
 }
 
 /* These styles are ONLY for the small info icons */
-.SmallInfo img
-{
+.SmallInfo img {
     width: 2vw !important;
     height: 2vw !important;
     padding: 0 !important;
@@ -115,8 +108,7 @@
     justify-content: center;
 }
 
-.SmallInfo div
-{
+.SmallInfo div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,28 +128,25 @@
     align-self: center;
 }
 
-.p1 
-{
+.p1 {
     font-size: 0.9rem;
     font-weight: bold;
 }
 
-.p2
-{
+.p2 {
     font-size: 0.6rem;
-    
+
 }
 
 
 @media (max-width: 600px) {
-    .ProfileHeroSection
-{
-    width: 94%  !important;
-    align-self: center;
-    justify-content: center;
-    gap: 5vw;
-    padding-bottom: 3vh !important;
-}
+    .ProfileHeroSection {
+        width: 94% !important;
+        align-self: center;
+        justify-content: center;
+        gap: 5vw;
+        padding-bottom: 3vh !important;
+    }
 
     .ProfileHeroSection {
         flex-direction: column;
@@ -169,8 +158,8 @@
         width: 98vw;
         box-sizing: border-box;
     }
-    
-    .ProfileHeroSection > .CompanyProfilePhoto {
+
+    .ProfileHeroSection>.CompanyProfilePhoto {
         width: 30vw !important;
         height: 30vw !important;
         min-width: 120px !important;
@@ -181,9 +170,9 @@
         margin-bottom: 2vh !important;
         border-radius: 50% !important;
         object-fit: cover !important;
-        box-shadow: 0 0.6vh 2vh rgba(0,0,0,0.08) !important;
+        box-shadow: 0 0.6vh 2vh rgba(0, 0, 0, 0.08) !important;
     }
-    
+
     .FirstPart {
         align-items: center;
         justify-content: center;
@@ -192,19 +181,21 @@
         text-align: center;
         padding: 0 2vw;
     }
+
     .SmallInfos {
-       
+
         gap: 2vh;
         align-items: center;
         width: 90%;
     }
-  
+
     .SmallInfo {
         gap: 2vw;
         width: 100%;
         justify-content: center;
         align-items: center;
     }
+
     .SmallInfo img {
         max-width: 5rem !important;
         max-height: 5rem !important;
@@ -224,19 +215,19 @@
         margin-bottom: 0 !important;
     }
 
-   
+
     .SmallInfo div p {
         font-size: 0.6rem;
     }
-    .p1
-    {
+
+    .p1 {
         font-weight: bolder;
         font-size: 0.6rem !important;
     }
-    .p2
-    {
+
+    .p2 {
         font-size: 0.4rem !important;
-    
+
     }
 }
 
@@ -287,13 +278,11 @@
     bottom: 0;
     left: 0;
     transform: translateX(-100%);
-    background-image: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 0,
-        rgba(255, 255, 255, 0.2) 20%,
-        rgba(255, 255, 255, 0.5) 60%,
-        rgba(255, 255, 255, 0)
-    );
+    background-image: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.2) 20%,
+            rgba(255, 255, 255, 0.5) 60%,
+            rgba(255, 255, 255, 0));
     animation: shimmerAnim 2s infinite;
     content: '';
 }

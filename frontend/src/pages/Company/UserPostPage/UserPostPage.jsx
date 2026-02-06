@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import CompanyFilterObject from "../../../components/CompanyFilter/CompanyFilter";
 import CandidatePost from "../../../components/CandidateCard/CandidateCard";
 import ChatBot from "../../../components/chatbot/ChatBot";
@@ -7,8 +8,10 @@ import Pagination from "../../../components/pagintion/Pagination";
 import SideBarCompany from "../../../components/SideBar/SideBarCompany";
 import Search from "../../../components/searchbar/SearchBar";
 import Navbarcompany from "../../../components/navbarcompany/navbarcompany.jsx";
-import Alert from "../../../components/Alert/Alert"; 
+import Alert from "../../../components/Alert/Alert";
 import Logo from "../../../assets/LOGO.svg";
+import MenuIcon from "../../../assets/sidebar.svg";
+import NotificationIcon from "../../../assets/notification.svg";
 import styles from "./UserPostPage.module.css";
 import HiringPic from "../../../assets/WeAreHiring.png";
 import "../../../index.css";
@@ -24,18 +27,19 @@ const CandidateSkeleton = () => (
       </div>
     </div>
     <div className={styles.skeletonTags}>
-       <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '70px', height: '24px', borderRadius: '15px' }}></div>
-       <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '70px', height: '24px', borderRadius: '15px' }}></div>
-       <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '70px', height: '24px', borderRadius: '15px' }}></div>
+      <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '70px', height: '24px', borderRadius: '15px' }}></div>
+      <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '70px', height: '24px', borderRadius: '15px' }}></div>
+      <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '70px', height: '24px', borderRadius: '15px' }}></div>
     </div>
     <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '100%', height: '50px', marginTop: '20px', borderRadius: '8px' }}></div>
     <div className={styles.skeletonFooter}>
-        <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '120px', height: '40px', borderRadius: '8px' }}></div>
+      <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '120px', height: '40px', borderRadius: '8px' }}></div>
     </div>
   </div>
 );
 
 function CandidatePage() {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [query, setQuery] = useState("");
   const [filters, setFilters] = useState({ ExperienceRange: [], Categories: [] });
@@ -58,13 +62,13 @@ function CandidatePage() {
     try {
       const accountType = localStorage.getItem("accountType");
       const storedData = localStorage.getItem("user");
-      
+
       if (!storedData || storedData === "[object Object]" || storedData === "null") {
         return null;
       }
 
       const parsedData = JSON.parse(storedData);
-      
+
       if (accountType === "company") {
         return parsedData.Company_id || parsedData.companyId || parsedData.id;
       }
@@ -82,7 +86,7 @@ function CandidatePage() {
     const companyId = currentCompanyId;
 
     if (!companyId) {
-      showNotification('Please log in as a company to view candidates', 'error'); 
+      showNotification('Please log in as a company to view candidates', 'error');
       throw new Error('Please log in as a company to view candidates');
     }
 
@@ -110,7 +114,7 @@ function CandidatePage() {
     if (data.success) {
       const invitedCandidates = JSON.parse(localStorage.getItem('invitedCandidates') || '[]');
       const filteredCandidates = data.users.filter(user => !invitedCandidates.includes(user.id));
-      
+
       const transformedCandidates = filteredCandidates.map(user => ({
         id: user.id,
         pic: user.photo || "https://via.placeholder.com/150",
@@ -133,13 +137,13 @@ function CandidatePage() {
       }));
 
       const adjustedTotal = data.total - (data.users.length - filteredCandidates.length);
-      
+
       if (page === 1) {
         setAvailableTotal(adjustedTotal);
       }
 
-      return { 
-        candidates: transformedCandidates, 
+      return {
+        candidates: transformedCandidates,
         total: data.total,
         filteredTotal: adjustedTotal,
         page: data.page,
@@ -147,15 +151,15 @@ function CandidatePage() {
         hasNextPage: data.hasNextPage
       };
     } else {
-      showNotification(data.error || 'Failed to fetch candidates', 'error'); 
+      showNotification(data.error || 'Failed to fetch candidates', 'error');
       throw new Error(data.error || 'Failed to fetch candidates');
     }
   };
 
-  const { 
-    data, 
-    isLoading, 
-    isError, 
+  const {
+    data,
+    isLoading,
+    isError,
     error,
     isPlaceholderData
   } = useQuery({
@@ -180,7 +184,7 @@ function CandidatePage() {
   useEffect(() => {
     if (!isLoading && rawCandidates.length === 0 && availableTotal > 0) {
       console.log('🔄 Current page empty, auto-navigating...');
-      
+
       // If we have next page, go to it
       if (currentPage < totalPages) {
         console.log(`📥 Auto-fetching next page: ${currentPage + 1}`);
@@ -189,7 +193,7 @@ function CandidatePage() {
       // If we're on last page and it's empty, check previous pages
       else if (currentPage > 1) {
         console.log(`📤 Last page empty, checking previous pages...`);
-        
+
         // Try to find a page with candidates in cache
         for (let page = currentPage - 1; page >= 1; page--) {
           const cachedData = queryClient.getQueryData(['candidates', page, query, currentCompanyId]);
@@ -199,13 +203,13 @@ function CandidatePage() {
             return;
           }
         }
-        
+
         // If no cached data, just go to previous page
         console.log(`↩️ Going to previous page: ${currentPage - 1}`);
         setCurrentPage(currentPage - 1);
       }
     }
-    
+
     // If current page exceeds total pages, adjust
     if (currentPage > totalPages && totalPages > 0 && !isLoading) {
       console.log(`📄 Adjusting from page ${currentPage} to ${totalPages}`);
@@ -236,8 +240,8 @@ function CandidatePage() {
     const totalMonths = experiences.reduce((total, exp) => {
       const start = new Date(exp.startDate);
       const end = exp.endDate ? new Date(exp.endDate) : new Date();
-      const months = (end.getFullYear() - start.getFullYear()) * 12 + 
-                     (end.getMonth() - start.getMonth());
+      const months = (end.getFullYear() - start.getFullYear()) * 12 +
+        (end.getMonth() - start.getMonth());
       return total + months;
     }, 0);
     return Math.floor(totalMonths / 12);
@@ -279,28 +283,28 @@ function CandidatePage() {
 
   const handleCandidateInvite = useCallback((candidateId, candidateName) => {
 
-  
+
     const invitedCandidates = JSON.parse(localStorage.getItem('invitedCandidates') || '[]');
     if (!invitedCandidates.includes(candidateId)) {
       invitedCandidates.push(candidateId);
       localStorage.setItem('invitedCandidates', JSON.stringify(invitedCandidates));
     }
-    
+
     setAvailableTotal(prev => {
       const newTotal = Math.max(0, prev - 1);
       console.log(`📉 Available total decreased: ${prev} → ${newTotal}`);
       return newTotal;
     });
-    
+
     queryClient.setQueryData(
       ['candidates', currentPage, query, currentCompanyId],
       (oldData) => {
         if (!oldData) return oldData;
-        
+
         const newCandidates = oldData.candidates.filter(candidate => candidate.id !== candidateId);
-        
+
         console.log(`✅ Removed candidate ${candidateId}. Before: ${oldData.candidates.length}, After: ${newCandidates.length}`);
-        
+
         return {
           ...oldData,
           candidates: newCandidates,
@@ -308,40 +312,40 @@ function CandidatePage() {
         };
       }
     );
-    
+
     if (candidateName && candidateName.trim()) {
       showNotification(`Invitation sent to ${candidateName}!`, 'success');
     } else {
       showNotification('Invitation sent successfully!', 'success');
     }
-    
+
   }, [queryClient, currentPage, query, currentCompanyId, showNotification]);
 
   // Listen for invite events from UserDetailsPage
   useEffect(() => {
     const handleExternalInvite = (event) => {
       const { userId, eventId, source } = event.detail;
-      
+
       if (processedEvents.has(eventId)) {
         return;
       }
-      
+
       setProcessedEvents(prev => new Set([...prev, eventId]));
-      
+
       if (source === 'UserDetailsPage') {
         console.log('📢 Received invite event from UserDetailsPage for user:', userId);
-        
+
         setAvailableTotal(prev => Math.max(0, prev - 1));
-        
+
         queryClient.setQueryData(
           ['candidates', currentPage, query, currentCompanyId],
           (oldData) => {
             if (!oldData) return oldData;
-            
+
             const newCandidates = oldData.candidates.filter(candidate => candidate.id !== userId);
-            
+
             console.log(`✅ Removed candidate ${userId} from UserDetailsPage event.`);
-            
+
             return {
               ...oldData,
               candidates: newCandidates,
@@ -349,7 +353,7 @@ function CandidatePage() {
             };
           }
         );
-        
+
         const invitedCandidates = JSON.parse(localStorage.getItem('invitedCandidates') || '[]');
         if (!invitedCandidates.includes(userId)) {
           invitedCandidates.push(userId);
@@ -359,7 +363,7 @@ function CandidatePage() {
     };
 
     window.addEventListener('candidateInvited', handleExternalInvite);
-    
+
     return () => {
       window.removeEventListener('candidateInvited', handleExternalInvite);
     };
@@ -389,7 +393,19 @@ function CandidatePage() {
 
       {isMobile && (
         <div className={styles.MobileHeader}>
+          <img
+            src={MenuIcon}
+            alt="Menu"
+            className={styles.MobileMenuIcon}
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          />
           <img src={Logo} alt="Logo" className={styles.Logo} />
+          <img
+            src={NotificationIcon}
+            alt="Notifications"
+            className={styles.MobileNotification}
+            onClick={() => navigate('../companynotifications')}
+          />
         </div>
       )}
 
@@ -408,9 +424,9 @@ function CandidatePage() {
             <h3>Find Skilled Professionals In Minutes</h3>
             {isMobile && (
               <div className={styles.MobileFilterContainer}>
-                <CompanyFilterObject 
-                  jobs={rawCandidates} 
-                  onFilterChange={setFilters} 
+                <CompanyFilterObject
+                  jobs={rawCandidates}
+                  onFilterChange={setFilters}
                 />
               </div>
             )}
@@ -421,9 +437,9 @@ function CandidatePage() {
         <section className={styles.Pub}>
           {!isMobile && (
             <section id="global-filter" className={styles.Filter}>
-              <CompanyFilterObject 
-                jobs={rawCandidates} 
-                onFilterChange={setFilters} 
+              <CompanyFilterObject
+                jobs={rawCandidates}
+                onFilterChange={setFilters}
               />
             </section>
           )}
@@ -447,17 +463,17 @@ function CandidatePage() {
             )}
 
             {isLoading && !isPlaceholderData ? (
-               <div className={styles.CandidateList}>
-                  {[1, 2, 3, 4].map((n) => (
-                      <CandidateSkeleton key={n} />
-                  ))}
-               </div>
+              <div className={styles.CandidateList}>
+                {[1, 2, 3, 4].map((n) => (
+                  <CandidateSkeleton key={n} />
+                ))}
+              </div>
             ) : (
               <div className={`${styles.CandidateList} ${isPlaceholderData ? styles['loading-blur'] : ''}`}>
                 {filteredCandidates.length > 0 ? (
                   filteredCandidates.map((candidate) => (
-                    <CandidatePost 
-                      key={candidate.id} 
+                    <CandidatePost
+                      key={candidate.id}
                       {...candidate}
                       onInvite={handleCandidateInvite}
                       showAlert={showNotification}
@@ -486,10 +502,10 @@ function CandidatePage() {
 
             {filteredCandidates.length > 0 && totalPages > 1 && (
               <div className={styles.Pagination}>
-                <Pagination 
-                  currentPage={currentPage} 
-                  totalPages={totalPages} 
-                  onPageChange={handlePageChange} 
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
                 />
               </div>
             )}

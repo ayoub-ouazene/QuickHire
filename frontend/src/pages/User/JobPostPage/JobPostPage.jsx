@@ -1,14 +1,17 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import FilterObject from "../../../components/filtring/filtring";
 import Logo from "../../../assets/LOGO.svg";
+import MenuIcon from "../../../assets/sidebar.svg";
+import NotificationIcon from "../../../assets/notification.svg";
 import JobPost from "../../../components/projectcard/post";
 import Pagination from "../../../components/pagintion/Pagination";
 import SideBar from "../../../components/SideBar/SideBar";
 import Search from "../../../components/searchbar/SearchBar";
 import NavBar from "../../../components/NavBar/NavBar";
 import ChatBot from "../../../components/chatbot/ChatBot";
-import Alert from "../../../components/Alert/Alert"; 
+import Alert from "../../../components/Alert/Alert";
 import styles from "./JobPostPage.module.css";
 import HiringPic from "../../../assets/WeAreHiring.png";
 import "../../../index.css";
@@ -26,25 +29,26 @@ const JobSkeleton = () => (
         <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '40%', height: '14px' }}></div>
       </div>
     </div>
-    
+
     {/* Tags/Stats Placeholder */}
     <div className={styles.skeletonTags}>
-       <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '80px', height: '24px', borderRadius: '15px' }}></div>
-       <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '80px', height: '24px', borderRadius: '15px' }}></div>
-       <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '80px', height: '24px', borderRadius: '15px' }}></div>
+      <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '80px', height: '24px', borderRadius: '15px' }}></div>
+      <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '80px', height: '24px', borderRadius: '15px' }}></div>
+      <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '80px', height: '24px', borderRadius: '15px' }}></div>
     </div>
 
     {/* Description Placeholder */}
     <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '100%', height: '60px', marginTop: '20px', borderRadius: '8px' }}></div>
-    
+
     {/* Button Placeholder */}
     <div className={styles.skeletonFooter}>
-        <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '120px', height: '40px', borderRadius: '8px' }}></div>
+      <div className={`${styles.skeletonLine} ${styles.shimmer}`} style={{ width: '120px', height: '40px', borderRadius: '8px' }}></div>
     </div>
   </div>
 );
 
 function JobPage() {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [query, setQuery] = useState("");
   const [filters, setFilters] = useState({ EmploymentType: [], Categories: [] });
@@ -53,7 +57,7 @@ function JobPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [availableTotal, setAvailableTotal] = useState(0);
   const [processedEvents, setProcessedEvents] = useState(new Set());
-  
+
   const [showAlert, setShowAlert] = useState(false);
   const [alertConfig, setAlertConfig] = useState({ type: 'success', message: '' });
 
@@ -84,10 +88,10 @@ function JobPage() {
 
   const fetchJobs = async (page) => {
     const token = localStorage.getItem("token");
-    
+
     // Get applied jobs from localStorage
     const appliedJobs = JSON.parse(localStorage.getItem('appliedJobs') || '[]');
-    
+
     const params = new URLSearchParams({
       page: page,
       limit: jobsPerPage,
@@ -111,7 +115,7 @@ function JobPage() {
     if (data.success) {
       // Filter out already applied jobs
       const filteredJobs = data.jobs.filter(job => !appliedJobs.includes(job.id));
-      
+
       const transformedJobs = filteredJobs.map(job => ({
         id: job.id,
         pic: job.company.logo || "https://placehold.co/64x64",
@@ -144,8 +148,8 @@ function JobPage() {
         setAvailableTotal(adjustedTotal);
       }
 
-      return { 
-        jobs: transformedJobs, 
+      return {
+        jobs: transformedJobs,
         total: data.total,
         filteredTotal: adjustedTotal,
         page: data.page,
@@ -158,17 +162,17 @@ function JobPage() {
     }
   };
 
-  const { 
-    data, 
-    isLoading, 
-    isError, 
-    error, 
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
     isPlaceholderData
   } = useQuery({
     queryKey: ['jobs', currentPage, query, currentUserId],
     queryFn: () => fetchJobs(currentPage),
     staleTime: 1000 * 60 * 5,
-    placeholderData: (previousData) => previousData, 
+    placeholderData: (previousData) => previousData,
   });
 
   const rawJobs = data?.jobs || [];
@@ -185,16 +189,16 @@ function JobPage() {
   // FIXED: Better auto-navigation that works for both directions
   useEffect(() => {
     if (!isLoading && rawJobs.length === 0 && availableTotal > 0) {
-  
+
       // If we have next page, go to it
       if (currentPage < totalPages) {
-       
+
         setCurrentPage(currentPage + 1);
       }
       // If we're on last page and it's empty, check previous pages
       else if (currentPage > 1) {
         console.log(`📤 Last page empty, checking previous pages...`);
-        
+
         // Try to find a page with jobs in cache
         for (let page = currentPage - 1; page >= 1; page--) {
           const cachedData = queryClient.getQueryData(['jobs', page, query, currentUserId]);
@@ -204,13 +208,13 @@ function JobPage() {
             return;
           }
         }
-        
+
         // If no cached data, just go to previous page
         console.log(`↩️ Going to previous page: ${currentPage - 1}`);
         setCurrentPage(currentPage - 1);
       }
     }
-    
+
     // If current page exceeds total pages, adjust
     if (currentPage > totalPages && totalPages > 0 && !isLoading) {
       console.log(`📄 Adjusting from page ${currentPage} to ${totalPages}`);
@@ -233,32 +237,32 @@ function JobPage() {
   useEffect(() => {
     const handleJobApplied = (event) => {
       const { jobId, eventId, source } = event.detail;
-      
+
       // Prevent processing the same event multiple times
       if (processedEvents.has(eventId)) {
         return;
       }
-      
+
       // Add to processed events
       setProcessedEvents(prev => new Set([...prev, eventId]));
-      
+
       // Only process if event is from JobDetailsPage
       if (source === 'JobDetailsPage') {
         console.log('📢 Received job applied event from JobDetailsPage for job:', jobId);
-        
+
         // Update available total
         setAvailableTotal(prev => Math.max(0, prev - 1));
-        
+
         // Remove from query cache
         queryClient.setQueryData(
           ['jobs', currentPage, query, currentUserId],
           (oldData) => {
             if (!oldData) return oldData;
-            
+
             const newJobs = oldData.jobs.filter(job => job.id !== jobId);
-            
+
             console.log(`✅ Removed job ${jobId} from JobDetailsPage event.`);
-            
+
             return {
               ...oldData,
               jobs: newJobs,
@@ -266,7 +270,7 @@ function JobPage() {
             };
           }
         );
-        
+
         // Add to localStorage
         const appliedJobs = JSON.parse(localStorage.getItem('appliedJobs') || '[]');
         if (!appliedJobs.includes(jobId)) {
@@ -277,7 +281,7 @@ function JobPage() {
     };
 
     window.addEventListener('jobApplied', handleJobApplied);
-    
+
     return () => {
       window.removeEventListener('jobApplied', handleJobApplied);
     };
@@ -311,24 +315,24 @@ function JobPage() {
       appliedJobs.push(jobId);
       localStorage.setItem('appliedJobs', JSON.stringify(appliedJobs));
     }
-    
+
     // Decrease available total
     setAvailableTotal(prev => {
       const newTotal = Math.max(0, prev - 1);
       console.log(`📉 Available total decreased: ${prev} → ${newTotal}`);
       return newTotal;
     });
-    
+
     // Remove from query cache
     queryClient.setQueryData(
       ['jobs', currentPage, query, currentUserId],
       (oldData) => {
         if (!oldData) return oldData;
-        
+
         const newJobs = oldData.jobs.filter(job => job.id !== jobId);
-        
+
         console.log(`✅ Removed job ${jobId}. Before: ${oldData.jobs.length}, After: ${newJobs.length}`);
-        
+
         return {
           ...oldData,
           jobs: newJobs,
@@ -336,14 +340,14 @@ function JobPage() {
         };
       }
     );
-    
+
     // Show notification
     if (jobTitle && jobTitle.trim()) {
       showNotification(`Applied to ${jobTitle}!`, 'success');
     } else {
       showNotification('Application submitted successfully!', 'success');
     }
-    
+
   }, [queryClient, currentPage, query, currentUserId, showNotification]);
 
   // Reset processed events when changing pages or search
@@ -377,7 +381,19 @@ function JobPage() {
 
       {isMobile && (
         <div className={styles.MobileHeader}>
+          <img
+            src={MenuIcon}
+            alt="Menu"
+            className={styles.MobileMenuIcon}
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          />
           <img src={Logo} alt="Logo" className={styles.Logo} />
+          <img
+            src={NotificationIcon}
+            alt="Notifications"
+            className={styles.MobileNotification}
+            onClick={() => navigate('../Notifications')}
+          />
         </div>
       )}
 
@@ -427,11 +443,11 @@ function JobPage() {
             )}
 
             {isLoading && !isPlaceholderData ? (
-               <div className={styles.JobPost}>
-                  {[1, 2, 3, 4].map((n) => (
-                      <JobSkeleton key={n} />
-                  ))}
-               </div>
+              <div className={styles.JobPost}>
+                {[1, 2, 3, 4].map((n) => (
+                  <JobSkeleton key={n} />
+                ))}
+              </div>
             ) : (
               <div className={`${styles.JobPost} ${isPlaceholderData ? styles['loading-blur'] : ''}`}>
                 {filteredJobs.length > 0 ? (

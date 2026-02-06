@@ -110,7 +110,7 @@ export default function PersonalInformation() {
 
   // --- 1. Query: Fetch Company Data ---
   const { data: profileData, isLoading } = useQuery({
-    queryKey: ['companyProfile', companyId],
+    queryKey: ['companyProfileSettings', companyId],
     queryFn: async () => {
       const res = await fetch(`https://quickhire-4d8p.onrender.com/api/Company/ProfileSettings/${companyId}`, {
         headers: { 
@@ -166,7 +166,8 @@ export default function PersonalInformation() {
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['companyProfile', companyId]);
+      queryClient.invalidateQueries({ queryKey: ['companyProfileSettings', companyId] });
+      queryClient.invalidateQueries({ queryKey: ['companyProfile'] });
       showNotification("Company profile saved successfully!", "success");
     },
     onError: (err) => showNotification(`Error: ${err.message}`, "error")

@@ -54,7 +54,7 @@ function PersonalInfo() {
 
   // --- 1. Fetch Profile Data (useQuery) ---
   const { data: profileData, isLoading, isError } = useQuery({
-    queryKey: ['userProfile', userId],
+    queryKey: ['userProfileSettings', userId],
     queryFn: async () => {
       if (!userId) throw new Error("No User ID found");
       const res = await fetch(`https://quickhire-4d8p.onrender.com/api/User/ProfileSettings/${userId}`, {
@@ -109,7 +109,8 @@ function PersonalInfo() {
       return data.user;
     },
     onSuccess: (updatedUser) => {
-      queryClient.setQueryData(['userProfile', userId], updatedUser);
+      queryClient.invalidateQueries({ queryKey: ['userProfile'] });
+      queryClient.setQueryData(['userProfileSettings', userId] , updatedUser);
       showNotification('success', 'Profile changes saved successfully!');
     },
     onError: (err) => {
@@ -136,7 +137,8 @@ function PersonalInfo() {
     },
     onSuccess: (newUrl) => {
       if(newUrl) setImagePreview(newUrl);
-      queryClient.invalidateQueries(['userProfile', userId]);
+      queryClient.invalidateQueries({ queryKey: ['userProfile'] });
+      queryClient.invalidateQueries({ queryKey: ['userProfileSettings', userId] });
       showNotification('success', 'Profile image uploaded successfully!');
     },
     onError: (err) => {
@@ -170,7 +172,8 @@ function PersonalInfo() {
     },
     onSuccess: () => {
       setImagePreview(null);
-      queryClient.invalidateQueries(['userProfile', userId]);
+        queryClient.invalidateQueries({ queryKey: ['userProfile'] });
+      queryClient.invalidateQueries({ queryKey: ['userProfileSettings', userId] });
       showNotification('success', 'Profile image removed successfully!');
     },
     onError: (err) => {

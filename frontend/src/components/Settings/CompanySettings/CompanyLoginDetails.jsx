@@ -45,7 +45,7 @@ function CompanyLoginDetails() {
 
   // --- 1. Fetch Profile (for Email) ---
   const { data: companyProfile, isLoading } = useQuery({
-    queryKey: ['companyProfile', companyId],
+    queryKey: ['companyProfileSettings', companyId],
     queryFn: async () => {
       const res = await fetch(`https://quickhire-4d8p.onrender.com/api/Company/ProfileSettings/${companyId}`, {
         headers: { 
@@ -83,7 +83,8 @@ function CompanyLoginDetails() {
     },
     onSuccess: (newEmail) => {
       setEmail(newEmail);
-      queryClient.setQueryData(['companyProfile', companyId], (old) => ({ ...old, email: newEmail }));
+      queryClient.setQueryData(['companyProfileSettings', companyId], (old) => ({ ...old, email: newEmail }));
+      queryClient.invalidateQueries({ queryKey: ['companyProfile'] });
       if(emailRef.current) emailRef.current.value = "";
       showNotification("Email updated successfully!", "success"); // ✅ New alert
     },

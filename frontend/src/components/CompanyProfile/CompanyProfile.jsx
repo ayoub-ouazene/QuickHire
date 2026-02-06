@@ -34,7 +34,7 @@ const CompanyProfile = () => {
 
   // --- 1. DATA FETCHING WITH USEQUERY ---
   const { data: CompanyInfo, isLoading, isError } = useQuery({
-    queryKey: ["companyProfile"],
+    queryKey: ["companyProfile"], 
     queryFn: companyAPI.getProfile,
     staleTime: 1000 * 60 * 5,
     select: (response) => {

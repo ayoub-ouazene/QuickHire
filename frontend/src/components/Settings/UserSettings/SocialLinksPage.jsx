@@ -46,7 +46,7 @@ function SocialLinksPage() {
 
     // --- 1. Fetch Data (useQuery) ---
     const { data: profileData, isLoading } = useQuery({
-        queryKey: ['userProfile', userId],
+        queryKey: ['userProfileSettings', userId],
         queryFn: async () => {
             const res = await fetch(`https://quickhire-4d8p.onrender.com/api/User/ProfileSettings/${userId}`, {
                 headers: { 
@@ -88,7 +88,8 @@ function SocialLinksPage() {
             return data;
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['userProfile', userId]);
+            queryClient.invalidateQueries({ queryKey: ['userProfileSettings', userId] });
+            queryClient.invalidateQueries({ queryKey: ['userProfile'] });
             showNotification("Links updated successfully!", "success"); // ✅ New alert
         },
         onError: (err) => {

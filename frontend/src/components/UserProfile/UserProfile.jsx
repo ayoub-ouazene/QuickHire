@@ -42,7 +42,7 @@ const UserProfile = () => {
 
   
   // --- 1. DATA FETCHING WITH USEQUERY ---
-  const { data: userInfo, isLoading, isError } = useQuery({
+ const { data: userInfo, isLoading, isError } = useQuery({
     queryKey: ["userProfile"],
     queryFn: userAPI.getProfile,
     staleTime: 1000 * 60 * 5, 

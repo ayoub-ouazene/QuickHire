@@ -604,18 +604,41 @@
     right: 0;
   }
 
-  /* Sidebar hidden on mobile */
+  /* FIXED: Sidebar slides in from left on mobile */
   .SideBarContainer {
-    width: 0;
-    background-color: transparent;
-    overflow: visible;
+    position: fixed;
+    left: -100%;
+    width: 280px;
+    height: 100vh;
+    top: 0;
+    background-color: #f9fbfc;
     z-index: 200;
-    display: none;
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    display: block;
+  }
+  
+  /* Show sidebar when open on mobile */
+  .SideBarMobileOpen {
+    left: 0 !important;
+  }
+  
+  /* Overlay when sidebar is open */
+  .MobileNavBarOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+    animation: fadeIn 0.3s ease;
   }
 
-  /* Navbar hidden on mobile */
+  /* Navbar visible inside mobile sidebar */
   .NavBar {
-    display: none;
+    display: block;
   }
 
   /* Main content takes full width - FIXED LEFT SHIFT */
@@ -1286,60 +1309,38 @@
     transform: rotate(360deg);
   }
 }
-/* ============================================= */
-/* LARGE DESKTOP STYLES (1440px and above) - FIXED */
-/* ============================================= */
-@media (min-width: 1440px) {
-  /* Increase padding at the top to prevent navbar overlap */
-  .Main {
-    padding-top: 60px; /* Increased from 40px */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  /* Increase margin at the top to push header down further */
-  .Header {
-    margin-top: 40px; /* Increased from 30px */
-    padding: 0.8rem 4rem; /* Slightly increased padding for larger screens */
-  }
-  
-  /* Ensure search header has enough space */
-  .SearchHeader {
-    margin-top: 1rem; /* Increased from 0.5rem */
-  }
-  
-  /* Make sure filter stays properly positioned */
-  .Filter {
-    top: 100px; /* Increased from 90px */
-  }
-}
-/* ============================================= */
-/* LARGE DESKTOP STYLES (1440px and above) - FIXED */
-/* ============================================= */
-@media (min-width: 1440px) {
-  /* Increase padding at the top to prevent navbar overlap */
-  .Main {
-    padding-top: 60px; /* Increased from 40px */
-  }
-  
-  /* Increase margin at the top to push header down further */
-  .Header {
-    margin-top: 40px; /* Increased from 30px */
-    padding: 0.8rem 4rem; /* Slightly increased padding for larger screens */
-  }
-  
-  /* Ensure search header has enough space */
-  .SearchHeader {
-    margin-top: 1rem; /* Increased from 0.5rem */
-  }
-  
-  /* Make sure filter stays properly positioned */
-  .Filter {
-    top: 100px; /* Increased from 90px */
+  to {
+    opacity: 1;
   }
 }
 
 /* ============================================= */
-/* TABLET STYLES (1024px - 769px) - FIXED */
+/* LARGE DESKTOP STYLES (1440px and above) - FIXED */
 /* ============================================= */
-@media (max-width: 1024px) and (min-width: 769px) {
-  /* ... existing tablet styles ... */
+@media (min-width: 1440px) {
+  /* Increase padding at the top to prevent navbar overlap */
+  .Main {
+    padding-top: 60px; /* Increased from 40px */
+  }
+  
+  /* Increase margin at the top to push header down further */
+  .Header {
+    margin-top: 40px; /* Increased from 30px */
+    padding: 0.8rem 4rem; /* Slightly increased padding for larger screens */
+  }
+  
+  /* Ensure search header has enough space */
+  .SearchHeader {
+    margin-top: 1rem; /* Increased from 0.5rem */
+  }
+  
+  /* Make sure filter stays properly positioned */
+  .Filter {
+    top: 100px; /* Increased from 90px */
+  }
 }

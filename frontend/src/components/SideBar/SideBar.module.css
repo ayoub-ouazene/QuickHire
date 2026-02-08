@@ -254,7 +254,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .Hamburger {
         display: flex;
         top: 4vh;

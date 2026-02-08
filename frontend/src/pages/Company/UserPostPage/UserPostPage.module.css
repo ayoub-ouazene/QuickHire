@@ -590,18 +590,22 @@
 }
 
 /* ============================================= */
-/* MOBILE STYLES (900px and below) - FIXED */
-/* ============================================= */
-@media (max-width: 900px) {
 
-  /* Show mobile header with logo only */
+/* ============================================= */
+@media (max-width: 767px) {
+
+  /* Hide mobile header - use navbar instead */
   .MobileHeader {
+
     display: flex;
     z-index: 50;
     animation: fadeInDown 0.5s ease-out;
     width: 100vw;
     left: 0;
     right: 0;
+
+    display: none;
+
   }
 
   /* FIXED: Sidebar slides in from left on mobile */
@@ -636,9 +640,11 @@
     animation: fadeIn 0.3s ease;
   }
 
-  /* Navbar visible inside mobile sidebar */
+
+  /* Navbar shows on mobile */
   .NavBar {
-    display: block;
+    display: flex;
+
   }
 
   /* Main content takes full width - FIXED LEFT SHIFT */

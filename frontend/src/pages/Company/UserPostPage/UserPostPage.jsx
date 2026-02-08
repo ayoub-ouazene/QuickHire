@@ -9,11 +9,8 @@ import SideBarCompany from "../../../components/SideBar/SideBarCompany";
 import Search from "../../../components/searchbar/SearchBar";
 import Navbarcompany from "../../../components/navbarcompany/navbarcompany.jsx";
 import Alert from "../../../components/Alert/Alert";
-import Logo from "../../../assets/LOGO.svg";
-import MenuIcon from "../../../assets/sidebar.svg";
-import NotificationIcon from "../../../assets/notification.svg";
-import styles from "./UserPostPage.module.css";
 import HiringPic from "../../../assets/WeAreHiring.png";
+import styles from "./UserPostPage.module.css";
 import "../../../index.css";
 
 // --- SKELETON COMPONENT ---
@@ -389,24 +386,6 @@ function CandidatePage() {
           duration={3000}
           autoClose={true}
         />
-      )}
-
-      {isMobile && (
-        <div className={styles.MobileHeader}>
-          <img
-            src={MenuIcon}
-            alt="Menu"
-            className={styles.MobileMenuIcon}
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          />
-          <img src={Logo} alt="Logo" className={styles.Logo} />
-          <img
-            src={NotificationIcon}
-            alt="Notifications"
-            className={styles.MobileNotification}
-            onClick={() => navigate('../companynotifications')}
-          />
-        </div>
       )}
 
       <div className={`${styles.SideBarContainer} ${isMobile ? styles.SideBarMobile : ""} ${sidebarOpen && isMobile ? styles.SideBarMobileOpen : ""}`}>

@@ -557,8 +557,238 @@ const getJobById = async (req, res) => {
 // ========================================
 // 3. USER APPLIES TO JOB
 // ========================================
+// const applyToJob = async (req, res) => {
+//   try {
+//     let { userId, jobId } = req.body;
+
+//     if (!userId || !jobId) {
+//       return res.status(400).json({ 
+//         success: false,
+//         error: 'Missing required fields',
+//         details: 'Both userId and jobId are required'
+//       });
+//     }
+
+//     const userIdInt = parseInt(userId);
+//     const jobIdInt = parseInt(jobId);
+
+//     if (isNaN(userIdInt) || isNaN(jobIdInt)) {
+//       return res.status(400).json({ 
+//         success: false,
+//         error: 'Invalid data types',
+//         details: 'userId and jobId must be valid integers'
+//       });
+//     }
+
+//     // 1. GET USER DETAILS
+//     const user = await prisma.user.findUnique({
+//       where: { User_id: userIdInt },
+//       select: {
+//         User_id: true, 
+//         FirstName: true, 
+//         LastName: true,
+//         Email: true
+//       }
+//     });
+
+//     if (!user) {
+//       return res.status(404).json({ 
+//         success: false,
+//         error: 'User not found'
+//       });
+//     }
+
+//     // 2. GET JOB DETAILS WITH COMPANY INFO
+//     const job = await prisma.job.findUnique({
+//       where: { Job_id: jobIdInt },
+//       select: {
+//         Job_id: true,
+//         Job_role: true,
+//         Type: true,
+//         company: {
+//           select: {
+//             Company_id: true,
+//             Name: true,
+//             Email: true,
+//             Logo: true
+//           }
+//         }
+//       }
+//     });
+
+//     if (!job) {
+//       return res.status(404).json({ 
+//         success: false,
+//         error: 'Job not found'
+//       });
+//     }
+
+//     // 3. CHECK DUPLICATE APPLICATION
+//     const existingApplication = await prisma.job_Applications.findFirst({
+//       where: {
+//         User_id: userIdInt,
+//         Job_id: jobIdInt
+//       }
+//     });
+
+//     if (existingApplication) {
+//       return res.status(400).json({ 
+//         success: false,
+//         error: 'Duplicate application',
+//         details: 'You have already applied to this job'
+//       });
+//     }
+
+//     // 4. CREATE APPLICATION
+//     const application = await prisma.job_Applications.create({
+//       data: {
+//         User_id: userIdInt,
+//         Job_id: jobIdInt,
+//         Status: 'Applied',
+//         date: new Date()
+//       }
+//     });
+
+
+//     let companyNotification = null;
+    
+//     try {
+//       companyNotification = await prisma.company_Notifications_History.create({
+//         data: {
+//           Company_id: job.company.Company_id,
+//           Content: `${user.FirstName || ''} ${user.LastName || ''} has applied to your job "${job.Job_role}"`,
+//           Date: new Date(),
+//           Type: 'New_Invitation'  // Use New_Invitation for applications
+//         }
+//       });
+      
+//     } catch (companyError) {
+//       console.error('❌ COMPANY notification failed:', companyError.message);
+//     }
+
+//     let userNotification = null;
+    
+//     try {
+//       userNotification = await prisma.user_Notifications_History.create({
+//         data: {
+//           User_id: userIdInt,
+//           Content: `Your application for "${job.Job_role}" at ${job.company.Name} has been submitted`,
+//           Date: new Date(),
+//           Type: 'New'  // User gets 'New' notification
+//         }
+//       });
+      
+//     } catch (userError) {
+//       console.error('❌ USER notification failed:', userError.message);
+//     }
+
+//     // ✅ INVALIDATE CACHE (Relation to Dashboard Stats)
+//     // 1. Update User Stats (Applied Count increases)
+//     await redis.del(`dashboard:user:stats:${userIdInt}`);
+    
+//     // 2. Update Company Stats (Applicants Count increases)
+//     await redis.del(`dashboard:company:stats:${job.company.Company_id}`);
+    
+//     // 3. Update Company Job List (Applicants count on job card increases)
+//     await redis.del(`dashboard:company:jobs:${job.company.Company_id}`);
+
+
+//     // BUILD RESPONSE
+//     const responseData = {
+//       success: true,
+//       message: 'Application submitted successfully',
+//       notifications: {
+//         company: companyNotification ? {
+//           created: true,
+//           notificationId: companyNotification.Notification_id,
+//           companyId: companyNotification.Company_id
+//         } : {
+//           created: false
+//         },
+//         user: userNotification ? {
+//           created: true,
+//           notificationId: userNotification.Notification_id,
+//           userId: userNotification.User_id
+//         } : {
+//           created: false
+//         }
+//       },
+//       application: {
+//         id: application.Application_id,
+//         status: 'Applied',
+//         date: new Date(),
+//         user: {
+//           id: user.User_id,
+//           name: `${user.FirstName || ''} ${user.LastName || ''}`.trim(),
+//           email: user.Email
+//         },
+//         job: {
+//           id: job.Job_id,
+//           title: job.Job_role,
+//           type: job.Type,
+//           company: {
+//             id: job.company.Company_id,
+//             name: job.company.Name,
+//             logo: job.company.Logo
+//           }
+//         }
+//       }
+//     };
+
+//     res.status(201).json(responseData);
+
+//   } catch (err) {
+//     console.error('🔥 Error applying to job:', err);
+    
+//     if (err.code === 'P2003') {
+//       return res.status(400).json({ 
+//         success: false,
+//         error: 'Foreign key constraint failed',
+//         details: 'Invalid userId or jobId reference'
+//       });
+//     }
+
+//     if (err.code === 'P2002') {
+//       return res.status(400).json({ 
+//         success: false,
+//         error: 'Duplicate application'
+//       });
+//     }
+
+//     res.status(500).json({ 
+//       success: false,
+//       error: 'Failed to submit application',
+//       message: err.message
+//     });
+//   }
+// };
+
+
 const applyToJob = async (req, res) => {
   try {
+    // ============== DEBUG: Check Database Tables ==============
+    try {
+      // Test if we can query the notifications tables
+      const testUserNotif = await prisma.user_Notifications_History.findFirst();
+      console.log('✅ User notifications table exists and is accessible');
+    } catch (testError) {
+      console.error('❌ Cannot access user_Notifications_History table:', {
+        message: testError.message,
+        code: testError.code
+      });
+    }
+
+    try {
+      const testCompanyNotif = await prisma.company_Notifications_History.findFirst();
+      console.log('✅ Company notifications table exists and is accessible');
+    } catch (testError) {
+      console.error('❌ Cannot access company_Notifications_History table:', {
+        message: testError.message,
+        code: testError.code
+      });
+    }
+    // ==========================================================
+
     let { userId, jobId } = req.body;
 
     if (!userId || !jobId) {
@@ -649,37 +879,65 @@ const applyToJob = async (req, res) => {
       }
     });
 
+    console.log('✅ Application created, now creating notifications...');
 
+    // ============== COMPANY NOTIFICATION ==============
     let companyNotification = null;
-    
     try {
+      console.log('📝 Creating company notification for Company_id:', job.company.Company_id);
+      console.log('Company data:', {
+        companyId: job.company.Company_id,
+        companyName: job.company.Name,
+        content: `${user.FirstName || ''} ${user.LastName || ''} has applied to your job "${job.Job_role}"`
+      });
+      
       companyNotification = await prisma.company_Notifications_History.create({
         data: {
           Company_id: job.company.Company_id,
           Content: `${user.FirstName || ''} ${user.LastName || ''} has applied to your job "${job.Job_role}"`,
           Date: new Date(),
-          Type: 'New_Invitation'  // Use New_Invitation for applications
+          Type: 'New_Invitation'
         }
       });
       
+      console.log('✅ Company notification created with ID:', companyNotification.Notification_id);
     } catch (companyError) {
-      console.error('❌ COMPANY notification failed:', companyError.message);
+      console.error('❌ COMPANY notification FAILED:', {
+        name: companyError.name,
+        code: companyError.code,
+        message: companyError.message,
+        meta: companyError.meta
+      });
     }
 
+    // ============== USER NOTIFICATION ==============
     let userNotification = null;
-    
     try {
+      console.log('📝 Creating user notification for User_id:', userIdInt);
+      console.log('User data:', {
+        userId: userIdInt,
+        userName: `${user.FirstName || ''} ${user.LastName || ''}`.trim(),
+        content: `Your application for "${job.Job_role}" at ${job.company.Name} has been submitted`,
+        type: 'New'
+      });
+      
       userNotification = await prisma.user_Notifications_History.create({
         data: {
           User_id: userIdInt,
           Content: `Your application for "${job.Job_role}" at ${job.company.Name} has been submitted`,
           Date: new Date(),
-          Type: 'New'  // User gets 'New' notification
+          Type: 'New'
         }
       });
       
+      console.log('✅ User notification created with ID:', userNotification.Notification_id);
     } catch (userError) {
-      console.error('❌ USER notification failed:', userError.message);
+      console.error('❌ USER notification FAILED:', {
+        name: userError.name,
+        code: userError.code,
+        message: userError.message,
+        meta: userError.meta
+      });
     }
 
     // ✅ INVALIDATE CACHE (Relation to Dashboard Stats)
@@ -692,7 +950,6 @@ const applyToJob = async (req, res) => {
     // 3. Update Company Job List (Applicants count on job card increases)
     await redis.del(`dashboard:company:jobs:${job.company.Company_id}`);
 
-
     // BUILD RESPONSE
     const responseData = {
       success: true,
@@ -703,14 +960,16 @@ const applyToJob = async (req, res) => {
           notificationId: companyNotification.Notification_id,
           companyId: companyNotification.Company_id
         } : {
-          created: false
+          created: false,
+          error: 'Company notification was not created'
         },
         user: userNotification ? {
           created: true,
           notificationId: userNotification.Notification_id,
           userId: userNotification.User_id
         } : {
-          created: false
+          created: false,
+          error: 'User notification was not created'
         }
       },
       application: {
@@ -762,7 +1021,6 @@ const applyToJob = async (req, res) => {
     });
   }
 };
-
 // ========================================
 // 4. COMPANY INVITES USER
 // ========================================
